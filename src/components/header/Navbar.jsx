@@ -16,7 +16,7 @@ const Navbar = () => {
   const handleToggle = () => setToggle(!toggle);
   return (
     <>
-      <div className=" flex justify-between my-4 mx-3 items-center ">
+      <div className=" flex justify-between my-4 mx-3 items-center">
         <div className=" font-Montserrat flex justify-between items-baseline container mx-auto max-w-4xl">
           <img src={Logo} alt="logo" />
           <nav className="hidden md:block  ">
