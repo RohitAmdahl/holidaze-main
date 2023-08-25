@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className=" flex justify-between items-center container mx-auto max-w-4xl">
       <div className="">
-        <img src={logo} alt="Logo" className="w-1/2" />
+        <img src={logo} alt="Logo" className="" />
       </div>
       <ul className="flex justify-center items-center">
         <li className="px-2">
