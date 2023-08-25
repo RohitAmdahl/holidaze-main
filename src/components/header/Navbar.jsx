@@ -9,7 +9,7 @@ import {
   HiOutlineMoon,
   HiOutlineSun,
 } from "react-icons/hi";
-// import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
 
@@ -22,22 +22,28 @@ const Navbar = () => {
           <nav className="hidden md:block  ">
             <ul className=" flex justify-center ">
               <li className=" flex justify-center items-center px-4">
-                <span className="px-1">
+                <NavLink to="/" className="flex justify-center items-center">
                   <HiHome />
-                </span>
-                Home
+                  Home
+                </NavLink>
               </li>
               <li className=" flex justify-center items-center px-4">
-                <span className="px-1">
+                <NavLink
+                  to="/venues"
+                  className="flex justify-center items-center"
+                >
                   <TbBeach />
-                </span>
-                Venues
+                  Venues
+                </NavLink>
               </li>
               <li className=" flex justify-center items-center px-4">
-                <span className="px-1">
+                <NavLink
+                  to="/signIn"
+                  className="flex justify-center items-center"
+                >
                   <PiSignIn />
-                </span>
-                Sign In
+                  Sign In
+                </NavLink>
               </li>
             </ul>
           </nav>
