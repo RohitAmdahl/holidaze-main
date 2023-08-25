@@ -18,7 +18,9 @@ const Navbar = () => {
     <>
       <div className=" flex justify-between my-4 mx-3 items-center">
         <div className=" font-Montserrat flex justify-between items-baseline container mx-auto max-w-4xl">
-          <img src={Logo} alt="logo" />
+          <NavLink to="/">
+            <img src={Logo} alt="logo" />
+          </NavLink>
           <nav className="hidden md:block  ">
             <ul className=" flex justify-center ">
               <li className=" flex justify-center items-center px-4">
