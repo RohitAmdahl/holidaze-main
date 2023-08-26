@@ -5,3 +5,6 @@
 .mobile-nav {
   @apply fixed top-0 z-50 block  h-full w-64 rounded-r-2xl bg-gray-200 pt-14 font-serif text-xl font-bold text-black shadow-2xl duration-500;
 }
+/* * {
+  outline: 2px solid red;
+} */

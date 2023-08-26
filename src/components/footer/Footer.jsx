@@ -22,9 +22,7 @@ const Footer = () => {
             </span>
           </div>
           <p className="p-2 flex flex-col items-center md:max-w-lg mx-auto  ">
-            <span className="p-2">
-              © Hospandaze {new Date().getFullYear()},
-            </span>
+            <span className="p-2">© Holidaze {new Date().getFullYear()},</span>
             Designed and coding by ;-
             <span className="text-blue font-serif">Rohit K Amdahl</span>
           </p>
