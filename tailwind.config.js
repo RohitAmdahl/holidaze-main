@@ -15,6 +15,9 @@ export default {
         green: "#FE8C00",
         black: "#3F3E3C",
       },
+      maxWidth: {
+        img: "100px",
+      },
       fontFamily: {
         Montserrat: ["Montserrat", "sans-serif"],
       },
