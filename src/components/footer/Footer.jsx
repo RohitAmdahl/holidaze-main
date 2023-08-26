@@ -5,28 +5,30 @@ import { BsFacebook } from "react-icons/bs";
 import { ImInstagram } from "react-icons/im";
 const Footer = () => {
   return (
-    <footer className=" flex justify-between items-center container mx-auto max-w-4xl">
-      <div className="">
-        <img src={logo} alt="Logo" className="" />
-      </div>
-      <ul className="flex justify-center items-center">
-        <li className="px-2">
-          <BsFacebook size={20} className=" text-sky-700" />
-        </li>
-        <li className="px-2">
-          <ImInstagram size={20} className="text-red-700" />
-        </li>
-      </ul>
-      <div className="flex flex-col  ">
-        <span className="">© Holidaze {new Date().getFullYear()},</span>
-        <span className="">
-          Designed and coding by
+    <footer className=" container mx-auto max-w-4xl items-center mt-4 ">
+      <div className="flex flex-col  items-center pb-4 lg:flex lg:max-w-4xl lg:justify-between lg:container lg:mx-auto  ">
+        <div className=" w-full justify-between lg:flex lg:justify-between lg:items-center lg:align-baseline max-w-xl ">
           <img
-            src={footerLogo}
-            alt="footer logo designer and coder "
-            className=""
+            src={logo}
+            alt="Logo"
+            className="mx-auto lg:ml-0 max-w-img w-full"
           />
-        </span>
+          <div className="mx-auto flex justify-center items-center m-3 md:max-w-lg ">
+            <span className="p-2  lg:pb-0">
+              <BsFacebook size={20} className=" text-sky-700 " />
+            </span>
+            <span className="p-2 lg:pb-0">
+              <ImInstagram size={20} className="text-red-700" />
+            </span>
+          </div>
+          <p className="p-2 flex flex-col items-center md:max-w-lg mx-auto  ">
+            <span className="p-2">
+              © Hospandaze {new Date().getFullYear()},
+            </span>
+            Designed and coding by ;-
+            <span className="text-blue font-serif">Rohit K Amdahl</span>
+          </p>
+        </div>
       </div>
     </footer>
   );
