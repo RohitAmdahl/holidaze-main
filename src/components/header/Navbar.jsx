@@ -16,10 +16,10 @@ const Navbar = () => {
   const handleToggle = () => setToggle(!toggle);
   return (
     <>
-      <div className=" flex justify-between my-4 mx-3 items-center">
-        <div className=" font-Montserrat flex justify-between items-baseline container mx-auto max-w-4xl">
+      <div className=" flex justify-between my-4 p-4 items-center max-w-4xl container mx-auto border-b-2 border-orange  ">
+        <div className=" font-Montserrat flex justify-between items-baseline container mx-auto max-w-4xl ">
           <NavLink to="/">
-            <img src={Logo} alt="logo" />
+            <img className="max-w-img w-full" src={Logo} alt="logo" />
           </NavLink>
           <nav className="hidden md:block  ">
             <ul className=" flex justify-center ">
@@ -61,28 +61,28 @@ const Navbar = () => {
               onClick={handleToggle}
               className="flex items-center justify-center py-4 duration-100 ease-out hover:text-blue hover:underline "
             >
-              <span className="mx-2">
+              <NavLink to="/" className="mx-2 flex items-center">
                 <HiHome />
-              </span>{" "}
-              Home
+                Home
+              </NavLink>
             </li>
             <li
               onClick={handleToggle}
               className="flex items-center justify-center py-4 duration-100 ease-out hover:text-blue hover:underline "
             >
-              <span className="mx-2">
+              <NavLink to="/venues" className="mx-2 flex items-center">
                 <TbBeach />
-              </span>
-              Venues
+                Venues
+              </NavLink>
             </li>
             <li
               onClick={handleToggle}
               className="flex items-center justify-center py-4 duration-100 ease-out hover:text-blue hover:underline "
             >
-              <span className="mx-2">
+              <NavLink to="/signIn" className="mx-2 flex items-center">
                 <PiSignIn />
-              </span>
-              Sign In
+                Sign In
+              </NavLink>
             </li>
           </ul>
         </nav>
