@@ -1,7 +1,12 @@
 import React from "react";
+import DataFetch from "../../hooks/DataFetch";
 
 const Venues = () => {
-  return <div>Venues</div>;
+  return (
+    <>
+      <DataFetch />
+    </>
+  );
 };
 
 export default Venues;
