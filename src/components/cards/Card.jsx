@@ -3,7 +3,6 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { CiLocationOn } from "react-icons/ci";
 import { IoIosPeople } from "react-icons/io";
-import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 
 const Card = ({ place }) => {
@@ -19,7 +18,7 @@ const Card = ({ place }) => {
               <div key={index}>
                 <img
                   className=" object-cover mx-auto max-w-xs h-52"
-                  src={imageUrl ? imageUrl : <img src={logo} alt="" />}
+                  src={imageUrl ? imageUrl : "https://via.placeholder.com/400"}
                   alt={name}
                 />
               </div>
@@ -42,12 +41,12 @@ const Card = ({ place }) => {
               </p>
             </div>
           </div>
-          <input
+          {/* <input
             className=" text-blue bg-orange font-Montserrat font-bold   focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
             type="button"
             role="button"
             value="View"
-          />
+          /> */}
         </Link>
       </div>
     </div>
