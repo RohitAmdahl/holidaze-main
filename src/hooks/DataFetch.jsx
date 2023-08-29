@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../constants/api";
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 import Card from "../components/cards/Card";
+import VenueSearch from "../components/search/Search";
 
 // console.log(BASE_URL);
 const DataFetch = () => {
   const [venues, setVenues] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     async function getData() {
@@ -15,7 +17,6 @@ const DataFetch = () => {
         setError(false);
         setLoading(true);
         const response = await fetch(`${BASE_URL}`);
-        console.log(response);
         const data = await response.json();
         console.log(data);
         setVenues(data);
@@ -25,6 +26,7 @@ const DataFetch = () => {
         setLoading(false);
       }
     }
+
     getData();
   }, []);
 
@@ -38,17 +40,27 @@ const DataFetch = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+  const filteredVenues = venues.filter((place) =>
+    place.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className=" flex flex-col  justify-center items-center gap-5 p-2 md:grid-cols-2 md:grid md:gap-4 lg:grid lg:grid-cols-3 lg:gap-4 lg:container lg:max-w-4xl lg:mx-auto ">
-      {venues.map((place) => {
-        return (
-          <div className="container mx-auto">
-            <Card key={place.id} place={place} />
+    <>
+      <VenueSearch onSearch={setSearch} />
+      <div className="container max-w-sm p-10 md:max-w-xl lg:max-w-4xl  mx-auto">
+        {filteredVenues?.length > 0 ? (
+          <div className="grid grid-cols-1 gap-10 mx-auto max-w-4xl md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-8">
+            {filteredVenues.map((place) => {
+              return <Card key={place.id} place={place} />;
+            })}
           </div>
-        );
-      })}
-    </div>
+        ) : (
+          <div className="mx-auto text-center text-4xl font-bold ">
+            There is no Venues 🧳 found in our website.
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
