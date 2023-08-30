@@ -1,24 +1,24 @@
-import React from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { CiLocationOn } from "react-icons/ci";
-import { IoIosPeople } from "react-icons/io";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import { CiLocationOn } from 'react-icons/ci';
+import { IoIosPeople } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const Card = ({ place }) => {
   // const { id, name, rating, media, title, maxGuests, location } = place;
-  const { id, name, media, location, price, maxGuests, rating } = place;
-  console.log(place);
+  const { id, name, media, location, price, maxGuests } = place;
+
   return (
-    <div className=" container max-w-4xl mx-auto ">
-      <div className=" p-3 border-2 border-gray-100">
-        <div className="relative flex items-end overflow-hidden ">
+    <div className=" container max-w-4xl mx-auto font-Montserrat ">
+      <div className=" ">
+        <div className=" flex items-end overflow-hidden ">
           <Carousel showStatus={false} showThumbs={false}>
             {media.map((imageUrl, index) => (
               <div key={index}>
                 <img
-                  className=" object-cover mx-auto max-w-xs h-52"
-                  src={imageUrl ? imageUrl : "https://via.placeholder.com/400"}
+                  className=" object-cover mx-auto rounded-2xl h-52"
+                  src={imageUrl ? imageUrl : 'https://via.placeholder.com/300'}
                   alt={name}
                 />
               </div>
@@ -27,7 +27,7 @@ const Card = ({ place }) => {
         </div>
         <Link to={`/Venues/${id}`}>
           <div className="mt-1 p-2">
-            <h2 className="text-slate-700"> {name} </h2>
+            <h2 className="text-slate-700 font-semibold"> {name} </h2>
             <p className="text-slate-700 mt-1 text-sm flex gap-1 items-center ">
               <CiLocationOn /> {location.country}, {location.city}
             </p>
@@ -42,7 +42,7 @@ const Card = ({ place }) => {
             </div>
           </div>
           {/* <input
-            className=" text-blue bg-orange font-Montserrat font-bold   focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
+            className=" m-2 text-blue bg-orange font-Montserrat font-bold  focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-4 py-1 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 "
             type="button"
             role="button"
             value="View"
