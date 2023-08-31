@@ -16,6 +16,7 @@ const VenueDetails = () => {
         setError(false);
         const response = await fetch(url);
         const json = await response.json();
+        console.log(json);
         setData(json);
       } catch (error) {
         setError(error.message);
@@ -23,7 +24,9 @@ const VenueDetails = () => {
         setIsLoading(false);
       }
     }
-    getData(`${BASE_URL}/${id}`);
+    getData(
+      `https://nf-api.onrender.com/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`
+    );
   }, [id]);
   if (isLoading || !data) {
     return (

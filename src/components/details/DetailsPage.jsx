@@ -7,8 +7,17 @@ import { AiOutlineWifi } from 'react-icons/ai';
 import { LuParkingCircle } from 'react-icons/lu';
 import { BsStarFill } from 'react-icons/bs';
 const DetailsPage = ({ data }) => {
-  const { name, price, media, location, maxGuests, meta, rating, description } =
-    data;
+  const {
+    name,
+    price,
+    media,
+    location,
+    maxGuests,
+    meta,
+    rating,
+    description,
+    owner,
+  } = data;
 
   const isAvailable = meta.breakfast === true || meta.breakfast === 'true';
   const petsAvailable = meta.pets === true || meta.pets === 'true';
@@ -20,10 +29,14 @@ const DetailsPage = ({ data }) => {
         <div className="flex justify-between items-center max-w-2xl p-2 mx-auto border-b-2  pt-4">
           <h1 className=" text-lg font-bold"> {name} </h1>
           <div className="flex justify-between items-center gap-2">
-            <img className="w-10 h-10 bg-black rounded-full" src="" alt="" />
+            <img
+              className="w-10 h-10 bg-black rounded-full"
+              src={owner.avatar}
+              alt={owner.name}
+            />
             <div className="flex flex-col">
-              <span>name name</span>
-              <span>name@this.com</span>
+              <span>{owner.name}</span>
+              <span>{owner.email}</span>
             </div>
           </div>
         </div>

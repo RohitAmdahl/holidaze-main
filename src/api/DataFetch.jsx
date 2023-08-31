@@ -16,8 +16,13 @@ const DataFetch = () => {
         setError(false);
         setLoading(true);
 
-        const response = await fetch(`${BASE_URL}`);
+        // const response = await fetch(`${BASE_URL}`);
+        const response = await fetch(
+          'https://nf-api.onrender.com/api/v1/holidaze/venues?sort=created&sortOrder=desc&&_owner=true&_bookings=true'
+        );
+        console.log(response);
         const data = await response.json();
+        console.log(data);
 
         setVenues(data);
       } catch (error) {
