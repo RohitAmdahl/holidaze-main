@@ -1,24 +1,24 @@
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       screens: {
-        sm: "420px",
-        md: "768px",
-        lg: "976px",
-        xl: "1440px",
+        sm: '420px',
+        md: '768px',
+        lg: '976px',
+        xl: '1440px',
       },
       colors: {
-        blue: "#001370",
-        orange: "#FFC681",
-        green: "#FE8C00",
-        black: "#3F3E3C",
+        blue: '#001370',
+        orange: '#FFC681',
+        green: '#3F5E00',
+        black: '#3F3E3C',
       },
       maxWidth: {
-        img: "100px",
+        img: '100px',
       },
       fontFamily: {
-        Montserrat: ["Montserrat", "sans-serif"],
+        Montserrat: ['Montserrat', 'sans-serif'],
       },
     },
   },
