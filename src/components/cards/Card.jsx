@@ -4,9 +4,9 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { CiLocationOn } from 'react-icons/ci';
 import { IoIosPeople } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import placeHolder from '../../assets/300.png';
 
 const Card = ({ place }) => {
-  // const { id, name, rating, media, title, maxGuests, location } = place;
   const { id, name, media, location, price, maxGuests } = place;
 
   return (
@@ -18,7 +18,7 @@ const Card = ({ place }) => {
               <div key={index}>
                 <img
                   className=" object-cover mx-auto rounded-2xl h-52"
-                  src={imageUrl ? imageUrl : 'https://via.placeholder.com/300'}
+                  src={imageUrl ? imageUrl : placeHolder}
                   alt={name}
                 />
               </div>
