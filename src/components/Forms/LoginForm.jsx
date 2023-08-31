@@ -5,11 +5,20 @@ import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
   return (
-    <div className="max-w-lg container p-8 mt-7 mx-auto font-Montserrat  border-2 ">
+    <div className="max-w-lg container p-8 mt-10 mx-auto font-Montserrat border-2">
       <div className=" flex justify-center items-center  ">
-        <h1 className="text-2xl font-semibold pb-8 ">Sign In</h1>
+        <h1 className="text-2xl font-semibold  ">Sign In</h1>
       </div>
-      <div className=" ">
+      <div className="flex flex-wrap justify-center items-center gap-5 text-green">
+        <p className="">DO NOT HAVE AN ACCOUNT? </p>
+        <Link
+          to="/signUp"
+          className=" focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold text-xl border-b-8 m-3 border-orange text-blue"
+        >
+          Sign Up
+        </Link>
+      </div>
+      <div>
         <form action="" className="flex flex-col">
           <div className="flex flex-col py-2 items-center gap-4 pb-4 ">
             <div className="w-full">
@@ -38,15 +47,7 @@ const LoginForm = () => {
               />
               {/* <p>hello this is password</p> */}
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-5 text-green">
-              <p className="">DO NOT HAVE AN ACCOUNT? </p>
-              <Link
-                to=""
-                className="font-semibold text-xl border-b-8 m-3 border-orange text-blue"
-              >
-                Sign Up
-              </Link>
-            </div>
+
             <div>
               <button
                 className="text-blue bg-orange font-Montserrat font-bold   focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-md px-10 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
