@@ -17,7 +17,6 @@ const VenueDetails = () => {
         const response = await fetch(url);
         const json = await response.json();
         setData(json);
-        console.log(json);
       } catch (error) {
         setError(error.message);
       } finally {
