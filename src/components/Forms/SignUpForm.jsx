@@ -12,7 +12,7 @@ const SignUpForm = () => {
           <h1 className="text-2xl font-semibold  ">Sign Up</h1>
         </div>
         <div className="flex flex-wrap justify-center items-center gap-5 text-green">
-          <p className=""> ALREADY HAVE AN ACCOUNT? </p>
+          <p className="font-medium"> ALREADY HAVE AN ACCOUNT? </p>
           <Link
             to="/signIn"
             className="focus:ring-4 focus:outline-none focus:ring-blue-300 font-semibold text-xl border-b-8 m-3 border-orange text-blue"
@@ -72,7 +72,9 @@ const SignUpForm = () => {
               {/* <p>hello this is password</p> */}
             </div>
             <div className="w-full ">
-              <p className="pb-4">Do you want to rent out an accommodation?</p>
+              <p className="pb-4 font-medium">
+                Do you want to rent out an accommodation?
+              </p>
               <div className="flex items-center gap-2">
                 <label htmlFor="checkbox ">Yes</label>
                 <input type="radio" name="media" className="leading-tight " />
