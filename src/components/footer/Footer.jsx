@@ -1,11 +1,11 @@
-import React from "react";
-import logo from "../../assets/logo.png";
-import footerLogo from "../../assets/footer_logo.png";
-import { BsFacebook } from "react-icons/bs";
-import { ImInstagram } from "react-icons/im";
+import React from 'react';
+import logo from '../../assets/logo.png';
+import footerLogo from '../../assets/footer_logo.png';
+import { BsFacebook } from 'react-icons/bs';
+import { ImInstagram } from 'react-icons/im';
 const Footer = () => {
   return (
-    <footer className=" container mx-auto max-w-4xl items-center mt-4 ">
+    <footer className=" container mx-auto max-w-4xl items-center mt-4 pt-8 ">
       <div className="flex flex-col  items-center pb-4 lg:flex lg:max-w-4xl lg:justify-between lg:container lg:mx-auto  ">
         <div className=" w-full justify-between lg:flex lg:justify-between lg:items-center lg:align-baseline max-w-xl ">
           <img
