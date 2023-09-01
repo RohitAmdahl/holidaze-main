@@ -50,7 +50,7 @@ const DetailsPage = ({ data }) => {
           {media.map((img, index) => {
             return (
               <div
-                className="flex justify-center items-center flex-wrap rounded-xl "
+                className="flex justify-center items-center flex-wrap rounded-xl  "
                 key={index}
               >
                 <img className="" src={img} alt="" />
