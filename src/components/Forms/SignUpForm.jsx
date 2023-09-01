@@ -1,15 +1,14 @@
 import React from 'react';
-import { AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlinePicture, AiOutlineUser } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
-import { AiOutlineUser } from 'react-icons/ai';
-import { AiOutlinePicture } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+// import { useFormik } from 'formik';
 const SignUpForm = () => {
   return (
     <div>
-      <div className="max-w-lg container  mt-7 mx-auto font-Montserrat border-2 p-8  ">
-        <div className=" flex justify-center items-center  ">
-          <h1 className="text-2xl font-semibold  ">Sign Up</h1>
+      <div className="max-w-lg container mt-7 mx-auto font-Montserrat border-2 p-8 ">
+        <div className=" flex justify-center items-center">
+          <h1 className="text-2xl font-semibold">Sign Up</h1>
         </div>
         <div className="flex flex-wrap justify-center items-center gap-5 text-green">
           <p className="font-medium"> ALREADY HAVE AN ACCOUNT? </p>
@@ -28,9 +27,11 @@ const SignUpForm = () => {
                 <AiOutlineUser size={30} className="p-1" />
               </span>
               <input
-                type="text"
+                type="name"
                 name="name"
-                placeholder="User name"
+                id="name"
+                autoComplete="off"
+                placeholder="User Name"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
               {/* <p>hello this is email</p> */}
@@ -40,8 +41,10 @@ const SignUpForm = () => {
                 <AiOutlineMail size={30} className="p-1" />
               </span>
               <input
-                type="text"
+                type="email"
                 name="email"
+                id="email"
+                autoComplete="off"
                 placeholder="Email"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
@@ -52,8 +55,9 @@ const SignUpForm = () => {
                 <BsKey size={30} className="p-1" />
               </span>
               <input
-                type="text"
                 name="password"
+                type="password"
+                id="password"
                 placeholder="Password"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
@@ -64,8 +68,9 @@ const SignUpForm = () => {
                 <AiOutlinePicture size={30} className="p-1" />
               </span>
               <input
-                type="text"
-                name="media"
+                name="avatar"
+                type="avatar"
+                id="avatar"
                 placeholder="Avatar /  Image url Link"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
@@ -77,9 +82,20 @@ const SignUpForm = () => {
               </p>
               <div className="flex items-center gap-2">
                 <label htmlFor="checkbox ">Yes</label>
-                <input type="radio" name="media" className="leading-tight " />
+                <input
+                  type="radio"
+                  name="host"
+                  id="yes"
+                  className="leading-tight "
+                />
+
                 <label htmlFor="radio ">No</label>
-                <input type="radio" name="media" className="leading-tight " />
+                <input
+                  type="radio"
+                  name="host"
+                  id="no"
+                  className="leading-tight "
+                />
               </div>
 
               {/* <p>hello this is password</p> */}
