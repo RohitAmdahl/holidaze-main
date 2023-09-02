@@ -2,8 +2,8 @@ import React from 'react';
 import { AiOutlineMail, AiOutlinePicture, AiOutlineUser } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-
 import * as yup from 'yup';
+
 const signUpSchema = yup.object().shape({
   name: yup
     .string()
