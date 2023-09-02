@@ -2,34 +2,27 @@ import React from 'react';
 import { AiOutlineMail, AiOutlinePicture, AiOutlineUser } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { signUpSchema } from '../../pages/signUp/schema';
 import * as yup from 'yup';
 
-const signUpSchema = yup.object().shape({
-  name: yup
-    .string()
-    .min(3, 'Full name must be at least 3 characters')
-    .required('Full name is required'),
-  email: yup
-    .string()
-    .required('Required')
-    .test(
-      'Invalid email address. Must use a @stud.noroff.no domain',
-      (value) => {
-        return /^[A-Z0-9._%+-]+@stud.noroff\.no$/i.test(value);
-      }
-    ),
-  password: yup
-    .string()
-    .min(8, 'Must be at least 8 characters')
-    .required('Required'),
-  passwordConfirm: yup.string().required('Required'),
-  avatar: yup.string().url('Invalid URL'),
-});
+const initialValues = {
+  name: '',
+  email: '',
+  password: '',
+  avatar: '',
+  host: false,
+};
 
 const SignUpForm = () => {
-  const handleSubmit = () => {
-    e.preventdefault();
-  };
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    validationSchema: signUpSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <div>
       <div className="max-w-lg container mt-7 mx-auto font-Montserrat border-2 p-8 ">
@@ -58,9 +51,12 @@ const SignUpForm = () => {
                 id="name"
                 autoComplete="off"
                 placeholder="User Name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              <p className="text-red-500"></p>
+              <p className="text-red-500"> {errors.name} </p>
             </div>
             <div className="w-full">
               <span className="pb-4">
@@ -71,10 +67,13 @@ const SignUpForm = () => {
                 name="email"
                 id="email"
                 autoComplete="off"
-                placeholder="Email"
+                placeholder="test_123@stud.noroff.no"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              <p className="text-red-500"></p>
+              <p className="text-red-500">{errors.email}</p>
             </div>
             <div className="w-full">
               <span className="pb-4">
@@ -85,9 +84,12 @@ const SignUpForm = () => {
                 type="password"
                 id="password"
                 placeholder="Password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              <p className="text-red-500"></p>
+              <p className="text-red-500">{errors.password}</p>
             </div>
             <div className="w-full">
               <span className="pb-4">
@@ -98,9 +100,12 @@ const SignUpForm = () => {
                 type="avatar"
                 id="avatar"
                 placeholder="Avatar /  Image url Link"
+                value={values.avatar}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              <p className="text-red-500"> </p>
+              <p className="text-red-500">{errors.avatar} </p>
             </div>
             <div className="w-full ">
               <p className="pb-4 font-medium">
@@ -113,6 +118,9 @@ const SignUpForm = () => {
                   name="host"
                   id="yes"
                   className="leading-tight "
+                  value={values.host}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
 
                 <label htmlFor="radio ">No</label>
@@ -120,6 +128,9 @@ const SignUpForm = () => {
                   type="radio"
                   name="host"
                   id="no"
+                  value={values.host}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className="leading-tight "
                 />
               </div>
