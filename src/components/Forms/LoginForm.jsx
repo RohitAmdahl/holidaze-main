@@ -2,8 +2,22 @@ import React from 'react';
 import { AiOutlineMail } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-
+import { signInSchema } from '../../pages/signIn/schema';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+const initialValues = {
+  email: '',
+  password: '',
+};
 const LoginForm = () => {
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    validationSchema: signInSchema,
+    onSubmit: (values, action) => {
+      console.log(values);
+    },
+  });
+
   return (
     <div className="max-w-lg container p-8 mt-10 mx-auto font-Montserrat border-2">
       <div className=" flex justify-center items-center  ">
@@ -19,19 +33,23 @@ const LoginForm = () => {
         </Link>
       </div>
       <div>
-        <form action="" className="flex flex-col">
+        <form action="" className="flex flex-col" onSubmit={handleSubmit}>
           <div className="flex flex-col py-2 items-center gap-4 pb-4 ">
             <div className="w-full">
               <span className="pb-4">
                 <AiOutlineMail size={30} className="p-1" />
               </span>
               <input
-                type="text"
+                type="email"
                 name="email"
-                placeholder="email"
+                id="email"
+                placeholder="enter Your email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              {/* <p>hello this is email</p> */}
+              <p className="text-red-500"> {errors.email} </p>
             </div>
           </div>
           <div className="flex flex-col py-2 items-center gap-4 pb-4 ">
@@ -40,12 +58,15 @@ const LoginForm = () => {
                 <BsKey size={30} className="p-1" />
               </span>
               <input
-                type="text"
-                name="email"
+                type="password"
+                name="password"
                 placeholder="Password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              {/* <p>hello this is password</p> */}
+              <p className="text-red-500"> {errors.password} </p>
             </div>
 
             <div className="mt-4 mb-2">
