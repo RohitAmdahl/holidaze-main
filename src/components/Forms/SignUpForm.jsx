@@ -2,8 +2,34 @@ import React from 'react';
 import { AiOutlineMail, AiOutlinePicture, AiOutlineUser } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-// import { useFormik } from 'formik';
+
+import * as yup from 'yup';
+const signUpSchema = yup.object().shape({
+  name: yup
+    .string()
+    .min(3, 'Full name must be at least 3 characters')
+    .required('Full name is required'),
+  email: yup
+    .string()
+    .required('Required')
+    .test(
+      'Invalid email address. Must use a @stud.noroff.no domain',
+      (value) => {
+        return /^[A-Z0-9._%+-]+@stud.noroff\.no$/i.test(value);
+      }
+    ),
+  password: yup
+    .string()
+    .min(8, 'Must be at least 8 characters')
+    .required('Required'),
+  passwordConfirm: yup.string().required('Required'),
+  avatar: yup.string().url('Invalid URL'),
+});
+
 const SignUpForm = () => {
+  const handleSubmit = () => {
+    e.preventdefault();
+  };
   return (
     <div>
       <div className="max-w-lg container mt-7 mx-auto font-Montserrat border-2 p-8 ">
@@ -20,7 +46,7 @@ const SignUpForm = () => {
           </Link>
         </div>
 
-        <form action="" className="flex flex-col">
+        <form className="flex flex-col" onSubmit={handleSubmit}>
           <div className="flex flex-col py-2 items-center gap-4 pb-4 ">
             <div className="w-full">
               <span className="pb-4">
@@ -34,7 +60,7 @@ const SignUpForm = () => {
                 placeholder="User Name"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              {/* <p>hello this is email</p> */}
+              <p className="text-red-500"></p>
             </div>
             <div className="w-full">
               <span className="pb-4">
@@ -48,7 +74,7 @@ const SignUpForm = () => {
                 placeholder="Email"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              {/* <p>hello this is password</p> */}
+              <p className="text-red-500"></p>
             </div>
             <div className="w-full">
               <span className="pb-4">
@@ -61,7 +87,7 @@ const SignUpForm = () => {
                 placeholder="Password"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              {/* <p>hello this is password</p> */}
+              <p className="text-red-500"></p>
             </div>
             <div className="w-full">
               <span className="pb-4">
@@ -74,7 +100,7 @@ const SignUpForm = () => {
                 placeholder="Avatar /  Image url Link"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              {/* <p>hello this is password</p> */}
+              <p className="text-red-500"> </p>
             </div>
             <div className="w-full ">
               <p className="pb-4 font-medium">
@@ -97,8 +123,6 @@ const SignUpForm = () => {
                   className="leading-tight "
                 />
               </div>
-
-              {/* <p>hello this is password</p> */}
             </div>
             <div>
               <button
