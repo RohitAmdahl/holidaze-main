@@ -22,7 +22,8 @@ const LoginForm = () => {
         password: values.password,
       };
       logInUser(logINdata);
-      console.log(values);
+      action.resetForm();
+      console.log(logInUser(logINdata));
     },
   });
 
