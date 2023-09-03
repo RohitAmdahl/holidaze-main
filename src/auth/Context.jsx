@@ -9,23 +9,16 @@ initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
-    case actionTypes.USER_REGISTER: {
-      return {
-        ...state,
-      };
-    }
-    case actionTypes.LOGIN: {
-      return {
-        ...state,
-      };
-    }
+    case actionTypes.USER_REGISTER:
+    case actionTypes.LOGIN:
     case actionTypes.PROFILE: {
       return {
         ...state,
+        loading: true,
       };
     }
     case actionTypes.USER_LOGOUT: {
-      return {};
+      return null;
     }
     default:
       return state;
