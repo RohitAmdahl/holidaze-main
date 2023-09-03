@@ -16,7 +16,7 @@ export const signUpSchema = yup.object().shape({
     ),
   password: yup
     .string()
-    .min(6, 'Must be at least 6 characters')
+    .min(9, 'Must be at least 9 characters')
     .required('Required'),
 
   avatar: yup.string().url('Invalid URL'),
