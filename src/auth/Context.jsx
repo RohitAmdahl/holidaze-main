@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import * as actionTypes from './action';
 import React from 'react';
 import { BsXLg } from 'react-icons/bs';
+
 const initialState = {
   isAuthenticated: false,
   error: null,
@@ -18,8 +19,9 @@ function reducer(state, action) {
         error: action.payload,
       };
     case actionTypes.LOGIN:
-      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('accessToken', action.payload.accessToken);
       localStorage.setItem('profile', JSON.stringify(action.payload.profile));
+
       return {
         ...state,
         isAuthenticated: true,
@@ -28,7 +30,7 @@ function reducer(state, action) {
       };
 
     case actionTypes.USER_LOGOUT: {
-      localStorage.removeItem('token');
+      localStorage.removeItem('accessToken');
       localStorage.removeItem('profile');
       return {
         ...state,
