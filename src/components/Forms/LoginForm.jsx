@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineMail } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { signInSchema } from '../../pages/signIn/schema';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { AuthContext } from '../../auth/Context';
 const initialValues = {
   email: '',
   password: '',
 };
 const LoginForm = () => {
+  const { logInUser } = useContext(AuthContext);
+
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: signInSchema,
     onSubmit: (values, action) => {
+      const logINdata = {
+        email: values.email,
+        password: values.password,
+      };
+      logInUser(logINdata);
       console.log(values);
     },
   });

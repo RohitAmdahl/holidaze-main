@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineMail, AiOutlinePicture, AiOutlineUser } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { signUpSchema } from '../../pages/signUp/schema';
 import * as yup from 'yup';
+
+import { AuthContext } from '../../auth/Context';
 
 const initialValues = {
   name: '',
@@ -15,11 +17,22 @@ const initialValues = {
 };
 
 const SignUpForm = () => {
+  const { registerUser } = useContext(AuthContext);
+
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
-      console.log(values);
+      const signUpData = {
+        name: values.name,
+        email: values.email,
+        avatar: values.avatar,
+        password: values.password,
+        host: values.host,
+      };
+
+      registerUser(signUpData);
+
       action.resetForm();
     },
   });
