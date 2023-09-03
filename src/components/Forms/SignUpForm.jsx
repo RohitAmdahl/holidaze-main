@@ -13,7 +13,7 @@ const initialValues = {
   email: '',
   password: '',
   avatar: '',
-  host: false,
+  venueManager: false,
 };
 
 const SignUpForm = () => {
@@ -28,7 +28,7 @@ const SignUpForm = () => {
         email: values.email,
         avatar: values.avatar,
         password: values.password,
-        host: values.host,
+        venueManager: values.venueManager,
       };
 
       registerUser(signUpData);
@@ -132,7 +132,7 @@ const SignUpForm = () => {
                   name="host"
                   id="yes"
                   className="leading-tight "
-                  value={values.host}
+                  checked={values.venueManager}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -142,7 +142,7 @@ const SignUpForm = () => {
                   type="radio"
                   name="host"
                   id="no"
-                  value={values.host}
+                  checked={values.venueManager}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className="leading-tight "
