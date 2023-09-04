@@ -115,6 +115,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('avatar', userLogin.avatar);
       localStorage.setItem('email', userLogin.email);
       localStorage.setItem('venueManager', userLogin.venueManager);
+      window.location = '/';
 
       console.log('user registration', userLogin);
       dispatch({ type: actionTypes.LOGIN, payload: userLogin });

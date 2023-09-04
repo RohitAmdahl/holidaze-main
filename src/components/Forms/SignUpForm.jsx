@@ -1,12 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineMail, AiOutlinePicture, AiOutlineUser } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { signUpSchema } from '../../pages/signUp/schema';
 import * as yup from 'yup';
-
 import { AuthContext } from '../../auth/Context';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const initialValues = {
   name: '',
@@ -17,8 +18,9 @@ const initialValues = {
 };
 
 const SignUpForm = () => {
-  const { registerUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  const { registerUser } = useContext(AuthContext);
   const {
     values,
     errors,
@@ -30,6 +32,7 @@ const SignUpForm = () => {
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
+      toast.success('Registration successful');
       const signUpData = {
         name: values.name,
         email: values.email,
@@ -39,8 +42,10 @@ const SignUpForm = () => {
       };
 
       registerUser(signUpData);
-
       action.resetForm();
+      setTimeout(() => {
+        navigate('/signIn');
+      }, 6000);
     },
   });
 
@@ -170,6 +175,18 @@ const SignUpForm = () => {
             </div>
           </div>
         </form>
+        <ToastContainer
+          position="top-center"
+          autoClose={8000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
     </div>
   );
