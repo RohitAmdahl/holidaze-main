@@ -19,7 +19,7 @@ function reducer(state, action) {
       };
     case actionTypes.LOGIN:
       localStorage.setItem('accessToken', action.payload.accessToken);
-      localStorage.setItem('profile', JSON.stringify(action.payload.profile));
+      localStorage.setItem('name', JSON.stringify(action.payload.profile));
 
       return {
         ...state,
@@ -29,8 +29,7 @@ function reducer(state, action) {
       };
 
     case actionTypes.USER_LOGOUT: {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('profile');
+      window.location = '/';
       return {
         ...state,
         isAuthenticated: false,
@@ -61,7 +60,6 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // api calls
   const registerUser = async (userData) => {
     try {
       //
@@ -115,7 +113,6 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('avatar', userLogin.avatar);
       localStorage.setItem('email', userLogin.email);
       localStorage.setItem('venueManager', userLogin.venueManager);
-      window.location = '/profile';
 
       console.log('user registration', userLogin);
       dispatch({ type: actionTypes.LOGIN, payload: userLogin });
@@ -125,8 +122,14 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const logoutHandel = () => {
+    window.localStorage.clear();
+    dispatch({ type: actionTypes.USER_LOGOUT });
+  };
   return (
-    <AuthContext.Provider value={{ state, registerUser, logInUser }}>
+    <AuthContext.Provider
+      value={{ state, registerUser, logInUser, logoutHandel }}
+    >
       {children}
     </AuthContext.Provider>
   );

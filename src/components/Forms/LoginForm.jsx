@@ -6,11 +6,13 @@ import { signInSchema } from '../../pages/signIn/schema';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { AuthContext } from '../../auth/Context';
+import { useNavigate } from 'react-router-dom';
 const initialValues = {
   email: '',
   password: '',
 };
 const LoginForm = () => {
+  const navigate = useNavigate();
   const { logInUser } = useContext(AuthContext);
 
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
@@ -24,6 +26,7 @@ const LoginForm = () => {
       logInUser(logINdata);
       action.resetForm();
       console.log(logInUser(logINdata));
+      navigate('/profile');
     },
   });
 
