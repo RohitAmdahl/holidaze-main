@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiOutlineMail, AiOutlinePicture, AiOutlineUser } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -19,7 +19,14 @@ const initialValues = {
 const SignUpForm = () => {
   const { registerUser } = useContext(AuthContext);
 
-  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+  const {
+    values,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
@@ -28,7 +35,7 @@ const SignUpForm = () => {
         email: values.email,
         avatar: values.avatar,
         password: values.password,
-        venueManager: values.venueManager,
+        venueManager: values.venueManager === true,
       };
 
       registerUser(signUpData);
@@ -129,22 +136,26 @@ const SignUpForm = () => {
                 <label htmlFor="checkbox ">Yes</label>
                 <input
                   type="radio"
-                  name="host"
+                  name="venueManager"
                   id="yes"
                   className="leading-tight "
-                  checked={values.venueManager}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={values.true}
+                  checked={values.venueManager === true}
+                  onChange={() => {
+                    setFieldValue('venueManager', true);
+                  }}
                 />
 
                 <label htmlFor="radio ">No</label>
                 <input
                   type="radio"
-                  name="host"
+                  name="venueManager"
                   id="no"
-                  checked={values.venueManager}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={values.false}
+                  checked={!values.venueManager}
+                  onChange={() => {
+                    setFieldValue('venueManager', false);
+                  }}
                   className="leading-tight "
                 />
               </div>

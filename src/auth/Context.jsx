@@ -1,8 +1,7 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useState } from 'react';
 import { useContext } from 'react';
 import * as actionTypes from './action';
 import React from 'react';
-import { BsXLg } from 'react-icons/bs';
 
 const initialState = {
   isAuthenticated: false,
@@ -16,7 +15,7 @@ function reducer(state, action) {
       return {
         ...state,
         data: action.payload,
-        error: action.payload,
+        error: null,
       };
     case actionTypes.LOGIN:
       localStorage.setItem('accessToken', action.payload.accessToken);
@@ -60,6 +59,14 @@ function reducer(state, action) {
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [values, setValues] = useState({
+    venueManager: false,
+  });
+
+  const selectHost = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  };
   const [state, dispatch] = useReducer(reducer, initialState);
   // const { isAuthenticated, loading, error } = state;
   // api calls
@@ -88,6 +95,7 @@ const AuthProvider = ({ children }) => {
       dispatch({ type: actionTypes.USER_REGISTER, payload: data });
     } catch (error) {
       console.error('User Registration Error:', error.message);
+      dispatch({ type: 'error', payload: error.message });
     }
   };
   const logInUser = async (data) => {
@@ -124,7 +132,9 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ state, registerUser, logInUser }}>
+    <AuthContext.Provider
+      value={{ state, registerUser, logInUser, selectHost }}
+    >
       {children}
     </AuthContext.Provider>
   );
