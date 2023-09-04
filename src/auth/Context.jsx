@@ -60,7 +60,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const { isAuthenticated, loading, error } = state;
+
   // api calls
   const registerUser = async (userData) => {
     try {
@@ -115,7 +115,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('avatar', userLogin.avatar);
       localStorage.setItem('email', userLogin.email);
       localStorage.setItem('venueManager', userLogin.venueManager);
-      window.location = '/';
+      window.location = '/profile';
 
       console.log('user registration', userLogin);
       dispatch({ type: actionTypes.LOGIN, payload: userLogin });
