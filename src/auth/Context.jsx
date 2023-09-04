@@ -120,13 +120,12 @@ const AuthProvider = ({ children }) => {
       dispatch({ type: actionTypes.LOGIN, payload: userLogin });
     } catch (error) {
       console.error('User Registration Error:', error.message);
+      dispatch({ type: 'error', payload: error.message });
     }
   };
 
   return (
-    <AuthContext.Provider
-      value={{ state, registerUser, logInUser, selectHost }}
-    >
+    <AuthContext.Provider value={{ state, registerUser, logInUser }}>
       {children}
     </AuthContext.Provider>
   );
