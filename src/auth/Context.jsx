@@ -59,14 +59,6 @@ function reducer(state, action) {
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [values, setValues] = useState({
-    venueManager: false,
-  });
-
-  const selectHost = (e) => {
-    const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
-  };
   const [state, dispatch] = useReducer(reducer, initialState);
   // const { isAuthenticated, loading, error } = state;
   // api calls
