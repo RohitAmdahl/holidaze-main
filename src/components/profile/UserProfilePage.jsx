@@ -1,6 +1,7 @@
 import React from 'react';
 import Avatar from '../../components/profile/Avatar';
 import { LoginDetails } from '../../utils/Auth';
+import { BiSolidUserCheck } from 'react-icons/bi';
 const UserProfilePage = () => {
   const userData = LoginDetails();
 
@@ -15,7 +16,7 @@ const UserProfilePage = () => {
           <div className=" lg:p-5 lg:m-1 lg:max-w-2xl max-w-xl py-4 ">
             <div className="relative flex flex-wrap items-center gap-4">
               <img
-                className="w-20 h-20 rounded-full"
+                className="w-24 h-24 rounded-full border-4 border-emerald-500"
                 src={userData.avatar}
                 alt={userData.avatar}
               />

@@ -18,9 +18,6 @@ function reducer(state, action) {
         error: null,
       };
     case actionTypes.LOGIN:
-      // localStorage.setItem('accessToken', action.payload.accessToken);
-      // localStorage.setItem('userName', JSON.stringify(action.payload.profile));
-      // new
       const userLogin = action.payload;
       localStorage.setItem('username', userLogin.profile);
       localStorage.setItem('accessToken', userLogin.accessToken);
@@ -46,6 +43,13 @@ function reducer(state, action) {
       };
     }
     case actionTypes.PROFILE: {
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.profile,
+      };
+    }
+    case actionTypes.AVATAR: {
       return {
         ...state,
         isAuthenticated: true,
@@ -110,10 +114,10 @@ const AuthProvider = ({ children }) => {
         }
       );
       if (!response.ok) {
-        throw new Error('Registration failed');
+        throw new Error('Login failed');
       }
 
-      console.log('user registration response', response);
+      console.log('user Login response', response);
 
       const userLogin = await response.json();
       localStorage.setItem('userName', userLogin.name);
@@ -134,9 +138,44 @@ const AuthProvider = ({ children }) => {
     window.localStorage.clear();
     dispatch({ type: actionTypes.USER_LOGOUT });
   };
+
+  const singleProfile = async (name) => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      const response = await fetch(
+        `https://nf-api.onrender.com/api/v1/holidaze/profiles/${name}?_bookings=true&_venues=true`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error('single profile fetch failed');
+      } else {
+        console.log('response single profile', response);
+      }
+      const singleData = await response.json();
+      console.log('user single profile', singleData);
+      dispatch({ type: actionTypes.PROFILE, payload: singleData });
+    } catch (error) {
+      console.error('User profile Error:', error.message);
+      dispatch({ type: 'error', payload: error.message });
+    }
+  };
+
+  console.log(singleProfile);
+
+  const changeAvatar = async () => {
+    try {
+    } catch (error) {}
+  };
+
   return (
     <AuthContext.Provider
-      value={{ state, registerUser, logInUser, logoutUser }}
+      value={{ state, registerUser, logInUser, logoutUser, singleProfile }}
     >
       {children}
     </AuthContext.Provider>

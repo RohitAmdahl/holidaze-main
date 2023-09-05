@@ -21,6 +21,7 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
   const { registerUser } = useContext(AuthContext);
+
   const {
     values,
     errors,

@@ -13,7 +13,3 @@ export const LoginDetails = () => {
   };
 };
 console.log(LoginDetails);
-
-export function isLoggedIn() {
-  return localStorage.getItem('accessToken');
-}
