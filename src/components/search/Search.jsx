@@ -12,7 +12,7 @@ const VenueSearch = ({ onSearch }) => {
   return (
     <>
       <div className="container max-w-4xl mx-auto">
-        <h1 className="text-2xl l">Venues for Rent</h1>
+        <h1 className="text-2xl mx-2 ">Venues for Rent</h1>
       </div>
       <div className="max-w-md rounded overflow-hidden mx-auto p-1 font-pins text-fontcolor  ">
         <form className="w-full max-w-md pb-3 pt-3">
