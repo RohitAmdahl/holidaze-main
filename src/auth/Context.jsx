@@ -1,12 +1,12 @@
-import { createContext, useReducer, useState } from 'react';
-import { useContext } from 'react';
+import { createContext, useReducer } from 'react';
+// import { useContext } from 'react';
 import * as actionTypes from './action';
 import React from 'react';
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: !!localStorage.getItem('accessToken'),
+  username: localStorage.getItem('username') || null,
   error: null,
-  data: null,
 };
 
 function reducer(state, action) {
@@ -18,30 +18,38 @@ function reducer(state, action) {
         error: null,
       };
     case actionTypes.LOGIN:
-      localStorage.setItem('accessToken', action.payload.accessToken);
-      localStorage.setItem('name', JSON.stringify(action.payload.profile));
+      // localStorage.setItem('accessToken', action.payload.accessToken);
+      // localStorage.setItem('userName', JSON.stringify(action.payload.profile));
+      // new
+      const userLogin = action.payload;
+      localStorage.setItem('username', userLogin.profile);
+      localStorage.setItem('accessToken', userLogin.accessToken);
+      localStorage.setItem('avatar', userLogin.avatar);
+      localStorage.setItem('email', userLogin.email);
+      localStorage.setItem('venueManager', userLogin.venueManager);
 
       return {
         ...state,
         isAuthenticated: true,
         error: null,
-        data: action.payload.profile,
+        user: userLogin.profile,
+        // data: action.payload.profile,
       };
 
     case actionTypes.USER_LOGOUT: {
-      window.location = '/';
+      localStorage.clear();
       return {
         ...state,
         isAuthenticated: false,
         error: null,
-        data: null,
+        user: null,
       };
     }
     case actionTypes.PROFILE: {
       return {
         ...state,
         isAuthenticated: true,
-        data: action.payload.profile,
+        user: action.payload.profile,
       };
     }
     case 'error': {
@@ -122,13 +130,13 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  const logoutHandel = () => {
+  const logoutUser = () => {
     window.localStorage.clear();
     dispatch({ type: actionTypes.USER_LOGOUT });
   };
   return (
     <AuthContext.Provider
-      value={{ state, registerUser, logInUser, logoutHandel }}
+      value={{ state, registerUser, logInUser, logoutUser }}
     >
       {children}
     </AuthContext.Provider>
