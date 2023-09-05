@@ -14,7 +14,7 @@ import {
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../auth/Context';
 const Navbar = () => {
-  const { state, logoutHandel } = useContext(AuthContext);
+  const { state, logoutUser } = useContext(AuthContext);
 
   const [toggle, setToggle] = useState(false);
 
@@ -77,7 +77,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <button
-                    onClick={logoutHandel}
+                    onClick={logoutUser}
                     className=" font-bold text-blue border-b-8  border-orange text-md flex justify-center items-center px-4  ring-orange focus:ring-1 shadow-lg"
                   >
                     LogOut
@@ -149,10 +149,10 @@ const Navbar = () => {
                 <li className="flex items-center justify-center py-4 duration-100 ease-out hover:text-blue hover:underline ">
                   <button
                     className="  mt-4 font-bold text-blue border-b-8  border-orange text-md flex justify-center items-center px-4  ring-orange focus:ring-1 shadow-lg"
-                    onClick={logoutHandel}
+                    onClick={logoutUser}
                   >
                     LogOut
-                  </button>{' '}
+                  </button>
                 </li>
               </>
             )}
