@@ -6,3 +6,4 @@ export const REGISTER_USER =
 export const LOGIN_USER =
   'https://nf-api.onrender.com/api/v1/holidaze/auth/login';
 // fetch profile  `https://nf-api.onrender.com/api/v1/holidaze/profiles/${name}?_bookings=true&_venues=true`,
+//const creteVenue =`https://nf-api.onrender.com/api/v1/holidaze/venues`,

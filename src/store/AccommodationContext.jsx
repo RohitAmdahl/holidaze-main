@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import React, { createContext, useReducer } from 'react';
+import reducer from './reducer';
 
 export const VenueContext = createContext();
 const accessToken = localStorage.getItem('accessToken');
@@ -9,20 +10,11 @@ const initialState = {
   isLoading: false,
 };
 
-function reducer(state, action) {
-  switch (key) {
-    case value:
-      break;
-
-    default:
-      return state;
-  }
-}
-
 const AccommodationProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <VenueContext.Provider value={state}> {children} </VenueContext.Provider>
   );
 };
 
-export default AccommodationContext;
+export default AccommodationProvider;
