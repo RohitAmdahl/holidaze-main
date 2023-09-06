@@ -1,6 +1,34 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+import { AuthContext } from '../../auth/Context';
+
+export const avatarSchema = yup.object().shape({
+  avatar: yup.string().url('Invalid URL'),
+});
+
+const initialValues = {
+  avatar: '',
+};
+
 export default function Modal() {
+  const { changeAvatar } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
+
+  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: initialValues,
+    validationSchema: avatarSchema,
+    onSubmit: (values, action) => {
+      const avatarPic = {
+        avatar: values.avatar,
+      };
+      changeAvatar(avatarPic);
+      console.log(changeAvatar(avatarPic));
+      action.resetForm();
+      setShowModal(false);
+    },
+  });
+
   return (
     <>
       <button
@@ -28,7 +56,10 @@ export default function Modal() {
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto font-Montserrat ">
-                  <form action="" className="max-w-xl container mx-auto py-6">
+                  <form
+                    onSubmit={handleSubmit}
+                    className="max-w-xl container mx-auto py-6"
+                  >
                     <div className="mb-4">
                       <label
                         className="block text-gray-700 text-sm font-bold mb-2"
@@ -36,13 +67,24 @@ export default function Modal() {
                       >
                         Avatar
                       </label>
+                      <p className="text-red-500"> {errors.avatar} </p>
                       <input
                         className="shadow appearance-none border  rounded w-full py-2 px-10 text-gray-700 leading-tight focus:shadow-outline"
-                        id="username"
-                        type="text"
+                        id="avatar-image"
+                        name="avatar"
+                        type="url"
                         placeholder="Img url"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.avatar}
                       />
                     </div>
+                    <button
+                      className=" text-blue bg-orange font-Montserrat font-bold   focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      type="submit"
+                    >
+                      Save
+                    </button>
                   </form>
                 </div>
                 {/*footer*/}
@@ -53,13 +95,6 @@ export default function Modal() {
                     onClick={() => setShowModal(false)}
                   >
                     Close
-                  </button>
-                  <button
-                    className=" text-blue bg-orange font-Montserrat font-bold   focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="button"
-                    onClick={() => setShowModal(false)}
-                  >
-                    Save
                   </button>
                 </div>
               </div>

@@ -13,3 +13,7 @@ export const LoginDetails = () => {
   };
 };
 console.log(LoginDetails);
+
+export function save(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}

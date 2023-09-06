@@ -1,12 +1,14 @@
 import { createContext, useReducer } from 'react';
 // import { useContext } from 'react';
+
 import * as actionTypes from './action';
 import React from 'react';
-
+const accessToken = localStorage.getItem('accessToken');
 const initialState = {
   isAuthenticated: !!localStorage.getItem('accessToken'),
   username: localStorage.getItem('username') || null,
   error: null,
+  isLoading: false,
 };
 
 function reducer(state, action) {
@@ -54,6 +56,7 @@ function reducer(state, action) {
         ...state,
         isAuthenticated: true,
         user: action.payload.profile,
+        isLoading: true,
       };
     }
     case 'error': {
@@ -89,11 +92,7 @@ const AuthProvider = ({ children }) => {
         throw new Error('Registration failed');
       }
 
-      console.log('user registration response', response);
-
       const data = await response.json();
-
-      console.log('user registration', data);
       dispatch({ type: actionTypes.USER_REGISTER, payload: data });
     } catch (error) {
       console.error('User Registration Error:', error.message);
@@ -117,8 +116,6 @@ const AuthProvider = ({ children }) => {
         throw new Error('Login failed');
       }
 
-      console.log('user Login response', response);
-
       const userLogin = await response.json();
       localStorage.setItem('userName', userLogin.name);
       localStorage.setItem('accessToken', userLogin.accessToken);
@@ -126,7 +123,6 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem('email', userLogin.email);
       localStorage.setItem('venueManager', userLogin.venueManager);
 
-      console.log('user registration', userLogin);
       dispatch({ type: actionTypes.LOGIN, payload: userLogin });
     } catch (error) {
       console.error('User Registration Error:', error.message);
@@ -141,7 +137,7 @@ const AuthProvider = ({ children }) => {
 
   const singleProfile = async (name) => {
     try {
-      const accessToken = localStorage.getItem('accessToken');
+      // const accessToken = localStorage.getItem('accessToken');
       const response = await fetch(
         `https://nf-api.onrender.com/api/v1/holidaze/profiles/${name}?_bookings=true&_venues=true`,
         {
@@ -155,10 +151,10 @@ const AuthProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error('single profile fetch failed');
       } else {
-        console.log('response single profile', response);
+        // console.log('response single profile', response);
       }
       const singleData = await response.json();
-      console.log('user single profile', singleData);
+      // console.log('user single profile', singleData);
       dispatch({ type: actionTypes.PROFILE, payload: singleData });
     } catch (error) {
       console.error('User profile Error:', error.message);
@@ -166,16 +162,61 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  console.log(singleProfile);
+  // console.log(singleProfile);
 
-  const changeAvatar = async () => {
+  const changeAvatar = async (values) => {
+    const username = localStorage.getItem('userName');
+
+    console.log(username);
     try {
-    } catch (error) {}
+      const sendData = {
+        avatar: values.avatar,
+      };
+      console.log(sendData);
+
+      const response = await fetch(
+        `https://nf-api.onrender.com/api/v1/holidaze/profiles/${username}/media`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify(sendData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Avatar profile fetch failed');
+      } else {
+        console.log('Avatar profile', response);
+      }
+      const dataName = await response.json();
+
+      console.log('user single profile', dataName);
+
+      localStorage.setItem('avatar', dataName.avatar);
+      const updatedUser = { ...state.user, avatar: dataName.avatar };
+      dispatch({
+        type: actionTypes.AVATAR,
+        payload: { profile: updatedUser },
+      });
+    } catch (error) {
+      console.error('User profile Error:', error.message);
+      dispatch({ type: 'error', payload: error.message });
+    }
   };
 
   return (
     <AuthContext.Provider
-      value={{ state, registerUser, logInUser, logoutUser, singleProfile }}
+      value={{
+        state,
+        registerUser,
+        logInUser,
+        logoutUser,
+        singleProfile,
+        changeAvatar,
+      }}
     >
       {children}
     </AuthContext.Provider>
