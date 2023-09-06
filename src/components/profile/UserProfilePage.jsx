@@ -14,9 +14,9 @@ const UserProfilePage = () => {
         <h1 className="text-2xl px-2">My Profile</h1>
       </div>
       <div className="p-4">
-        <div className="container mx-auto max-w-sm lg:max-w-2xl p-2  m-4 font-Montserrat border-2 border-gray-300 lg:p-6 md:p-5 md:max-w-lg ">
-          <div className=" lg:p-5 lg:m-1 lg:max-w-2xl max-w-xl py-4 ">
-            <div className=" flex flex-wrap items-center gap-4">
+        <div className="container mx-auto max-w-sm md:max-w-xl  lg:max-w-2xl p-2 m-4 font-Montserrat border-2 border-gray-300 lg:p-3 md:p-2  ">
+          <div className=" ">
+            <div className=" flex flex-wrap flex-col items-center gap-4">
               <img
                 className="w-24 h-24 rounded-full border-4 border-emerald-500"
                 src={userData.avatar}
@@ -37,7 +37,7 @@ const UserProfilePage = () => {
                 </p>
               </div>
             </div>
-            <div className="py-8">
+            <div className="py-4">
               <Avatar />
             </div>
           </div>

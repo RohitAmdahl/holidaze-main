@@ -100,6 +100,7 @@ const AuthProvider = ({ children }) => {
     }
   };
   const logInUser = async (data) => {
+    // const accessToken = localStorage.getItem('accessToken');
     try {
       //
       const response = await fetch(
@@ -165,6 +166,7 @@ const AuthProvider = ({ children }) => {
   // console.log(singleProfile);
 
   const changeAvatar = async (values) => {
+    const accessToken = localStorage.getItem('accessToken');
     const username = localStorage.getItem('userName');
 
     console.log(username);
@@ -187,9 +189,8 @@ const AuthProvider = ({ children }) => {
       );
 
       if (!response.ok) {
-        throw new Error('Avatar profile fetch failed');
-      } else {
         console.log('Avatar profile', response);
+        throw new Error('Avatar profile fetch failed');
       }
       const dataName = await response.json();
 
