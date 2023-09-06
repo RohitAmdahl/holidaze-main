@@ -4,7 +4,8 @@ import { LoginDetails } from '../../utils/Auth';
 import { BiUserCheck } from 'react-icons/bi';
 import { AiOutlineMail } from 'react-icons/ai';
 import { FcManager } from 'react-icons/fc';
-import { AuthContext } from '../../auth/Context';
+import { Tabs } from '../button/Tabs';
+// import { AuthContext } from '../../auth/Context';
 const UserProfilePage = () => {
   const userData = LoginDetails();
   console.log(userData);
@@ -37,11 +38,15 @@ const UserProfilePage = () => {
                 </p>
               </div>
             </div>
-            <div className="py-4">
+            {/* avatar change model button  */}
+            <div className="py-4 flex items-center justify-center">
               <Avatar />
             </div>
           </div>
         </div>
+      </div>
+      <div className=" container max-w-4xl mx-auto ">
+        <Tabs />
       </div>
     </>
   );
