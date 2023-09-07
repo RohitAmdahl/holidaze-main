@@ -1,10 +1,12 @@
 import React from 'react';
+import CreateListing from '../Forms/CreateListing';
+import MyVenues from '../cards/MyVenues';
 // import TabsRender from './TabsRender';
 export const Tabs = () => {
   const [openTab, setOpenTab] = React.useState(1);
   return (
     <>
-      <div className="flex flex-col lg:justify-center lg:items-center md:justify-center  gap-2">
+      <div className="flex font-Montserrat flex-col lg:justify-center lg:items-center md:justify-center  gap-2">
         <div className=" container max-w-2xl mx-auto ">
           <ul
             className="flex flex-wrap mb-0 list-none pt-3 pb-4 flex-row p-2"
@@ -68,19 +70,19 @@ export const Tabs = () => {
               </a>
             </li>
           </ul>
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+          <div className="relative  font-Montserrat flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space">
                 <div className={openTab === 1 ? 'block' : 'hidden'} id="link1">
                   {/* first create venue component */}
                   <div>
-                    <p>CreateVenue</p>
+                    <CreateListing />
                   </div>
                 </div>
                 <div className={openTab === 2 ? 'block' : 'hidden'} id="link2">
                   {/* my venue component */}
                   <div>
-                    <p>My Venue</p>
+                    <MyVenues />
                   </div>
                 </div>
                 <div className={openTab === 3 ? 'block' : 'hidden'} id="link3">
