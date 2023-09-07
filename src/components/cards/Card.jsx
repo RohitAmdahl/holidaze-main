@@ -26,7 +26,7 @@ const Card = ({ place }) => {
       </div>
       <Link to={`/Venues/${id}`}>
         <div className="mt-1 p-2">
-          <h2 className="text-slate-700 font-semibold"> {name} </h2>
+          <h2 className="text-slate-700 font-semibold capitalize"> {name} </h2>
           <p className="text-slate-700 mt-1 text-sm flex gap-1 items-center ">
             <CiLocationOn /> {location.country}, {location.city}
           </p>
