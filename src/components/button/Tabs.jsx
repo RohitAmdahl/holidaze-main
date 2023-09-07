@@ -7,7 +7,7 @@ export const Tabs = () => {
   return (
     <>
       <div className="flex font-Montserrat flex-col lg:justify-center lg:items-center md:justify-center  gap-2">
-        <div className=" container max-w-2xl mx-auto ">
+        <div className=" container max-w-4xl mx-auto ">
           <ul
             className="flex flex-wrap mb-0 list-none pt-3 pb-4 flex-row p-2"
             role="tablist"
@@ -15,7 +15,7 @@ export const Tabs = () => {
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
               <a
                 className={
-                  'text-md font-bold uppercase px-5 py-3   block leading-normal ' +
+                  'text-md font-bold uppercase px-5 py-3 block leading-normal ' +
                   (openTab === 1
                     ? 'text-blue border-4 border-orange '
                     : 'text-black ')
@@ -47,7 +47,7 @@ export const Tabs = () => {
                 href="#link2"
                 role="tablist"
               >
-                <i className="fas fa-cog text-base mr-1"></i> My venues
+                My venues
               </a>
             </li>
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -66,7 +66,7 @@ export const Tabs = () => {
                 href="#link3"
                 role="tablist"
               >
-                <i className="fas fa-briefcase text-base mr-1"></i> My bookings
+                My bookings
               </a>
             </li>
           </ul>
