@@ -72,16 +72,19 @@ export const Tabs = () => {
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space">
                 <div className={openTab === 1 ? 'block' : 'hidden'} id="link1">
+                  {/* first create venue component */}
                   <div>
                     <p>CreateVenue</p>
                   </div>
                 </div>
                 <div className={openTab === 2 ? 'block' : 'hidden'} id="link2">
+                  {/* my venue component */}
                   <div>
                     <p>My Venue</p>
                   </div>
                 </div>
                 <div className={openTab === 3 ? 'block' : 'hidden'} id="link3">
+                  {/* booking component */}
                   <div>
                     <p>My booking</p>
                   </div>
