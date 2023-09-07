@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CreateListing = () => {
-  return <div>CreateListing</div>;
+  return <div className="text-5xl">CreateListing</div>;
 };
 
 export default CreateListing;
