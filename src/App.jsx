@@ -14,7 +14,13 @@ const PageNotFound = lazy(() => import('./pages/pageNotfound/ErrorPage'));
 function App() {
   const { state } = useContext(AuthContext);
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="font-bold text-2xl flex items-center justify-center">
+          Loading.....
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Homepage />} />
