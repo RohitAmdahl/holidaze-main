@@ -13,7 +13,7 @@ const UserProfilePage = () => {
   return (
     <>
       <div className="container mx-auto py-2 max-w-4xl">
-        <h1 className="text-2xl px-2">My Profile</h1>
+        <h1 className="text-2xl px-2 font-bold">My Profile</h1>
       </div>
       <div className="p-4">
         <div className="container mx-auto max-w-sm md:max-w-xl  lg:max-w-2xl p-2  font-Montserrat border-2 border-gray-300 lg:p-3 md:p-2  ">

@@ -12,7 +12,7 @@ const CreateListing = () => {
       </div>
       <form>
         <div className="grid">
-          <div className="grid grid-cols-3 gap-3">
+          <div className="flex flex-col flex-wrap lg:grid lg:grid-cols-3 lg:gap-3 ">
             <div className="py-3 col-span-2">
               <label
                 className="block uppercase tracking-wide text-xs font-bold mb-2"
@@ -171,31 +171,62 @@ const CreateListing = () => {
               />
             </div>
           </div>
-          <div className="grid">
+          <h2 className="text-lg py-6 font-bold">
+            Venue Service provided by Host
+          </h2>
+          <div className="p-4">
             <div
               role="group"
               aria-labelledby="checkbox-group"
               className="flex justify-around gap-2 flex-wrap"
             >
-              <div>
-                <input type="checkbox" name="wifi" value="wifi" />
+              <div className="flex gap-3">
+                <input
+                  type="checkbox"
+                  name="wifi"
+                  value="wifi"
+                  className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
+                />
                 <label htmlFor="wifi">Wifi</label>
               </div>
-              <div>
-                <input type="checkbox" name="breakfast" value="breakfast" />
+              <div className="flex gap-3">
+                <input
+                  type="checkbox"
+                  name="breakfast"
+                  value="breakfast"
+                  className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
+                />
                 <label htmlFor="breakfast">Breakfast</label>
               </div>
-              <div>
-                <input type="checkbox" name="parking" value="parking" />
+              <div className="flex gap-3">
+                <input
+                  type="checkbox"
+                  name="parking"
+                  value="parking"
+                  className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
+                />
                 <label htmlFor="parking">Parking</label>
               </div>
 
-              <div>
-                <input type="checkbox" name="pets" value="pets" />
+              <div className="flex gap-3">
+                <input
+                  type="checkbox"
+                  name="pets"
+                  value="pets"
+                  className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
+                />
                 <label htmlFor="pets">Pets</label>
               </div>
             </div>
           </div>
+        </div>
+        <div className="flex justify-center items-center py-6">
+          <button
+            className=" text-blue bg-orange font-Montserrat font-bold   focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="Submit"
+          >
+            Submit
+          </button>
         </div>
       </form>
     </>

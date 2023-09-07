@@ -27,7 +27,7 @@ const DetailsPage = ({ data }) => {
     <>
       <div className=" container max-w-4xl mx-auto font-Montserrat overflow-hidden ">
         <div className="flex justify-between items-center max-w-2xl p-2 mx-auto border-b-2  pt-4">
-          <h1 className=" text-lg font-bold"> {name} </h1>
+          <h1 className=" text-lg font-bold uppercase"> {name} </h1>
           <div className="flex justify-between items-center gap-2">
             <img
               className="w-10 h-10 bg-black rounded-full"
