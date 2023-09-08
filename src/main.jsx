@@ -4,7 +4,7 @@ import App from './App.jsx';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter } from 'react-router-dom';
-import AuthProvider from './auth/Context.jsx';
+import AuthProvider from './auth/context/Context.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>

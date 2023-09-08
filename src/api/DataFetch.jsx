@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../constants/api';
+console.log(BASE_URL);
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 import Card from '../components/cards/Card';
 import VenueSearch from '../components/search/Search';
@@ -18,7 +19,7 @@ const DataFetch = () => {
 
         // const response = await fetch(`${BASE_URL}`);
         const response = await fetch(
-          'https://nf-api.onrender.com/api/v1/holidaze/venues?sort=created&sortOrder=desc&&_owner=true&_bookings=true'
+          ` ${BASE_URL}/venues?sort=created&sortOrder=desc&&_owner=true&_bookings=true`
         );
         console.log(response);
         const data = await response.json();

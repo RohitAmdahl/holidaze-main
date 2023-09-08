@@ -1,7 +1,7 @@
 import React, { Suspense, lazy, useContext } from 'react';
 import Layout from './Layout/index';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { AuthContext } from './auth/Context';
+import { AuthContext } from './auth/context/Context';
 
 const Homepage = lazy(() => import('./pages/home/HomePage'));
 const DetailPage = lazy(() => import('./pages/specific/DetailPage'));
