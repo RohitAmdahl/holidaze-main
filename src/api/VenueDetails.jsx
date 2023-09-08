@@ -24,9 +24,7 @@ const VenueDetails = () => {
         setIsLoading(false);
       }
     }
-    getData(
-      `https://nf-api.onrender.com/api/v1/holidaze/venues/${id}?_owner=true&_bookings=true`
-    );
+    getData(`${BASE_URL}/venues/${id}?_owner=true&_bookings=true`);
   }, [id]);
   if (isLoading || !data) {
     return (
