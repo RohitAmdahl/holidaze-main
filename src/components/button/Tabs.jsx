@@ -6,7 +6,7 @@ export const Tabs = () => {
   const [openTab, setOpenTab] = React.useState(1);
   return (
     <>
-      <div className="flex font-Montserrat flex-col lg:justify-center lg:items-center md:justify-center  gap-2">
+      <div className="flex font-Montserrat flex-col lg:justify-center lg:items-center md:justify-center gap-2">
         <div className=" container max-w-4xl mx-auto ">
           <ul
             className="flex flex-wrap mb-0 list-none pt-3 pb-4 flex-row p-2"

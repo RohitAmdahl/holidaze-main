@@ -9,12 +9,18 @@ import placeHolder from '../../assets/300.png';
 const Card = ({ place }) => {
   const { id, name, media, location, price, maxGuests } = place;
 
+  function addId() {
+    return media.map((item) => {
+      return { ...item };
+    });
+  }
+
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat ">
       <div className=" flex items-end overflow-hidden ">
         <Carousel showStatus={false} showThumbs={false}>
-          {media.map((imageUrl, index) => (
-            <div key={index}>
+          {media.map((imageUrl, addId) => (
+            <div key={addId.id}>
               <img
                 className=" object-cover mx-auto rounded-2xl h-52"
                 src={imageUrl ? imageUrl : placeHolder}

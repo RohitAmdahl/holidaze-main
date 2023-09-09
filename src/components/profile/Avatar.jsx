@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
-import { AuthContext } from '../../auth/Context';
+import { AuthContext } from '../../auth/context/Context';
 import { BsCamera } from 'react-icons/bs';
 export const avatarSchema = yup.object().shape({
   avatar: yup.string().url('Invalid URL').required('url required'),

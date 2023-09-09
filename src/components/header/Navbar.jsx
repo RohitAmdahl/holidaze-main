@@ -4,15 +4,9 @@ import { TbBeach } from 'react-icons/tb';
 import { PiSignIn } from 'react-icons/pi';
 import { BiUserPlus } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
-import {
-  HiMenuAlt1,
-  HiOutlineX,
-  HiHome,
-  HiOutlineMoon,
-  HiOutlineSun,
-} from 'react-icons/hi';
+import { HiMenuAlt1, HiOutlineX, HiHome } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
-import { AuthContext } from '../../auth/Context';
+import { AuthContext } from '../../auth/context/Context';
 const Navbar = () => {
   const { state, logoutUser } = useContext(AuthContext);
 
