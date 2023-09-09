@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { signUpSchema } from '../../pages/signUp/schema';
 import * as yup from 'yup';
-import { AuthContext } from '../../auth/Context';
+import { AuthContext } from '../../auth/context/Context';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 

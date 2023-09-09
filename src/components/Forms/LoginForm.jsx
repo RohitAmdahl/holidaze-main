@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
+import { AuthContext } from '../../auth/context/Context';
 import { AiOutlineMail } from 'react-icons/ai';
 import { BsKey } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { signInSchema } from '../../pages/signIn/schema';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { AuthContext } from '../../auth/Context';
 import { useNavigate } from 'react-router-dom';
 const initialValues = {
   email: '',
@@ -23,10 +23,11 @@ const LoginForm = () => {
         email: values.email,
         password: values.password,
       };
+      navigate('/profile');
+
       logInUser(logINdata);
       action.resetForm();
       console.log(logInUser(logINdata));
-      navigate('/profile');
     },
   });
 

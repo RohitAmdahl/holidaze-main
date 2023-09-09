@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Avatar from '../../components/profile/Avatar';
-import { LoginDetails } from '../../utils/Auth';
+// import { LoginDetails } from '../../utils/Auth';
+import { UserInformationLocalStorage } from '../../utils/Auth';
 import { BiUserCheck } from 'react-icons/bi';
 import { AiOutlineMail } from 'react-icons/ai';
 import { FcManager } from 'react-icons/fc';
@@ -8,7 +9,7 @@ import { Tabs } from '../button/Tabs';
 
 // import { AuthContext } from '../../auth/Context';
 const UserProfilePage = () => {
-  const userData = LoginDetails();
+  const userData = UserInformationLocalStorage();
   console.log(userData);
   return (
     <>

@@ -21,7 +21,7 @@ export function reducer(state, action) {
         isAuthenticated: true,
         error: null,
         user: userLogin.profile,
-        // data: action.payload.profile,
+        data: action.payload.profile,
       };
 
     case actionTypes.USER_LOGOUT: {
