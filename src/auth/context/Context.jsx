@@ -2,6 +2,7 @@ import { createContext, useReducer } from 'react';
 import { UserInformationLocalStorage } from '../../utils/Auth';
 import { SingleProfile } from '../../pages/userProfile/SingleProfile';
 import { reducer } from './reducerProfile';
+import { registerUser, logInUser, changeAvatar } from './reducerHook/apiCalls';
 import React from 'react';
 import { getActionTypes } from './action';
 const actionTypes = getActionTypes();
@@ -46,6 +47,7 @@ const AuthProvider = ({ children }) => {
       dispatch({ type: 'error', payload: error.message });
     }
   };
+
   const logInUser = async (data) => {
     // const accessToken = localStorage.getItem('accessToken');
     try {
@@ -88,8 +90,6 @@ const AuthProvider = ({ children }) => {
     window.localStorage.clear();
     dispatch({ type: actionTypes.USER_LOGOUT, isAuthenticated: false });
   };
-
-  // console.log(singleProfile);
 
   const changeAvatar = async (values) => {
     const accessToken = localStorage.getItem('accessToken');
