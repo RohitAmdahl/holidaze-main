@@ -1,4 +1,4 @@
-export const LoginDetails = () => {
+export const UserInformationLocalStorage = () => {
   const username = localStorage.getItem('userName');
   const avatar = localStorage.getItem('avatar');
   const token = localStorage.getItem('accessToken');
@@ -12,7 +12,7 @@ export const LoginDetails = () => {
     manager: manager,
   };
 };
-console.log(LoginDetails);
+console.log(UserInformationLocalStorage);
 
 export function save(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
