@@ -3,11 +3,12 @@ import { UserInformationLocalStorage } from '../../utils/Auth';
 import { SingleProfile } from '../../pages/userProfile/SingleProfile';
 import { reducer } from './reducerProfile';
 import { REGISTER_USER } from '../../constants/api';
+console.log(REGISTER_USER);
 import { LOGIN_USER } from '../../constants/api';
 import { BASE_URL } from '../../constants/api';
-import React from 'react';
 import { initialState } from './initialState';
 import { getActionTypes } from './action';
+import { toast } from 'react-toastify';
 const actionTypes = getActionTypes();
 
 export const AuthContext = createContext();
@@ -17,7 +18,6 @@ const AuthProvider = ({ children }) => {
 
   const registerUser = async (userData) => {
     try {
-      //
       const response = await fetch(`${REGISTER_USER}`, {
         method: 'POST',
         headers: {
@@ -26,22 +26,26 @@ const AuthProvider = ({ children }) => {
         body: JSON.stringify(userData),
       });
       if (!response.ok) {
-        throw new Error('Registration failed');
+        throw new Error('Registration failed', response.status);
       }
       console.log(response);
-
+      // console.log('response fail', error.message);
       const data = await response.json();
       dispatch({ type: actionTypes.USER_REGISTER, payload: data });
+      console.log(data);
+      toast.success('Registration successful'); // Show success toast
     } catch (error) {
       console.error('User Registration Error:', error.message);
       dispatch({ type: 'error', payload: error.message });
+      toast.error('Registration failed. Please try again.', {
+        className: 'toast-error', // You can add a custom class for the red toast
+      });
     }
   };
 
   const logInUser = async (data) => {
-    // const accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('accessToken');
     try {
-      //
       const response = await fetch(`${LOGIN_USER}`, {
         method: 'POST',
         headers: {
@@ -51,7 +55,6 @@ const AuthProvider = ({ children }) => {
       });
       if (!response.ok) {
         throw new Error('Login failed');
-      } else {
       }
       console.log(response);
 

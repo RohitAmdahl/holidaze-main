@@ -7,7 +7,7 @@ import { signUpSchema } from '../../pages/signUp/schema';
 import * as yup from 'yup';
 import { AuthContext } from '../../auth/context/Context';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 const initialValues = {
   name: '',
@@ -33,7 +33,6 @@ const SignUpForm = () => {
     initialValues: initialValues,
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
-      toast.success('Registration successful');
       const signUpData = {
         name: values.name,
         email: values.email,
@@ -46,7 +45,7 @@ const SignUpForm = () => {
       action.resetForm();
       setTimeout(() => {
         navigate('/signIn');
-      }, 6000);
+      }, 3000);
     },
   });
 
