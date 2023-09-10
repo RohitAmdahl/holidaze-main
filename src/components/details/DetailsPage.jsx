@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CiLocationOn } from 'react-icons/ci';
 import { IoIosPeople } from 'react-icons/io';
 import { GiHotMeal } from 'react-icons/gi';
 import { PiDogLight } from 'react-icons/pi';
 import { AiOutlineWifi } from 'react-icons/ai';
 import { LuParkingCircle } from 'react-icons/lu';
-import { BsStarFill } from 'react-icons/bs';
+import { BsStarFill, BsArrowRight } from 'react-icons/bs';
+import { AuthContext } from '../../auth/context/Context';
+import { Link } from 'react-router-dom';
+import BookingCalender from '../Forms/BookingCalender';
 const DetailsPage = ({ data }) => {
+  const { state } = useContext(AuthContext);
   const {
     name,
     price,
@@ -92,6 +96,24 @@ const DetailsPage = ({ data }) => {
           </h2>
           <p className=" max-w-3xl p-2 ">{description}</p>
         </div>
+        {!state.isAuthenticated ? (
+          <>
+            <div className=" container mx-auto text-2xl border-t-2 py-4 my-4">
+              <h3 className="text-blue ">Please Login for Booking</h3>
+              <Link
+                type="button"
+                className="my-8 text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600"
+                to="/signIn"
+              >
+                Click Here <BsArrowRight size={20} />
+              </Link>
+            </div>
+          </>
+        ) : (
+          <div>
+            <BookingCalender />
+          </div>
+        )}
       </div>
     </>
   );

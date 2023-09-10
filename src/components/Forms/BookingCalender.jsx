@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 const BookingCalender = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
@@ -15,7 +16,7 @@ const BookingCalender = () => {
       onChange={onChange}
       startDate={startDate}
       endDate={endDate}
-      excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
+      excludeDates={[]}
       selectsRange
       selectsDisabledDaysInRange
       inline
@@ -24,3 +25,4 @@ const BookingCalender = () => {
 };
 
 export default BookingCalender;
+// addDays(new Date(), 1), addDays(new Date(), 5);
