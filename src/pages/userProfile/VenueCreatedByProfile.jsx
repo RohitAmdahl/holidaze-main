@@ -12,7 +12,7 @@ const VenueCreatedByProfile = () => {
     async function getDataProfile() {
       const accessToken = localStorage.getItem('accessToken');
       const username = localStorage.getItem('userName');
-      console.log(username);
+
       try {
         setError(false);
         setLoading(true);
@@ -54,7 +54,7 @@ const VenueCreatedByProfile = () => {
   }
 
   return (
-    <div>
+    <div className="grid grid-cols-3 gap-3">
       {data.map((venue) => {
         console.log(venue);
         return <VenueByProfileCard key={venue.id} venue={venue} />;
