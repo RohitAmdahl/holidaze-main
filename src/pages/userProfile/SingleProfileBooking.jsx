@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/api';
 import { ClimbingBoxLoader } from 'react-spinners';
-import MyBookings from '../../components/cards/MyBookings';
+
 console.log(BASE_URL);
 const SingleProfileByNameBookings = () => {
   const [data, setData] = useState([]);
@@ -56,7 +56,7 @@ const SingleProfileByNameBookings = () => {
     <div>
       {data.map((booking) => {
         console.log(booking);
-        return <div> {booking.id} </div>;
+        return <MyBookingTable />;
       })}
     </div>
   );

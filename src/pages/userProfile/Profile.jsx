@@ -1,13 +1,12 @@
 import React from 'react';
 import UserProfilePage from '../../components/profile/UserProfilePage';
-import SingleProfileByNameBookings from './SingleProfileBooking';
-import VenueCreatedByProfile from './VenueCreatedByProfile';
+
+import DataProfile from '../../components/profile/DataProfile';
 const Profile = () => {
   return (
     <>
       <UserProfilePage />
-      <SingleProfileByNameBookings />
-      <VenueCreatedByProfile />
+      {/* <DataProfile /> */}
     </>
   );
 };
