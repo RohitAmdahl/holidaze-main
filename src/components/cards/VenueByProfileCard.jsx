@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
+import placeHolder from '../../assets/300.png';
+import { RiDeleteBinLine } from 'react-icons/ri';
+import { AiOutlineEdit } from 'react-icons/ai';
 const VenueByProfileCard = ({ venue }) => {
   console.log(venue);
   const { id, name, media, location, price, maxGuests } = venue;
@@ -8,7 +11,7 @@ const VenueByProfileCard = ({ venue }) => {
     <div className="">
       <Carousel showStatus={false} showThumbs={false}>
         {media.map((imageUrl, index) => (
-          <div key={index.id} index={index}>
+          <div key={`media-${index}`}>
             <img
               className=" object-cover mx-auto  h-52"
               src={imageUrl ? imageUrl : placeHolder}
@@ -17,6 +20,14 @@ const VenueByProfileCard = ({ venue }) => {
           </div>
         ))}
       </Carousel>
+      <div className="px-2 my-5 flex justify-end items-end">
+        <button className=" cursor-pointer bg-gray-100 p-2 mx-2 rounded-full">
+          <AiOutlineEdit size={25} />
+        </button>
+        <button className=" cursor-pointer bg-gray-100 text-red-600 p-2 mx-2 rounded-full">
+          <RiDeleteBinLine size={25} />
+        </button>
+      </div>
       <Link to={`/venues/${id}`}>
         <div className="mt-1 p-2">
           <h2 className="text-slate-700 font-semibold capitalize"> {name} </h2>

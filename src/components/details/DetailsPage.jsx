@@ -23,11 +23,13 @@ const DetailsPage = ({ data }) => {
     description,
     owner,
   } = data;
+  console.log(data);
 
   const isAvailable = meta.breakfast === true || meta.breakfast === 'true';
   const petsAvailable = meta.pets === true || meta.pets === 'true';
-  const lineWifi = meta.wifi === true || meta.pets === 'true';
-  const parkingCircle = meta.parking === true || meta.pets === 'true';
+  const lineWifi = meta.wifi === true || meta.wifi === 'true';
+  const parkingCircle = meta.parking === true || meta.parking === 'true';
+
   return (
     <>
       <div className=" container max-w-4xl mx-auto font-Montserrat overflow-hidden ">

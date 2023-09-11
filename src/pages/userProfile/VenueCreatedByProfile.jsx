@@ -29,9 +29,7 @@ const VenueCreatedByProfile = () => {
           const errorMessage = await response.json();
           throw new Error(errorMessage.message);
         }
-        console.log(response);
         const profileData = await response.json();
-        console.log(profileData);
         setData(profileData);
       } catch (error) {
         setError(error.message);
@@ -54,7 +52,7 @@ const VenueCreatedByProfile = () => {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-3">
+    <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
       {data.map((venue) => {
         console.log(venue);
         return <VenueByProfileCard key={venue.id} venue={venue} />;

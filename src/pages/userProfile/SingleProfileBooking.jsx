@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/api';
 import { ClimbingBoxLoader } from 'react-spinners';
+import MyBookings from '../../components/cards/MyBookingTable';
 
 console.log(BASE_URL);
 const SingleProfileByNameBookings = () => {
@@ -16,7 +17,7 @@ const SingleProfileByNameBookings = () => {
         setError(false);
         setLoading(true);
         const response = await fetch(
-          `${BASE_URL}/profiles/${username}/bookings`,
+          `${BASE_URL}/profiles/${username}?_bookings=true&_venues=true`,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -30,8 +31,10 @@ const SingleProfileByNameBookings = () => {
         }
 
         const profileData = await response.json();
-
-        setData(profileData);
+        const profileArray = profileData.bookings;
+        // setData(profileData);
+        setData(profileArray);
+        console.log(profileArray);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -51,12 +54,11 @@ const SingleProfileByNameBookings = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
   return (
     <div>
       {data.map((booking) => {
         console.log(booking);
-        return <MyBookingTable />;
+        return <MyBookings key={booking.id} booking={booking} />;
       })}
     </div>
   );
