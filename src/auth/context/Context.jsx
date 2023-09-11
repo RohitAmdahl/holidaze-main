@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
-import { UserInformationLocalStorage } from '../../utils/Auth';
-import { SingleProfile } from '../../pages/userProfile/SingleProfile';
+// import { UserInformationLocalStorage } from '../../utils/Auth';
+// import { SingleProfile } from '../../pages/userProfile/SingleProfile';
 import { reducer } from './reducerProfile';
 import { REGISTER_USER } from '../../constants/api';
 console.log(REGISTER_USER);
@@ -125,7 +125,6 @@ const AuthProvider = ({ children }) => {
         registerUser,
         logInUser,
         logoutUser,
-        SingleProfile,
         changeAvatar,
       }}
     >

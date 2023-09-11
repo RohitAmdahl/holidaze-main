@@ -8,7 +8,8 @@ import { LuParkingCircle } from 'react-icons/lu';
 import { BsStarFill, BsArrowRight } from 'react-icons/bs';
 import { AuthContext } from '../../auth/context/Context';
 import { Link } from 'react-router-dom';
-import BookingCalender from '../Forms/BookingCalender';
+// import BookingCalender from '../Forms/BookingCalender';
+import BookingForm from '../Forms/BookingForm';
 const DetailsPage = ({ data }) => {
   const { state } = useContext(AuthContext);
   const {
@@ -94,7 +95,7 @@ const DetailsPage = ({ data }) => {
           <h2 className="p-2 font-Montserrat font-semibold">
             Description about place{' '}
           </h2>
-          <p className=" max-w-3xl p-2 ">{description}</p>
+          <p className=" max-w-3xl p-2  border-b-2 py-4">{description}</p>
         </div>
         {!state.isAuthenticated ? (
           <>
@@ -110,8 +111,8 @@ const DetailsPage = ({ data }) => {
             </div>
           </>
         ) : (
-          <div>
-            <BookingCalender />
+          <div className="my-5">
+            <BookingForm />
           </div>
         )}
       </div>
