@@ -18,8 +18,8 @@ const Card = ({ place }) => {
     <div className=" container max-w-4xl mx-auto font-Montserrat ">
       <div className=" flex items-end overflow-hidden ">
         <Carousel showStatus={false} showThumbs={false}>
-          {media.map((imageUrl, addId) => (
-            <div key={addId.id}>
+          {media.map((imageUrl, index) => (
+            <div key={index.id}>
               <img
                 className=" object-cover mx-auto rounded-2xl h-52"
                 src={imageUrl ? imageUrl : placeHolder}
