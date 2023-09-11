@@ -21,7 +21,7 @@ const CreateListing = () => {
                 Title
               </label>
               <input
-                className="appearance-none block w-full bg-gray-100 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white  focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="grid-first-name"
                 type="text"
                 name="name"
@@ -37,7 +37,7 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white  focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="number"
                 type="number"
                 name="price"
@@ -53,7 +53,7 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="number"
                 type="url"
                 name="picture"
@@ -71,7 +71,7 @@ const CreateListing = () => {
                 id="message"
                 rows="4"
                 name="description"
-                className="block p-2.5 w-full text-sm bg-gray-100 focus:bg-white rounded-lg border border-gray-300 focus:ring-blue focus:border-blue  "
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 placeholder="Write your thoughts here..."
               ></textarea>
             </div>
@@ -84,7 +84,7 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="Address"
                 type="Address"
                 name="Address"
@@ -100,7 +100,7 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="country"
                 type="country"
                 name="country"
@@ -116,7 +116,7 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="city"
                 type="city"
                 name="city"
@@ -132,7 +132,7 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="zip"
                 type="zip"
                 name="zip"
@@ -148,7 +148,7 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="continent"
                 type="continent"
                 name="continent"
@@ -164,10 +164,11 @@ const CreateListing = () => {
               </label>
 
               <input
-                className="appearance-none block w-full bg-gray-100  border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:ring-blue focus:border-blue"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="continent"
                 type="number"
                 name="maxGuest"
+                min="1"
               />
             </div>
           </div>

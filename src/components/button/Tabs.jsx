@@ -1,6 +1,9 @@
 import React from 'react';
 import CreateListing from '../Forms/CreateListing';
-import MyVenues from '../cards/MyVenues';
+import VenueByProfile from '../cards/VenueByProfileCard';
+import VenueByProfileCard from '../cards/VenueByProfileCard';
+import MyBookings from '../cards/MyBookings';
+// import MyVenues from '../cards/MyVenues';
 // import TabsRender from './TabsRender';
 export const Tabs = () => {
   const [openTab, setOpenTab] = React.useState(1);
@@ -81,15 +84,11 @@ export const Tabs = () => {
                 </div>
                 <div className={openTab === 2 ? 'block' : 'hidden'} id="link2">
                   {/* my venue component */}
-                  <div>
-                    <MyVenues />
-                  </div>
+
+                  {/* <VenueByProfileCard /> */}
                 </div>
                 <div className={openTab === 3 ? 'block' : 'hidden'} id="link3">
                   {/* booking component */}
-                  <div>
-                    <p>My booking</p>
-                  </div>
                 </div>
               </div>
             </div>
