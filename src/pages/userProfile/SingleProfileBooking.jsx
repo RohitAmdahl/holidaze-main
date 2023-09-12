@@ -55,12 +55,17 @@ const SingleProfileByNameBookings = () => {
     return <div>Error: {error}</div>;
   }
   return (
-    <div>
-      {data.map((booking) => {
-        console.log(booking);
-        return <MyBookings key={booking.id} booking={booking} />;
-      })}
-    </div>
+    <>
+      <div className="Text-lg text-blue font-semibold">
+        Please Contact Us For any Query : +47 452 256
+      </div>
+      <div>
+        {data.map((booking) => {
+          console.log(booking);
+          return <MyBookings key={booking.id} booking={booking} />;
+        })}
+      </div>
+    </>
   );
 };
 

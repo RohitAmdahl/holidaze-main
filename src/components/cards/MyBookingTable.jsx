@@ -1,8 +1,9 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 
 const MyBookings = ({ booking }) => {
   const { id, dateFrom, dateTo, guests, venue } = booking;
+
+  console.log(location);
   console.log(booking);
   const startDate = new Date(dateFrom);
   console.log(startDate);
@@ -14,12 +15,11 @@ const MyBookings = ({ booking }) => {
     <div className="lg:max-w-4xl md:max-w-xl container mx-auto table-auto max-w-sm">
       <div className="p-2">
         <ul className="bg-gray-100 p-2 m-1">
-          {/* <Link to={`/venues/${id}`}> */}
           <li className="font-semibold"> Name: {venue.name}</li>
           <li>Date from: {startDateString}</li>
           <li>Date To: {endDateString}</li>
           <li> Max Guests: {guests}</li>
-          {/* </Link> */}
+          <li className="font-bold"> IMPORTANT ID No: {id}</li>
         </ul>
       </div>
     </div>
