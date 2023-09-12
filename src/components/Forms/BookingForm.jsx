@@ -9,14 +9,17 @@ const initialValues = {
   guests: '',
   venueId: 'id',
 };
-const BookingForm = () => {
+const BookingForm = ({ props }) => {
+  console.log(props);
   const dateToDMY = (date) => {
     return format(date, 'dd-MM-YYYY');
   };
+  console.log(dateToDMY);
   const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
     validationSchema: BookingSchema,
     onSubmit: (values, action) => {
+      e.preventDefault();
       const bookData = {
         dateFrom: values.dateFrom,
         dateTo: values.dateTo,
@@ -31,16 +34,16 @@ const BookingForm = () => {
   return (
     <>
       <div className="p-4">
-        <BookingCalender />
+        <BookingCalender props={props} />
       </div>
       <div className="max-w-3xl items-center p-4 font-Montserrat">
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <div className="flex flex-wrap gap-3 lg:grid lg:grid-cols-2 lg:gap-2">
             <div>
               <label htmlFor="dateFrom">Date From</label>
               <input
                 value={values.dateFrom ? dateToYMD(values.dateFrom) : ''}
-                type="text"
+                name="dataFrom"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
@@ -50,7 +53,7 @@ const BookingForm = () => {
               <label htmlFor="dateTo">Date To</label>
               <input
                 value={values.dateTo ? dateToYMD(values.dateTo) : ''}
-                type="text"
+                name="dataTo"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
@@ -69,6 +72,7 @@ const BookingForm = () => {
               value={values.guests}
               className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
             />
+            <p className=" text-red-700"> {errors.guests} </p>
           </div>
           <div>
             <p className="font-semibold">Total</p>

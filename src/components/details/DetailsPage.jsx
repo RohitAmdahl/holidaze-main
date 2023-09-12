@@ -34,8 +34,8 @@ const DetailsPage = ({ data }) => {
   return (
     <>
       <div className=" container max-w-4xl mx-auto font-Montserrat overflow-hidden ">
-        <div className="flex justify-between items-center max-w-2xl p-2 mx-auto border-b-2  pt-4">
-          <h1 className=" text-lg font-bold uppercase"> {name} </h1>
+        <div className="flex justify-between flex-wrap items-center max-w-2xl p-2 mx-auto border-b-2  pt-4">
+          <h1 className=" text-lg font-bold uppercase p-2"> {name} </h1>
           <div className="flex justify-between items-center gap-2">
             <img
               className="w-10 h-10 bg-black rounded-full"
@@ -54,14 +54,14 @@ const DetailsPage = ({ data }) => {
             <span className="text-blue text-sm ">/night</span>
           </p>
         </div>
-        <div className="grid grid-cols-2 p-3 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-3 ">
+        <div className="grid grid-cols-1 p-3 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-3 ">
           {media.map((img, index) => {
             return (
               <div
-                className="  flex justify-center items-center flex-wrap rounded-xl  "
+                className=" flex justify-center items-center flex-wrap rounded-xl  "
                 key={`media-${index}`}
               >
-                <img src={img} alt={name} />
+                <img src={img} alt={name} className=" flex flex-wrap " />
               </div>
             );
           })}
