@@ -4,6 +4,7 @@ import { CiLocationOn } from 'react-icons/ci';
 import { IoIosPeople } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import placeHolder from '../../assets/300.png';
+import { motion } from 'framer-motion';
 
 const Card = ({ place }) => {
   const { id, name, media, location, price, maxGuests } = place;
@@ -17,7 +18,12 @@ const Card = ({ place }) => {
 
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat ">
-      <div className=" flex items-end overflow-hidden ">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: 'easeOut', duration: 2 }}
+        className=" flex items-end overflow-hidden "
+      >
         <Carousel showStatus={false} showThumbs={false}>
           {media.map((imageUrl, index) => (
             <div key={`media-${index}`}>
@@ -29,7 +35,7 @@ const Card = ({ place }) => {
             </div>
           ))}
         </Carousel>
-      </div>
+      </motion.div>
       <Link to={`/Venues/${id}`}>
         <div className="mt-1 p-2">
           <h2 className="text-slate-700 font-semibold capitalize"> {name} </h2>
