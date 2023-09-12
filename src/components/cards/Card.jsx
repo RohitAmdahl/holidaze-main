@@ -20,7 +20,7 @@ const Card = ({ place }) => {
       <div className=" flex items-end overflow-hidden ">
         <Carousel showStatus={false} showThumbs={false}>
           {media.map((imageUrl, index) => (
-            <div key={imageUrl.id}>
+            <div key={`media-${index}`}>
               <img
                 className=" object-cover mx-auto rounded-2xl h-52"
                 src={imageUrl ? imageUrl : placeHolder}
