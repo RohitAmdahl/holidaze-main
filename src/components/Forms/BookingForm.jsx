@@ -9,8 +9,7 @@ const initialValues = {
   guests: '',
   venueId: 'id',
 };
-const BookingForm = ({ props }) => {
-  console.log(props);
+const BookingForm = () => {
   const dateToDMY = (date) => {
     return format(date, 'dd-MM-YYYY');
   };
@@ -44,6 +43,7 @@ const BookingForm = ({ props }) => {
               <input
                 value={values.dateFrom ? dateToYMD(values.dateFrom) : ''}
                 name="dataFrom"
+                type="date"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
@@ -54,6 +54,7 @@ const BookingForm = ({ props }) => {
               <input
                 value={values.dateTo ? dateToYMD(values.dateTo) : ''}
                 name="dataTo"
+                type="date"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
