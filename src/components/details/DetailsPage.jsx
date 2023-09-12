@@ -24,6 +24,7 @@ const DetailsPage = ({ data }) => {
     owner,
   } = data;
   console.log(data);
+  console.log(meta);
 
   const isAvailable = meta.breakfast === true || meta.breakfast === 'true';
   const petsAvailable = meta.pets === true || meta.pets === 'true';
@@ -53,14 +54,14 @@ const DetailsPage = ({ data }) => {
             <span className="text-blue text-sm ">/night</span>
           </p>
         </div>
-        <div className="grid grid-cols-2 p-3 gap-4 md:grid-cols-3 lg:grid-cols-3 lg:gap-3">
+        <div className="grid grid-cols-2 p-3 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-3 ">
           {media.map((img, index) => {
             return (
               <div
-                className="flex justify-center items-center flex-wrap rounded-xl  "
-                key={index}
+                className="  flex justify-center items-center flex-wrap rounded-xl  "
+                key={`media-${index}`}
               >
-                <img className="" src={img} alt="" />
+                <img src={img} alt={name} />
               </div>
             );
           })}
