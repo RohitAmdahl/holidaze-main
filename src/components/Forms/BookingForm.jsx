@@ -10,11 +10,20 @@ const initialValues = {
   venueId: 'id',
 };
 const BookingForm = () => {
-  const dateToDMY = (date) => {
-    return format(date, 'dd-MM-YYYY');
+  const dateToYMD = (date) => {
+    return format(date, 'yyyy-MM-dd');
   };
-  console.log(dateToDMY);
-  const { values, errors, handleBlur, handleChange, handleSubmit } = useFormik({
+
+  const handleDatesSelected = (selectedDates) => {
+    // Update the form values with selected dates
+    formik.setValues({
+      ...formik.values,
+      dateFrom: selectedDates.startDate,
+      dateTo: selectedDates.endDate,
+    });
+  };
+
+  const formik = useFormik({
     initialValues: initialValues,
     validationSchema: BookingSchema,
     onSubmit: (values, action) => {
@@ -33,30 +42,34 @@ const BookingForm = () => {
   return (
     <>
       <div className="p-4">
-        <BookingCalender props={props} />
+        <BookingCalender onDatesSelected={handleDatesSelected} />
       </div>
       <div className="max-w-3xl items-center p-4 font-Montserrat">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <div className="flex flex-wrap gap-3 lg:grid lg:grid-cols-2 lg:gap-2">
             <div>
               <label htmlFor="dateFrom">Date From</label>
               <input
-                value={values.dateFrom ? dateToYMD(values.dateFrom) : ''}
+                value={
+                  formik.values.dateFrom
+                    ? dateToYMD(formik.values.dateFrom)
+                    : ''
+                }
                 name="dataFrom"
-                type="date"
-                onChange={handleChange}
-                onBlur={handleBlur}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
             </div>
             <div>
               <label htmlFor="dateTo">Date To</label>
               <input
-                value={values.dateTo ? dateToYMD(values.dateTo) : ''}
+                value={
+                  formik.values.dateTo ? dateToYMD(formik.values.dateTo) : ''
+                }
                 name="dataTo"
-                type="date"
-                onChange={handleChange}
-                onBlur={handleBlur}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
             </div>
@@ -68,12 +81,12 @@ const BookingForm = () => {
               name="guests"
               type="number"
               min="1"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.guests}
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              value={formik.values.guests}
               className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
             />
-            <p className=" text-red-700"> {errors.guests} </p>
+            <p className=" text-red-700"> {formik.errors.guests} </p>
           </div>
           <div>
             <p className="font-semibold">Total</p>
