@@ -1,21 +1,77 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { format } from 'date-fns';
-import { BookingSchema } from '../../pages/specific/schema';
+import { format, isBefore } from 'date-fns';
 import BookingCalender from './BookingCalender';
-const initialValues = {
-  dateFrom: '',
-  dateTo: '',
-  guests: '',
-  venueId: 'id',
+import { useParams } from 'react-router-dom';
+import * as Yup from 'yup';
+
+const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
+  if (!dateFrom || !dateTo) {
+    return 0;
+  }
+
+  const start = new Date(dateFrom);
+  const end = new Date(dateTo);
+
+  if (isNaN(start) || isNaN(end)) {
+    return 0;
+  }
+
+  const timeDiff = Math.abs(end - start);
+  const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+  const totalPrice = pricePerNight * numberOfNights;
+  return totalPrice; // totalPrice*maxGuests we can also multiply  by maxGuests
 };
-const BookingForm = () => {
+
+const BookingForm = ({ price, maxGuests }) => {
+  const { id } = useParams();
+  const [amount, setAmount] = useState(0);
+
+  const BookingSchema = Yup.object().shape({
+    dateFrom: Yup.date().required('Required'),
+    dateTo: Yup.date().required('Required'),
+    guests: Yup.number()
+      .min(1, 'Must be at least 1 guest')
+      .max(maxGuests, `Max number of guests is ${maxGuests}`)
+      .required('Required'),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      dateFrom: '',
+      dateTo: '',
+      guests: '',
+      venueId: id,
+    },
+    validationSchema: BookingSchema,
+    onSubmit: (values, action) => {
+      if (isBefore(values.dateFrom, values.dateTo)) {
+        if (isBefore(new Date(values.dateFrom), new Date())) {
+          formik.setFieldError(
+            'dateFrom',
+            'Selected date cannot be in the past'
+          );
+        } else {
+          const bookData = {
+            dateFrom: values.dateFrom,
+            dateTo: values.dateTo,
+            guests: values.guests,
+            venueId: values.venueId,
+          };
+          action.resetForm();
+          console.log(bookData);
+        }
+      } else {
+        formik.setFieldError('dateFrom', 'Start date must be before end date');
+      }
+    },
+  });
+
   const dateToYMD = (date) => {
     return format(date, 'yyyy-MM-dd');
   };
 
   const handleDatesSelected = (selectedDates) => {
-    // Update the form values with selected dates
     formik.setValues({
       ...formik.values,
       dateFrom: selectedDates.startDate,
@@ -23,22 +79,16 @@ const BookingForm = () => {
     });
   };
 
-  const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: BookingSchema,
-    onSubmit: (values, action) => {
-      e.preventDefault();
-      const bookData = {
-        dateFrom: values.dateFrom,
-        dateTo: values.dateTo,
-        guests: values.guests,
-        venueId: values.venueId,
-      };
+  useEffect(() => {
+    const newAmount = calculatePrice(
+      formik.values.dateFrom,
+      formik.values.dateTo,
+      price,
+      maxGuests
+    );
+    setAmount(newAmount);
+  }, [formik.values.dateFrom, formik.values.dateTo, price, maxGuests]);
 
-      action.resetForm();
-      console.log(bookData);
-    },
-  });
   return (
     <>
       <div className="p-4">
@@ -55,11 +105,18 @@ const BookingForm = () => {
                     ? dateToYMD(formik.values.dateFrom)
                     : ''
                 }
-                name="dataFrom"
+                name="dateFrom"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
+                className={`px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1 ${
+                  formik.touched.dateFrom && formik.errors.dateFrom
+                    ? 'border-red-500'
+                    : ''
+                }`}
               />
+              {formik.touched.dateFrom && formik.errors.dateFrom && (
+                <p className="text-red-500">{formik.errors.dateFrom}</p>
+              )}
             </div>
             <div>
               <label htmlFor="dateTo">Date To</label>
@@ -67,7 +124,7 @@ const BookingForm = () => {
                 value={
                   formik.values.dateTo ? dateToYMD(formik.values.dateTo) : ''
                 }
-                name="dataTo"
+                name="dateTo"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
@@ -86,16 +143,21 @@ const BookingForm = () => {
               value={formik.values.guests}
               className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
             />
-            <p className=" text-red-700"> {formik.errors.guests} </p>
+            {formik.touched.guests && formik.errors.guests && (
+              <p className="text-red-500">{formik.errors.guests}</p>
+            )}
           </div>
           <div>
             <p className="font-semibold">Total</p>
             <p>
-              <span className="text-lg font-bold text-blue">$100</span>
+              <span className="text-lg font-bold text-blue">{`$${amount}`}</span>
             </p>
           </div>
           <div className="my-4">
-            <button className=" text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600">
+            <button
+              type="submit"
+              className="text-blue mx-2 bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600"
+            >
               Book Your Venue
             </button>
           </div>
