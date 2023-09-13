@@ -13,6 +13,7 @@ import BookingForm from '../Forms/BookingForm';
 const DetailsPage = ({ data }) => {
   const { state } = useContext(AuthContext);
   const {
+    id,
     name,
     price,
     media,
@@ -23,6 +24,7 @@ const DetailsPage = ({ data }) => {
     description,
     owner,
   } = data;
+
   console.log(data);
   console.log(meta);
 
@@ -102,11 +104,11 @@ const DetailsPage = ({ data }) => {
         </div>
         {!state.isAuthenticated ? (
           <>
-            <div className=" container mx-auto text-2xl border-t-2 py-4 my-4">
+            <div className=" container mx-auto text-2xl border-t-2 py-4 my-4 flex justify-center flex-col items-center">
               <h3 className="text-blue ">Please Login for Booking</h3>
               <Link
                 type="button"
-                className="my-8 text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600"
+                className="my-8 mx-2 text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600"
                 to="/signIn"
               >
                 Click Here <BsArrowRight size={20} />
@@ -115,7 +117,7 @@ const DetailsPage = ({ data }) => {
           </>
         ) : (
           <div className="my-5">
-            <BookingForm />
+            <BookingForm price={price} maxGuests={maxGuests} venueId={id} />
           </div>
         )}
       </div>
