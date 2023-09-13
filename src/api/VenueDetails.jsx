@@ -3,6 +3,7 @@ import { BASE_URL } from '../constants/api';
 import { useParams } from 'react-router-dom';
 import Details from '../components/details/DetailsPage';
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+import BookingForm from '../components/Forms/BookingForm';
 const VenueDetails = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,11 @@ const VenueDetails = () => {
     <div>Error: {error}</div>;
   }
 
-  return <Details key={data.id} data={data} />;
+  return (
+    <div>
+      <Details key={data.id} data={data} />;
+    </div>
+  );
 };
 
 export default VenueDetails;
