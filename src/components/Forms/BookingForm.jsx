@@ -4,7 +4,8 @@ import { format, isBefore } from 'date-fns';
 import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import AccommodationContext from '../../api/accommodation/Context/DataContext';
+
+import { AccommodationContext } from '../../api/accommodation/Context/DataContext';
 
 const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
   const start = new Date(dateFrom);
@@ -20,13 +21,12 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
   const totalPrice = pricePerNight * numberOfNights;
   return totalPrice; // totalPrice*maxGuests we can also multiply  by maxGuests
 };
-console.log(calculatePrice);
+
 const BookingForm = ({ price, maxGuests }) => {
   const { BookingFormFetch } = useContext(AccommodationContext);
-  console.log(BookingForm);
+
   const [amount, setAmount] = useState(0);
 
-  console.log(BookingFormFetch);
   const { id } = useParams();
 
   const BookingSchema = Yup.object().shape({
@@ -46,38 +46,9 @@ const BookingForm = ({ price, maxGuests }) => {
       venueId: id,
     },
     validationSchema: BookingSchema,
-    // onSubmit: (values, action) => {
-    //   const bookData = {
-    //     dateFrom: values.dateFrom,
-    //     dateTo: values.dateTo,
-    //     guests: values.guests,
-    //     venueId: values.venueId,
-    //   };
-    //   if (isBefore(values.dateFrom, values.dateTo)) {
-    //     if (isBefore(new Date(values.dateFrom), new Date())) {
-    //       formik.setFieldError(
-    //         'dateFrom',
-    //         'Selected date cannot be in the past'
-    //       );
-    //     } else {
-    //       console.log(BookingFormFetch(bookData));
-    //       BookingFormFetch(bookData);
-    //       action.resetForm();
-    //       console.log(bookData);
-    //       // try {
-    //       //   await BookingFormFetch(bookData);
-    //       //   console.log(BookingFormFetch(bookData));
-    //       //   console.log(bookData);
-    //       //   action.resetForm();
-    //       //   console.log('bookData success');
-    //       // } catch (error) {
-    //       //   console.log('Booking failed', error);
-    //       // }
-    //     }
-    //   } else {
-    //     formik.setFieldError('dateFrom', 'Start date must be before end date');
-    //   }
-    // },
+
+    //
+
     onSubmit: async (values, action) => {
       const bookData = {
         dateFrom: values.dateFrom,
