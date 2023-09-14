@@ -1,8 +1,6 @@
 import { createContext } from 'react';
-import CreateVenueListing from '../CreateVenueListing';
-import UpdateVenue from '../UpdateVenue';
-import DeleteVenue from '../DeleteVenue';
-import BookingFormFetch from '../BookingFetch';
+
+import BookVenue from '../BookingFormFetch';
 
 export const AccommodationContext = createContext();
 
@@ -10,10 +8,7 @@ const VenueDataProvider = ({ children }) => {
   return (
     <AccommodationContext.Provider
       value={{
-        CreateVenueListing,
-        UpdateVenue,
-        DeleteVenue,
-        BookingFormFetch,
+        BookVenue,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 
 import { AccommodationContext } from '../../api/accommodation/Context/DataContext';
 
-const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
+const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   const start = new Date(dateFrom);
   const end = new Date(dateTo);
   if (!dateFrom || !dateTo) {
@@ -23,7 +23,7 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
 };
 
 const BookingForm = ({ price, maxGuests }) => {
-  const { BookingFormFetch } = useContext(AccommodationContext);
+  const { BookVenue } = useContext(AccommodationContext);
 
   const [amount, setAmount] = useState(0);
 
@@ -56,38 +56,41 @@ const BookingForm = ({ price, maxGuests }) => {
         guests: values.guests,
         venueId: values.venueId,
       };
+      action.resetForm();
 
-      try {
-        if (isBefore(values.dateFrom, values.dateTo)) {
-          if (isBefore(new Date(values.dateFrom), new Date())) {
-            formik.setFieldError(
-              'dateFrom',
-              'Selected date cannot be in the past'
-            );
-          } else {
-            // Make the API call and await its completion
-            const response = BookingFormFetch(bookData);
-            console.log(response);
-            if (!response.ok) {
-              // Handle API error here
-              console.error('Booking failed:', response.error);
-              // You can set an error message or take other appropriate actions here
-            } else {
-              // API call successful, reset the form and do other actions
-              action.resetForm();
-              console.log('Booking successful');
-            }
-          }
-        } else {
-          formik.setFieldError(
-            'dateFrom',
-            'Start date must be before end date'
-          );
-        }
-      } catch (error) {
-        console.error('Error during booking:', error);
-        // Handle any unexpected errors here
-      }
+      console.log(bookData);
+      BookVenue(bookData);
+      // try {
+      //   if (isBefore(values.dateFrom, values.dateTo)) {
+      //     if (isBefore(new Date(values.dateFrom), new Date())) {
+      //       formik.setFieldError(
+      //         'dateFrom',
+      //         'Selected date cannot be in the past'
+      //       );
+      //     } else {
+      //       // Make the API call and await its completion
+      //       const response = await BookingFormFetch(bookData);
+      //       console.log(response);
+      //       if (!response.ok) {
+      //         // Handle API error here
+      //         console.error('Booking failed:', response.error);
+      //         // You can set an error message or take other appropriate actions here
+      //       } else {
+      //         // API call successful, reset the form and do other actions
+      //         action.resetForm();
+      //         console.log('Booking successful');
+      //       }
+      //     }
+      //   } else {
+      //     formik.setFieldError(
+      //       'dateFrom',
+      //       'Start date must be before end date'
+      //     );
+      //   }
+      // } catch (error) {
+      //   console.error('Error during booking:', error);
+      //   // Handle any unexpected errors here
+      // }
     },
   });
 
