@@ -38,13 +38,13 @@ const BookVenue = ({ bookData }) => {
     };
 
     fetchBookingData();
-  }, [bookData]);
+  }, []);
 
   if (error) {
     return <div>Error: {error.message}</div>; // Render an error message
   }
 
-  return <div>API request completed successfully</div>; // Render content when request is successful
+  return { data, error }; // Render content when request is successful
 };
 
 export default BookVenue;
