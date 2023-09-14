@@ -4,8 +4,7 @@ import { format, isBefore } from 'date-fns';
 import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-// import BookingFormFetch from '../../api/accommodation/BookingFetch';
-import { VenueContext } from '../../api/accommodation/Context/DataContext';
+import AccommodationContext from '../../api/accommodation/Context/DataContext';
 
 const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
   const start = new Date(dateFrom);
@@ -23,8 +22,10 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
 };
 console.log(calculatePrice);
 const BookingForm = ({ price, maxGuests }) => {
+  const { BookingFormFetch } = useContext(AccommodationContext);
+  console.log(BookingForm);
   const [amount, setAmount] = useState(0);
-  const { BookingFormFetch } = useContext(VenueContext);
+
   console.log(BookingFormFetch);
   const { id } = useParams();
 

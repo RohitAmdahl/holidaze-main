@@ -4,11 +4,11 @@ import UpdateVenue from '../UpdateVenue';
 import DeleteVenue from '../DeleteVenue';
 import BookingFormFetch from '../BookingFetch';
 
-export const VenueContext = createContext();
+export const AccommodationContext = createContext();
 
 const VenueDataProvider = ({ children }) => {
   return (
-    <VenueContext.Provider
+    <AccommodationContext.Provider
       value={{
         CreateVenueListing,
         UpdateVenue,
@@ -17,7 +17,7 @@ const VenueDataProvider = ({ children }) => {
       }}
     >
       {children}
-    </VenueContext.Provider>
+    </AccommodationContext.Provider>
   );
 };
 

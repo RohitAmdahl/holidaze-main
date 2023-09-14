@@ -9,13 +9,13 @@ import AuthProvider from './auth/context/Context.jsx';
 import VenueDataProvider from './api/accommodation/Context/DataContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <AuthProvider>
-    <VenueDataProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </VenueDataProvider>
-  </AuthProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <AuthProvider>
+      <VenueDataProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </VenueDataProvider>
+    </AuthProvider>
+  </React.StrictMode>
 );

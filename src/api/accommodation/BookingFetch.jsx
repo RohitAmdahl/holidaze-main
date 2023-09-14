@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/api';
 console.log(BASE_URL);
@@ -36,7 +37,7 @@ const BookingFormFetch = ({ bookData }) => {
         setLoading(false);
       }
     };
-    console.log(fetchBookingData());
+
     fetchBookingData();
   }, []);
 
