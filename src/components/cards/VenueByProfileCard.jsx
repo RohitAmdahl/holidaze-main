@@ -5,7 +5,6 @@ import placeHolder from '../../assets/300.png';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { AiOutlineEdit } from 'react-icons/ai';
 const VenueByProfileCard = ({ venue }) => {
-  console.log(venue);
   const { id, name, media, location, price, maxGuests } = venue;
   return (
     <div className="">

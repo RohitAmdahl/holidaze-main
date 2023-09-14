@@ -2,7 +2,6 @@ import React from 'react';
 
 const MyBookings = ({ booking }) => {
   const { id, dateFrom, dateTo, guests, venue } = booking;
-  console.log(booking);
 
   const startDate = new Date(dateFrom);
   const endDate = new Date(dateTo);
