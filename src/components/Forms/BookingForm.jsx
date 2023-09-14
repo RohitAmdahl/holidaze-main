@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
-import { format, isBefore } from 'date-fns';
+import { format } from 'date-fns';
 import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
+import usePostRequest from '../../accommodation/PostVenue';
+import { BASE_URL } from '../../constants/api';
 
 const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   const start = new Date(dateFrom);
@@ -22,7 +24,12 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
 
 const BookingForm = ({ price, maxGuests }) => {
   const [amount, setAmount] = useState(0);
-
+  const {
+    data: PostDataResponse,
+    loading,
+    error,
+    postData,
+  } = usePostRequest(`${BASE_URL}/bookings`, []);
   const { id } = useParams();
 
   const BookingSchema = Yup.object().shape({
@@ -50,41 +57,17 @@ const BookingForm = ({ price, maxGuests }) => {
         guests: values.guests,
         venueId: values.venueId,
       };
-      action.resetForm();
+      try {
+        await postData(bookData);
 
-      console.log(bookData);
-
-      // try {
-      //   if (isBefore(values.dateFrom, values.dateTo)) {
-      //     if (isBefore(new Date(values.dateFrom), new Date())) {
-      //       formik.setFieldError(
-      //         'dateFrom',
-      //         'Selected date cannot be in the past'
-      //       );
-      //     } else {
-      //       // Make the API call and await its completion
-      //       const response = await BookingFormFetch(bookData);
-      //       console.log(response);
-      //       if (!response.ok) {
-      //         // Handle API error here
-      //         console.error('Booking failed:', response.error);
-      //         // You can set an error message or take other appropriate actions here
-      //       } else {
-      //         // API call successful, reset the form and do other actions
-      //         action.resetForm();
-      //         console.log('Booking successful');
-      //       }
-      //     }
-      //   } else {
-      //     formik.setFieldError(
-      //       'dateFrom',
-      //       'Start date must be before end date'
-      //     );
-      //   }
-      // } catch (error) {
-      //   console.error('Error during booking:', error);
-      //   // Handle any unexpected errors here
-      // }
+        if (response && response.success) {
+          action.resetForm();
+          console.log(bookData);
+          console.log('Booking successful');
+        }
+      } catch (error) {
+        console.error('Error during booking:', error);
+      }
     },
   });
 
@@ -181,6 +164,15 @@ const BookingForm = ({ price, maxGuests }) => {
             >
               Book Your Venue
             </button>
+            <div>
+              {loading && <p>Booking in progress...</p>}
+              {error && <p className="text-red-500">Error: {error}</p>}
+              {PostDataResponse && (
+                <p className=" py-3 text-green font-bold flex justify-center items-center text-xl ">
+                  Booking successful! Booking ID: {PostDataResponse.bookingId}
+                </p>
+              )}
+            </div>
           </div>
         </form>
       </div>
