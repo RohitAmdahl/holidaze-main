@@ -6,13 +6,16 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from './auth/context/Context.jsx';
+import VenueDataProvider from './api/accommodation/Context/DataContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <AuthProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <VenueDataProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </VenueDataProvider>
   </AuthProvider>
   // </React.StrictMode>
 );
