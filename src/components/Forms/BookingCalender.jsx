@@ -4,8 +4,10 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import format from 'date-fns/format';
 import { addDays } from 'date-fns';
 import { useState } from 'react';
+
 const BookingCalender = ({ onDatesSelected }) => {
   const today = new Date();
+  console.log(today);
   const [range, setRange] = useState([
     {
       startDate: today,
@@ -17,11 +19,12 @@ const BookingCalender = ({ onDatesSelected }) => {
     setRange([item.selection]);
     onDatesSelected(item.selection); // Call the callback with selected dates
   };
+  console.log(handleDateChange);
   return (
     <DateRange
       // minDate={today} // Set the minimum selectable date to today
       date={today}
-      months={2}
+      months={1}
       direction="vertical"
       editableDateInputs={true}
       moveRangeOnFirstSelection={false}

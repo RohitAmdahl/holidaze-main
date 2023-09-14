@@ -1,31 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { format, isBefore } from 'date-fns';
 import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
+// import BookingFormFetch from '../../api/accommodation/BookingFetch';
+import { VenueContext } from '../../api/accommodation/Context/DataContext';
 
 const calculatePrice = (dateFrom, dateTo, pricePerNight, maxGuests) => {
+  const start = new Date(dateFrom);
+  const end = new Date(dateTo);
   if (!dateFrom || !dateTo) {
     return 0;
   }
-
-  const start = new Date(dateFrom);
-  const end = new Date(dateTo);
-
   if (isNaN(start) || isNaN(end)) {
     return 0;
   }
-
   const timeDiff = Math.abs(end - start);
   const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
   const totalPrice = pricePerNight * numberOfNights;
   return totalPrice; // totalPrice*maxGuests we can also multiply  by maxGuests
 };
-
+console.log(calculatePrice);
 const BookingForm = ({ price, maxGuests }) => {
-  const { id } = useParams();
   const [amount, setAmount] = useState(0);
+  const { BookingFormFetch } = useContext(VenueContext);
+  console.log(BookingFormFetch);
+  const { id } = useParams();
 
   const BookingSchema = Yup.object().shape({
     dateFrom: Yup.date().required('Required'),
@@ -44,25 +45,76 @@ const BookingForm = ({ price, maxGuests }) => {
       venueId: id,
     },
     validationSchema: BookingSchema,
-    onSubmit: (values, action) => {
-      if (isBefore(values.dateFrom, values.dateTo)) {
-        if (isBefore(new Date(values.dateFrom), new Date())) {
+    // onSubmit: (values, action) => {
+    //   const bookData = {
+    //     dateFrom: values.dateFrom,
+    //     dateTo: values.dateTo,
+    //     guests: values.guests,
+    //     venueId: values.venueId,
+    //   };
+    //   if (isBefore(values.dateFrom, values.dateTo)) {
+    //     if (isBefore(new Date(values.dateFrom), new Date())) {
+    //       formik.setFieldError(
+    //         'dateFrom',
+    //         'Selected date cannot be in the past'
+    //       );
+    //     } else {
+    //       console.log(BookingFormFetch(bookData));
+    //       BookingFormFetch(bookData);
+    //       action.resetForm();
+    //       console.log(bookData);
+    //       // try {
+    //       //   await BookingFormFetch(bookData);
+    //       //   console.log(BookingFormFetch(bookData));
+    //       //   console.log(bookData);
+    //       //   action.resetForm();
+    //       //   console.log('bookData success');
+    //       // } catch (error) {
+    //       //   console.log('Booking failed', error);
+    //       // }
+    //     }
+    //   } else {
+    //     formik.setFieldError('dateFrom', 'Start date must be before end date');
+    //   }
+    // },
+    onSubmit: async (values, action) => {
+      const bookData = {
+        dateFrom: values.dateFrom,
+        dateTo: values.dateTo,
+        guests: values.guests,
+        venueId: values.venueId,
+      };
+
+      try {
+        if (isBefore(values.dateFrom, values.dateTo)) {
+          if (isBefore(new Date(values.dateFrom), new Date())) {
+            formik.setFieldError(
+              'dateFrom',
+              'Selected date cannot be in the past'
+            );
+          } else {
+            // Make the API call and await its completion
+            const response = BookingFormFetch(bookData);
+            console.log(response);
+            if (!response.ok) {
+              // Handle API error here
+              console.error('Booking failed:', response.error);
+              // You can set an error message or take other appropriate actions here
+            } else {
+              // API call successful, reset the form and do other actions
+              action.resetForm();
+              console.log('Booking successful');
+            }
+          }
+        } else {
           formik.setFieldError(
             'dateFrom',
-            'Selected date cannot be in the past'
+            'Start date must be before end date'
           );
-        } else {
-          const bookData = {
-            dateFrom: values.dateFrom,
-            dateTo: values.dateTo,
-            guests: values.guests,
-            venueId: values.venueId,
-          };
-          action.resetForm();
-          console.log(bookData);
         }
-      } else {
-        formik.setFieldError('dateFrom', 'Start date must be before end date');
+      } catch (error) {
+        console.error('Error during booking:', error);
+        // Handle any unexpected errors here
       }
     },
   });

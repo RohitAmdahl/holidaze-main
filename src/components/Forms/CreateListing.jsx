@@ -1,8 +1,8 @@
-import React from 'react';
-import { AiOutlineWifi } from 'react-icons/ai';
-import { GiHotMeal } from 'react-icons/gi';
-import { LuParkingCircle } from 'react-icons/lu';
-import { MdPets } from 'react-icons/md';
+// import React from 'react';
+// import { AiOutlineWifi } from 'react-icons/ai';
+// import { GiHotMeal } from 'react-icons/gi';
+// import { LuParkingCircle } from 'react-icons/lu';
+// import { MdPets } from 'react-icons/md';
 
 const CreateListing = () => {
   return (
