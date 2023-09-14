@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { BASE_URL } from '../../constants/api';
+import { BASE_URL } from '../constants/api';
 console.log(BASE_URL);
 
-const BookVenue = ({ bookData }) => {
+const BookVenue = (bookData) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {

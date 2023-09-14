@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import BookVenue from '../BookingFormFetch';
+import BookVenue from './BookingFormFetch';
 
 export const AccommodationContext = createContext();
 

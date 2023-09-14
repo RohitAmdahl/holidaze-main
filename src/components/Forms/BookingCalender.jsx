@@ -2,13 +2,12 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import format from 'date-fns/format';
-import { addDays, isSameDay } from 'date-fns';
+import { addDays } from 'date-fns';
 import { useState } from 'react';
 
 const BookingCalender = ({ onDatesSelected }) => {
   const today = new Date();
-  const [bookedData, setBookedData] = useState([]);
-  const accessToken = localStorage.getItem('accessToken');
+
   // console.log(accessToken);
   const [range, setRange] = useState([
     {
