@@ -5,8 +5,6 @@ import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 
-import { AccommodationContext } from '../../api/accommodation/Context/DataContext';
-
 const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   const start = new Date(dateFrom);
   const end = new Date(dateTo);
@@ -23,8 +21,6 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
 };
 
 const BookingForm = ({ price, maxGuests }) => {
-  const { BookVenue } = useContext(AccommodationContext);
-
   const [amount, setAmount] = useState(0);
 
   const { id } = useParams();
@@ -47,8 +43,6 @@ const BookingForm = ({ price, maxGuests }) => {
     },
     validationSchema: BookingSchema,
 
-    //
-
     onSubmit: async (values, action) => {
       const bookData = {
         dateFrom: values.dateFrom,
@@ -59,7 +53,7 @@ const BookingForm = ({ price, maxGuests }) => {
       action.resetForm();
 
       console.log(bookData);
-      BookVenue(bookData);
+
       // try {
       //   if (isBefore(values.dateFrom, values.dateTo)) {
       //     if (isBefore(new Date(values.dateFrom), new Date())) {

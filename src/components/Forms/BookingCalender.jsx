@@ -8,7 +8,6 @@ import { useState } from 'react';
 const BookingCalender = ({ onDatesSelected }) => {
   const today = new Date();
 
-  // console.log(accessToken);
   const [range, setRange] = useState([
     {
       startDate: today,
@@ -16,13 +15,7 @@ const BookingCalender = ({ onDatesSelected }) => {
       key: 'selection',
     },
   ]);
-  const initialRange = [
-    {
-      startDate: today,
-      endDate: addDays(today, 0),
-      key: 'selection',
-    },
-  ];
+
   const handleDateChange = (item) => {
     setRange([item.selection]);
     onDatesSelected(item.selection); // Call the callback with selected dates
