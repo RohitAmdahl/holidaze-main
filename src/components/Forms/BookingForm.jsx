@@ -59,12 +59,9 @@ const BookingForm = ({ price, maxGuests }) => {
       };
       try {
         await postData(bookData);
-
-        if (response && response.success) {
-          action.resetForm();
-          console.log(bookData);
-          console.log('Booking successful');
-        }
+        action.resetForm();
+        console.log(bookData);
+        console.log('Booking successful');
       } catch (error) {
         console.error('Error during booking:', error);
       }
@@ -95,10 +92,10 @@ const BookingForm = ({ price, maxGuests }) => {
 
   return (
     <>
-      <div className="p-4">
+      <div className="p-4 flex justify-center items-center">
         <BookingCalender onDatesSelected={handleDatesSelected} />
       </div>
-      <div className="max-w-3xl items-center p-4 font-Montserrat">
+      <div className="max-w-xl container  items-center p-4 font-Montserrat">
         <form onSubmit={formik.handleSubmit}>
           <div className="flex flex-wrap gap-3 lg:grid lg:grid-cols-2 lg:gap-2">
             <div>

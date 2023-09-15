@@ -18,12 +18,12 @@ const BookingCalender = ({ onDatesSelected }) => {
 
   const handleDateChange = (item) => {
     setRange([item.selection]);
-    onDatesSelected(item.selection); // Call the callback with selected dates
+    onDatesSelected(item.selection);
   };
 
   return (
     <DateRange
-      // minDate={today} // Set the minimum selectable date to today
+      minDate={today} // Set the minimum selectable date to today
       date={today}
       months={1}
       direction="vertical"
