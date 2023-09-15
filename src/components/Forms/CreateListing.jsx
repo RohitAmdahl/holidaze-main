@@ -1,8 +1,9 @@
-// import React from 'react';
-// import { AiOutlineWifi } from 'react-icons/ai';
-// import { GiHotMeal } from 'react-icons/gi';
-// import { LuParkingCircle } from 'react-icons/lu';
-// import { MdPets } from 'react-icons/md';
+import React from 'react';
+import { AiOutlineWifi } from 'react-icons/ai';
+import { GiHotMeal } from 'react-icons/gi';
+import { LuParkingCircle } from 'react-icons/lu';
+import { MdPets } from 'react-icons/md';
+import { VenueSchema } from './validationSchema';
 
 const CreateListing = () => {
   return (
@@ -188,7 +189,10 @@ const CreateListing = () => {
                   value="wifi"
                   className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
                 />
-                <label htmlFor="wifi">Wifi</label>
+                <label htmlFor="wifi" className="flex items-center">
+                  {' '}
+                  <AiOutlineWifi /> Wifi
+                </label>
               </div>
               <div className="flex gap-3">
                 <input
@@ -197,7 +201,9 @@ const CreateListing = () => {
                   value="breakfast"
                   className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
                 />
-                <label htmlFor="breakfast">Breakfast</label>
+                <label htmlFor="breakfast" className="flex items-center">
+                  <GiHotMeal /> Breakfast
+                </label>
               </div>
               <div className="flex gap-3">
                 <input
@@ -206,7 +212,9 @@ const CreateListing = () => {
                   value="parking"
                   className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
                 />
-                <label htmlFor="parking">Parking</label>
+                <label htmlFor="parking" className="flex items-center">
+                  <LuParkingCircle /> Parking
+                </label>
               </div>
 
               <div className="flex gap-3">
@@ -216,7 +224,9 @@ const CreateListing = () => {
                   value="pets"
                   className="border-orange rounded text-blue-600 focus:ring-blue-500      cursor-pointer  ring-2 ring-blue-500/50 ring-offset-2"
                 />
-                <label htmlFor="pets">Pets</label>
+                <label htmlFor="pets" className="flex items-center">
+                  <MdPets /> Pets
+                </label>
               </div>
             </div>
           </div>
