@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import usePostRequest from '../../accommodation/PostVenue';
+import usePostRequest from '../../hooks/PostVenue';
 import { BASE_URL } from '../../constants/api';
 
 const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
