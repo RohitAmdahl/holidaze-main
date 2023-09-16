@@ -3,7 +3,7 @@ import { createContext, useReducer } from 'react';
 // import { SingleProfile } from '../../pages/userProfile/SingleProfile';
 import { reducer } from './reducerProfile';
 import { REGISTER_USER } from '../../constants/api';
-console.log(REGISTER_USER);
+
 import { LOGIN_USER } from '../../constants/api';
 import { BASE_URL } from '../../constants/api';
 import { initialState } from './initialState';
@@ -28,11 +28,11 @@ const AuthProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error('Registration failed', response.status);
       }
-      console.log(response);
+
       // console.log('response fail', error.message);
       const data = await response.json();
       dispatch({ type: actionTypes.USER_REGISTER, payload: data });
-      console.log(data);
+
       toast.success('Registration successful'); // Show success toast
     } catch (error) {
       console.error('User Registration Error:', error.message);
@@ -56,7 +56,6 @@ const AuthProvider = ({ children }) => {
       if (!response.ok) {
         throw new Error('Login failed');
       }
-      console.log(response);
 
       const userLogin = await response.json();
       localStorage.setItem('userName', userLogin.name);
@@ -80,12 +79,10 @@ const AuthProvider = ({ children }) => {
     const accessToken = localStorage.getItem('accessToken');
     const username = localStorage.getItem('userName');
 
-    console.log(username);
     try {
       const sendData = {
         avatar: values.avatar,
       };
-      console.log(sendData);
 
       const response = await fetch(`${BASE_URL}/profiles/${username}/media`, {
         method: 'PUT',
