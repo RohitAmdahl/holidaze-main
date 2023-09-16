@@ -1,17 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineWifi } from 'react-icons/ai';
 import { GiHotMeal } from 'react-icons/gi';
 import { LuParkingCircle } from 'react-icons/lu';
 import { MdPets } from 'react-icons/md';
 import { VenueSchema } from './validationSchema';
+import { useFormik, FieldArray } from 'formik';
+import { number } from 'yup';
+const initialValues = {
+  name: '',
+  description: '',
+  media: [],
+  price: 1,
+  maxGuests: 1,
+  meta: {
+    wifi: false,
+    parking: false,
+    breakfast: false,
+    pets: false,
+  },
+  location: {
+    address: '',
+    city: '',
+    zip: '',
+    country: '',
+    continent: '',
+  },
+};
 
 const CreateListing = () => {
+  const [mediaArray, setMediaArray] = useState();
+
+  const {
+    values,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: VenueSchema,
+    onSubmit: (values, action) => {
+      const venueFormData = {
+        name: values.name,
+        description: values.description,
+        media: values.mediaArray,
+        price: values.nightPrice,
+        maxGuests: values.maxGuests,
+        meta: {
+          wifi: values.wifi,
+          parking: values.parking,
+          breakfast: values.breakfast,
+          pets: values.pets,
+        },
+        location: {
+          address: values.address,
+          city: values.city,
+          zip: values.zip,
+          country: values.country,
+          continent: values.continent,
+        },
+      };
+      console.log(venueFormData);
+    },
+  });
   return (
     <>
       <div className=" font-Montserrat text-xl font-bold">
         <h1>Post Venue </h1>
       </div>
-      <form>
+      <form onClick={handleSubmit}>
         <div className="grid">
           <div className="flex flex-col flex-wrap lg:grid lg:grid-cols-3 lg:gap-3 ">
             <div className="py-3 col-span-2">
@@ -27,6 +85,9 @@ const CreateListing = () => {
                 type="text"
                 name="name"
                 placeholder="Name of the Venue"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="py-3 ">
@@ -43,6 +104,9 @@ const CreateListing = () => {
                 type="number"
                 name="price"
                 placeholder="price per night"
+                value={values.price}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="py-3 col-span-3 ">
@@ -59,6 +123,9 @@ const CreateListing = () => {
                 type="url"
                 name="picture"
                 placeholder="Image Url"
+                value={values.picture}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="col-span-3">
@@ -74,6 +141,9 @@ const CreateListing = () => {
                 name="description"
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 placeholder="Write your thoughts here..."
+                value={values.description}
+                onChange={handleChange}
+                onBlur={handleBlur}
               ></textarea>
             </div>
             <div className="py-3 ">
@@ -86,10 +156,13 @@ const CreateListing = () => {
 
               <input
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
-                id="Address"
-                type="Address"
-                name="Address"
+                id="address"
+                type="address"
+                name="address"
                 placeholder=" Your Venue Address"
+                value={values.address}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="py-3 ">
@@ -106,6 +179,9 @@ const CreateListing = () => {
                 type="country"
                 name="country"
                 placeholder=" Country"
+                value={values.country}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="py-3 ">
@@ -122,6 +198,9 @@ const CreateListing = () => {
                 type="city"
                 name="city"
                 placeholder="  City"
+                value={values.city}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="py-3 ">
@@ -138,6 +217,9 @@ const CreateListing = () => {
                 type="zip"
                 name="zip"
                 placeholder="Zip code"
+                value={values.zip}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="py-3 ">
@@ -154,6 +236,9 @@ const CreateListing = () => {
                 type="continent"
                 name="continent"
                 placeholder="continent"
+                value={values.continent}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
             <div className="py-3 ">
@@ -170,6 +255,9 @@ const CreateListing = () => {
                 type="number"
                 name="maxGuest"
                 min="1"
+                value={values.maxGuest}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </div>
           </div>
