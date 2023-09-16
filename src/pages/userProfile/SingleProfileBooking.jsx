@@ -3,7 +3,6 @@ import { BASE_URL } from '../../constants/api';
 import { ClimbingBoxLoader } from 'react-spinners';
 import MyBookings from '../../components/cards/MyBookingTable';
 
-console.log(BASE_URL);
 const SingleProfileByNameBookings = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -34,7 +33,6 @@ const SingleProfileByNameBookings = () => {
         const profileArray = profileData.bookings;
         // setData(profileData);
         setData(profileArray);
-        console.log(profileArray);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -61,7 +59,6 @@ const SingleProfileByNameBookings = () => {
       </div>
       <div>
         {data.map((booking) => {
-          console.log(booking);
           return <MyBookings key={booking.id} booking={booking} />;
         })}
       </div>

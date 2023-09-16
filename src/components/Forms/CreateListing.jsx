@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { AiOutlineWifi } from 'react-icons/ai';
@@ -7,16 +7,26 @@ import { LuParkingCircle } from 'react-icons/lu';
 import { MdPets } from 'react-icons/md';
 import { venueSchema } from './validationSchema';
 import { initialValues } from './formInitialValues';
-
+import { ClimbingBoxLoader } from 'react-spinners';
+import { BASE_URL } from '../../constants/api';
+import CreateVenue from '../../hooks/CreateVenue';
+import { ToastContainer, toast } from 'react-toastify';
 const CreateListing = () => {
+  const {
+    data: PostDataResponse,
+    loading,
+    error,
+    useCrateVenue,
+  } = CreateVenue(`${BASE_URL}/venues`, []);
+  const [mediaArray, setMediaArray] = useState([]);
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: venueSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       const venueFormData = {
         name: values.name,
         description: values.description,
-        media: values.picture,
+        media: mediaArray.filter(Boolean),
         price: values.price,
         maxGuests: values.maxGuests,
         meta: {
@@ -26,21 +36,43 @@ const CreateListing = () => {
           pets: values.meta.pets,
         },
         location: {
-          address: values.address,
-          city: values.city,
-          zip: values.zip,
-          country: values.country,
-          continent: values.continent,
+          address: values.location.address,
+          city: values.location.city,
+          zip: values.location.zip,
+          country: values.location.country,
+          continent: values.location.continent,
         },
       };
-      action.resetForm();
-      console.log(venueFormData);
+      try {
+        await useCrateVenue(venueFormData);
+        action.resetForm();
+        console.log(venueFormData);
+        console.log('Booking successful');
+      } catch (error) {
+        console.error('Error during booking:', error);
+      }
     },
   });
+
+  const pushMedia = () => {
+    setMediaArray([...mediaArray, '']);
+  };
+
+  const handleMediaChange = (e, index) => {
+    const updatedMediaUrls = [...mediaArray];
+    updatedMediaUrls[index] = e.target.value;
+    setMediaArray(updatedMediaUrls);
+  };
+  const removeMedia = (index) => {
+    const updatedMediaUrls = [...mediaArray];
+    updatedMediaUrls.splice(index, 1);
+    setMediaArray(updatedMediaUrls);
+  };
 
   return (
     <div>
       <h1 className="font-Montserrat text-xl font-bold">Post Venue</h1>
+
       <form onSubmit={formik.handleSubmit}>
         <div className="py-3">
           <label
@@ -65,8 +97,6 @@ const CreateListing = () => {
             </div>
           ) : null}
         </div>
-
-        {/* Price */}
         <div className="py-3">
           <label
             htmlFor="price"
@@ -91,23 +121,55 @@ const CreateListing = () => {
           ) : null}
         </div>
 
-        <div className="py-3">
-          <label
-            htmlFor="media"
-            className="block uppercase tracking-wide text-xs font-bold mb-2"
-          >
-            Upload Picture
-          </label>
-          <input
-            type="url"
-            id="media"
-            name="media[0]"
-            placeholder="Image URL"
-            className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.media[0]}
-          />
+        <div className="py-3 ">
+          <div>
+            <div className="py-3 flex flex-col justify-center flex-wrap">
+              <label
+                htmlFor="media"
+                className="block uppercase tracking-wide text-xs font-bold mb-2"
+              >
+                Upload Pictures
+              </label>
+
+              {mediaArray.map((media, index) => (
+                <div key={index}>
+                  <input
+                    type="url"
+                    name={`media-${index}`}
+                    className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
+                    placeholder="Image URL"
+                    value={media}
+                    onChange={(e) => handleMediaChange(e, index)}
+                  />
+                  {media && (
+                    <img
+                      src={media}
+                      alt={`Uploaded Image ${index}`}
+                      className=" flex gap-1 w-28 h-30 rounded object-cover"
+                    />
+                  )}
+                  {index > 0 && (
+                    <button
+                      className="text-blue my-3 bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      onClick={() => removeMedia(index)}
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              ))}
+              <div className="flex gap-3 my-4">
+                <button
+                  type="button"
+                  onClick={pushMedia}
+                  className="text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Add Media
+                </button>
+              </div>
+            </div>
+          </div>
+
           {formik.touched.media && formik.errors.media ? (
             <div className="text-red-500">
               <p>{formik.errors.media}</p>
@@ -115,7 +177,6 @@ const CreateListing = () => {
           ) : null}
         </div>
 
-        {/* Description */}
         <div className="py-3">
           <label
             htmlFor="description"
@@ -129,9 +190,7 @@ const CreateListing = () => {
             rows="4"
             placeholder="Write your thoughts here..."
             className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.description}
+            {...formik.getFieldProps('description')}
           />
           {formik.touched.description && formik.errors.description ? (
             <div className="text-red-500">
@@ -364,6 +423,22 @@ const CreateListing = () => {
           </button>
         </div>
       </form>
+      <div>
+        {loading && (
+          <div>
+            {' '}
+            <ClimbingBoxLoader size={15} color="#6E7A55" /> Posting in
+            progress...
+          </div>
+        )}
+        {error && <p className="text-red-500">Error: {error}</p>}
+        {PostDataResponse && (
+          <p className=" py-3 text-green font-bold flex justify-center items-center text-xl ">
+            Booking successful please check your My venues!{' '}
+            {PostDataResponse.venueId}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

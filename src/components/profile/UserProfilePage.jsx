@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import Avatar from '../../components/profile/Avatar';
-// import { LoginDetails } from '../../utils/Auth';
 import { UserInformationLocalStorage } from '../../utils/Auth';
 import { BiUserCheck } from 'react-icons/bi';
 import { AiOutlineMail } from 'react-icons/ai';

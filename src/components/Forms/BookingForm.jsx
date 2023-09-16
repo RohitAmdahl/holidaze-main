@@ -4,8 +4,8 @@ import { format } from 'date-fns';
 import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import usePostRequest from '../../hooks/PostVenue';
 import { BASE_URL } from '../../constants/api';
+import BookingRequest from '../../hooks/PostVenue';
 
 const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   const start = new Date(dateFrom);
@@ -29,7 +29,7 @@ const BookingForm = ({ price, maxGuests }) => {
     loading,
     error,
     postData,
-  } = usePostRequest(`${BASE_URL}/bookings`, []);
+  } = BookingRequest(`${BASE_URL}/bookings`, []);
   const { id } = useParams();
 
   const BookingSchema = Yup.object().shape({
@@ -61,6 +61,7 @@ const BookingForm = ({ price, maxGuests }) => {
         await postData(bookData);
         action.resetForm();
         console.log(bookData);
+
         console.log('Booking successful');
       } catch (error) {
         console.error('Error during booking:', error);
@@ -166,7 +167,7 @@ const BookingForm = ({ price, maxGuests }) => {
               {error && <p className="text-red-500">Error: {error}</p>}
               {PostDataResponse && (
                 <p className=" py-3 text-green font-bold flex justify-center items-center text-xl ">
-                  Booking successful! Booking ID: {PostDataResponse.bookingId}
+                  Booking successful! {PostDataResponse.bookingId}
                 </p>
               )}
             </div>

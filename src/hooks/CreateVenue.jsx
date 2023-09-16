@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-const BookingRequest = (url, deps = []) => {
+const CreateVenue = (url, deps = []) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const postData = async (bookData) => {
+  const useCrateVenue = async (bookData) => {
     const accessToken = localStorage.getItem('accessToken');
     try {
       const response = await fetch(url, {
@@ -33,11 +33,11 @@ const BookingRequest = (url, deps = []) => {
 
   useEffect(() => {
     if (deps.length > 0) {
-      postData();
+      useCrateVenue();
     }
   }, [url, ...deps]);
 
-  return { data, loading, error, postData };
+  return { data, loading, error, useCrateVenue };
 };
 
-export default BookingRequest;
+export default CreateVenue;

@@ -12,7 +12,6 @@ export const UserInformationLocalStorage = () => {
     manager: manager,
   };
 };
-console.log(UserInformationLocalStorage);
 
 export function save(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
