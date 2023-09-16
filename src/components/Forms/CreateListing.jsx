@@ -116,7 +116,12 @@ const CreateListing = () => {
               >
                 Upload Picture
               </label>
-
+              <FieldArray name="picture">
+                {(media) => {
+                  console.log(media);
+                  return <div>hello</div>;
+                }}
+              </FieldArray>
               <input
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
                 id="number"
