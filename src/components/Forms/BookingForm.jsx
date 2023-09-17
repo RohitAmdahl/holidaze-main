@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { BASE_URL } from '../../constants/api';
 import BookingRequest from '../../hooks/PostVenue';
-
+import { ToastContainer, toast } from 'react-toastify';
 const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   const start = new Date(dateFrom);
   const end = new Date(dateTo);
@@ -59,6 +59,16 @@ const BookingForm = ({ price, maxGuests }) => {
       };
       try {
         await postData(bookData);
+        toast.success('Booking successful!', 'success', {
+          position: 'bottom-center',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
         action.resetForm();
         console.log(bookData);
 
@@ -167,13 +177,26 @@ const BookingForm = ({ price, maxGuests }) => {
               {error && <p className="text-red-500">Error: {error}</p>}
               {PostDataResponse && (
                 <p className=" py-3 text-green font-bold flex justify-center items-center text-xl ">
-                  Booking successful! {PostDataResponse.bookingId}
+                  Booking successful make sure You check In your profile!{' '}
+                  {PostDataResponse.bookingId}
                 </p>
               )}
             </div>
           </div>
         </form>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };

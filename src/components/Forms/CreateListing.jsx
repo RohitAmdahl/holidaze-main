@@ -45,6 +45,19 @@ const CreateListing = () => {
       };
       try {
         await useCrateVenue(venueFormData);
+        toast.success('Post successful!', 'success', {
+          position: 'bottom-center',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
         action.resetForm();
         console.log(venueFormData);
         console.log('Booking successful');
@@ -439,6 +452,18 @@ const CreateListing = () => {
           </p>
         )}
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

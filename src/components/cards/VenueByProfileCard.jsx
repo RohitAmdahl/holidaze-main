@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import placeHolder from '../../assets/300.png';
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { AiOutlineEdit } from 'react-icons/ai';
+
+import EditForm from '../Forms/EditForm';
 const VenueByProfileCard = ({ venue }) => {
   const { id, name, media, location, price, maxGuests } = venue;
   return (
@@ -21,7 +22,7 @@ const VenueByProfileCard = ({ venue }) => {
       </Carousel>
       <div className="px-2 my-5 flex justify-end items-end">
         <button className=" cursor-pointer bg-gray-100 p-2 mx-2 rounded-full">
-          <AiOutlineEdit size={25} />
+          <EditForm />
         </button>
         <button className=" cursor-pointer bg-gray-100 text-red-600 p-2 mx-2 rounded-full">
           <RiDeleteBinLine size={25} />
