@@ -6,7 +6,7 @@ const EditForm = () => {
     <>
       <button onClick={() => setShowModal(true)}>
         {' '}
-        <AiOutlineEdit />{' '}
+        <AiOutlineEdit size={18} />{' '}
       </button>
       {showModal ? (
         <>
