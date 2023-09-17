@@ -21,9 +21,8 @@ const VenueByProfileCard = ({ venue }) => {
         ))}
       </Carousel>
       <div className="px-2 my-5 flex justify-end items-end">
-        <button className=" cursor-pointer bg-gray-100 p-2 mx-2 rounded-full">
-          <EditForm />
-        </button>
+        <EditForm />
+
         <button className=" cursor-pointer bg-gray-100 text-red-600 p-2 mx-2 rounded-full">
           <RiDeleteBinLine size={25} />
         </button>
