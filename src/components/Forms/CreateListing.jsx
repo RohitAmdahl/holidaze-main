@@ -11,6 +11,7 @@ import { ClimbingBoxLoader } from 'react-spinners';
 import { BASE_URL } from '../../constants/api';
 import CreateVenue from '../../hooks/CreateVenue';
 import { ToastContainer, toast } from 'react-toastify';
+
 const CreateListing = () => {
   const {
     data: PostDataResponse,
@@ -362,7 +363,7 @@ const CreateListing = () => {
           </div>
         </div>
 
-        {/* add */}
+        {/* service */}
         <div className="p-4">
           <h2 className="text-lg py-6 font-bold">
             Venue Service provided by Host
