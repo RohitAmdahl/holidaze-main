@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BASE_URL } from '../constants/api';
 import { useParams } from 'react-router-dom';
 import Details from '../components/details/DetailsPage';
-import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+import { ClockLoader } from 'react-spinners/';
 
 const VenueDetails = () => {
   const [data, setData] = useState(null);
@@ -29,7 +29,7 @@ const VenueDetails = () => {
   if (isLoading || !data) {
     return (
       <div className=" flex justify-center items-center mt-3 mb-3 ">
-        <ClimbingBoxLoader size={15} color="#6E7A55" />
+        <ClockLoader size={15} color="#6E7A55" />
       </div>
     );
   }
