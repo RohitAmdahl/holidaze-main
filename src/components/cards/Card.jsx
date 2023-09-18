@@ -11,7 +11,7 @@ const Card = ({ place }) => {
   const { id, name, media, location, price, maxGuests } = place;
 
   return (
-    <div className=" container max-w-4xl mx-auto font-Montserrat ">
+    <div className=" container max-w-4xl mx-auto font-Montserrat">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -31,7 +31,7 @@ const Card = ({ place }) => {
         </Carousel>
       </motion.div>
       <Link to={`/Venues/${id}`}>
-        <div className="mt-1 p-2">
+        <div className="mt-1 p-2 hover:text-blue hover:underline cursor-pointer ">
           <h2 className="text-slate-700 font-semibold capitalize"> {name} </h2>
           <p className="text-slate-700 mt-1 text-sm flex gap-1 items-center ">
             <CiLocationOn /> {location.country}, {location.city}
