@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useContext } from 'react';
 import Layout from './Layout/index';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { AuthContext } from './auth/context/Context';
+import { ClockLoader } from 'react-spinners';
 
 const Homepage = lazy(() => import('./pages/home/HomePage'));
 const DetailPage = lazy(() => import('./pages/specific/DetailPage'));
@@ -17,7 +18,7 @@ function App() {
     <Suspense
       fallback={
         <div className="font-bold text-2xl flex items-center justify-center">
-          Loading.....
+          <ClockLoader color="#6E7A55" size={80} />
         </div>
       }
     >
