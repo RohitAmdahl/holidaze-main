@@ -96,10 +96,3 @@ export const Tabs = () => {
     </>
   );
 };
-// export default function TabsRender() {
-//   return (
-//     <>
-//       return <Tabs className="bg-pink" />;
-//     </>
-//   );
-// }

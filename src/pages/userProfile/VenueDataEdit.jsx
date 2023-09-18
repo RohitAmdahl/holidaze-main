@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import React from 'react';
 import { AiOutlineWifi } from 'react-icons/ai';
 import { GiHotMeal } from 'react-icons/gi';
 import { LuParkingCircle } from 'react-icons/lu';
-import { MdPets } from 'react-icons/md';
-import { venueSchema } from './validationSchema';
-import { initialValues } from './formInitialValues';
-import { ClimbingBoxLoader } from 'react-spinners';
-import { BASE_URL } from '../../constants/api';
-import CreateVenue from '../../hooks/CreateVenue';
 import { ToastContainer, toast } from 'react-toastify';
-const CreateListing = () => {
-  const {
-    data: PostDataResponse,
-    loading,
-    error,
-    useCrateVenue,
-  } = CreateVenue(`${BASE_URL}/venues`, []);
-  const [mediaArray, setMediaArray] = useState([]);
+import { MdPets } from 'react-icons/md';
+import { BASE_URL } from '../../constants/api';
+import { useFormik } from 'formik';
+import { venueSchema } from '../../components/Forms/validationSchema';
+const VenueDataEdit = ({ venue }) => {
+  const [mediaArray, setMediaArray] = useState(venue?.media || []);
+
   const formik = useFormik({
-    initialValues: initialValues,
+    initialValues: {
+      // Set initial the  values
+      name: venue?.name || '',
+      price: venue?.price || 1,
+      media: mediaArray,
+      description: venue?.description || '',
+      maxGuests: venue?.maxGuests || 1,
+      meta: {
+        wifi: venue?.meta?.wifi || false,
+        parking: venue?.meta?.parking || false,
+        breakfast: venue?.meta?.breakfast || false,
+        pets: venue?.meta?.pets || false,
+      },
+      location: {
+        address: venue?.location.address || '',
+        city: venue?.location.city || '',
+        zip: venue?.location.zip || '',
+        country: venue?.location.country || '',
+        continent: venue?.location.continent || '',
+      },
+      // ...
+    },
     validationSchema: venueSchema,
-    onSubmit: async (values, action) => {
-      const venueFormData = {
+    onSubmit: (values) => {
+      const editFormData = {
         name: values.name,
         description: values.description,
         media: mediaArray.filter(Boolean),
@@ -43,30 +55,8 @@ const CreateListing = () => {
           continent: values.location.continent,
         },
       };
-      try {
-        await useCrateVenue(venueFormData);
-        toast.success('Post successful!', 'success', {
-          position: 'bottom-center',
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
-        action.resetForm();
-        console.log(venueFormData);
-        console.log('Booking successful');
-      } catch (error) {
-        console.error('Error during booking:', error);
-      }
     },
   });
-
   const pushMedia = () => {
     setMediaArray([...mediaArray, '']);
   };
@@ -76,83 +66,58 @@ const CreateListing = () => {
     updatedMediaUrls[index] = e.target.value;
     setMediaArray(updatedMediaUrls);
   };
+
   const removeMedia = (index) => {
     const updatedMediaUrls = [...mediaArray];
     updatedMediaUrls.splice(index, 1);
     setMediaArray(updatedMediaUrls);
   };
-
   return (
     <div>
-      <h1 className="font-Montserrat text-xl font-bold">Post Venue</h1>
-
-      <form onSubmit={formik.handleSubmit}>
-        <div className="lg:grid lg:grid-cols-2 lg:gap-3 flex flex-col">
-          <div className="py-3">
-            <label
-              htmlFor="name"
-              className="block uppercase tracking-wide text-xs font-bold mb-2"
-            >
-              Title
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name of the Venue"
-              className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.name}
-            />
-            {formik.touched.name && formik.errors.name ? (
-              <div className="text-red-500">
-                <p>{formik.errors.name} </p>
-              </div>
-            ) : null}
-          </div>
-          <div className="py-3">
-            <label
-              htmlFor="price"
-              className="block uppercase tracking-wide text-xs font-bold mb-2"
-            >
-              Price per night
-            </label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              placeholder="Price per night"
-              className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.price}
-            />
-            {formik.touched.price && formik.errors.price ? (
-              <div className="text-red-500">
-                <p>{formik.errors.price}</p>
-              </div>
-            ) : null}
-          </div>
+      <form onSubmit={formik.handleSubmit} className=" ">
+        <div className="py-3">
+          <label
+            htmlFor="name"
+            className="block uppercase tracking-wide text-xs font-bold mb-2"
+          >
+            Title
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Name of the Venue"
+            className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.name}
+          />
+          {formik.touched.name && formik.errors.name ? (
+            <div className="text-red-500">
+              <p>{formik.errors.name} </p>
+            </div>
+          ) : null}
         </div>
         <div className="py-3">
           <label
-            htmlFor="description"
+            htmlFor="price"
             className="block uppercase tracking-wide text-xs font-bold mb-2"
           >
-            Description
+            Price per night
           </label>
-          <textarea
-            id="description"
-            name="description"
-            rows="4"
-            placeholder="Write your thoughts here..."
+          <input
+            type="number"
+            id="price"
+            name="price"
+            placeholder="Price per night"
             className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
-            {...formik.getFieldProps('description')}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.price}
           />
-          {formik.touched.description && formik.errors.description ? (
+          {formik.touched.price && formik.errors.price ? (
             <div className="text-red-500">
-              <p>{formik.errors.description}</p>
+              <p>{formik.errors.price}</p>
             </div>
           ) : null}
         </div>
@@ -212,8 +177,31 @@ const CreateListing = () => {
             </div>
           ) : null}
         </div>
-        {/* add */}
-        <div className="md:grid-cols-3 md:gap-3 lg:grid lg:grid-cols-4 lg:gap-3 flex flex-col ">
+
+        <div className="py-3">
+          <label
+            htmlFor="description"
+            className="block uppercase tracking-wide text-xs font-bold mb-2"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            rows="4"
+            placeholder="Write your thoughts here..."
+            className="px-3 py-2 bg-white border-b-2 border-slate-300 focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
+            {...formik.getFieldProps('description')}
+          />
+          {formik.touched.description && formik.errors.description ? (
+            <div className="text-red-500">
+              <p>{formik.errors.description}</p>
+            </div>
+          ) : null}
+        </div>
+        {/* address */}
+        <div className="grid grid-cols-4 gap-3">
+          {/* address */}
           <div className="py-3">
             <label
               htmlFor="address"
@@ -362,7 +350,6 @@ const CreateListing = () => {
           </div>
         </div>
 
-        {/* add */}
         <div className="p-4">
           <h2 className="text-lg py-6 font-bold">
             Venue Service provided by Host
@@ -440,36 +427,8 @@ const CreateListing = () => {
           </button>
         </div>
       </form>
-      <div>
-        {loading && (
-          <div>
-            {' '}
-            <ClimbingBoxLoader size={15} color="#6E7A55" /> Posting in
-            progress...
-          </div>
-        )}
-        {error && <p className="text-red-500">Error: {error}</p>}
-        {PostDataResponse && (
-          <p className=" py-3 text-green font-bold flex justify-center items-center text-xl ">
-            Booking successful please check your My venues!{' '}
-            {PostDataResponse.venueId}
-          </p>
-        )}
-      </div>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </div>
   );
 };
 
-export default CreateListing;
+export default VenueDataEdit;
