@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 const useEditRequest = (url, deps = []) => {
   const [data, setData] = useState(null);
@@ -34,7 +33,7 @@ const useEditRequest = (url, deps = []) => {
 
   useEffect(() => {
     if (deps.length > 0) {
-      editData();
+      editData(deps[0]);
     }
   }, [url, ...deps]);
 

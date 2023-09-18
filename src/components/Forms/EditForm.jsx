@@ -1,24 +1,27 @@
 import { AiOutlineEdit } from 'react-icons/ai';
-
+import { ClimbingBoxLoader } from 'react-spinners';
 import { useFormik } from 'formik';
 import { venueSchema } from './validationSchema';
 import { useState } from 'react';
 import { BASE_URL } from '../../constants/api';
 import useEditRequest from '../../hooks/EditVenue';
 import { ToastContainer, toast } from 'react-toastify';
-import { useParams } from 'react-router-dom';
 import LocationInputs from './LocationInputs';
 import VenueService from './VenueService';
 import TitlePriceInputs from './TitlePriceInputs';
+import { useEffect } from 'react';
 
 const DataEditForm = ({ venue }) => {
   const { id } = venue;
-  console.log(id);
   const editUrl = `${BASE_URL}/venues/${id}`;
   const [showModal, setShowModal] = useState(false);
   const [mediaArray, setMediaArray] = useState(venue?.media || []);
-
-  const { data, loading, error, editData } = useEditRequest(editUrl);
+  const {
+    data: DataEditFormResponse,
+    loading,
+    error,
+    editData,
+  } = useEditRequest(editUrl);
 
   const formik = useFormik({
     initialValues: {
@@ -44,7 +47,7 @@ const DataEditForm = ({ venue }) => {
       // ...
     },
     validationSchema: venueSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const editFormData = {
         name: values.name,
         description: values.description,
@@ -66,6 +69,25 @@ const DataEditForm = ({ venue }) => {
         },
       };
       console.log(editFormData);
+      try {
+        editData(editFormData);
+        toast.success('successful edit  ', 'success', {
+          position: 'bottom-center',
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        });
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 5000);
+        console.log('successful edit, Check in Venue tab ');
+      } catch (error) {
+        console.log('Error during editing venue:', error);
+      }
     },
   });
   const pushMedia = () => {
@@ -83,6 +105,15 @@ const DataEditForm = ({ venue }) => {
     updatedMediaUrls.splice(index, 1);
     setMediaArray(updatedMediaUrls);
   };
+
+  useEffect(() => {
+    if (DataEditFormResponse) {
+      setTimeout(() => {
+        setShowModal(false);
+        window.location.reload();
+      }, 5000);
+    }
+  }, [DataEditFormResponse]);
 
   return (
     <>
@@ -208,6 +239,31 @@ const DataEditForm = ({ venue }) => {
           <div className="opacity-60 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
+
+      <div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <div>
+          {loading && (
+            <div>
+              {' '}
+              <ClimbingBoxLoader size={15} color="#6E7A55" /> Posting in
+              progress...
+            </div>
+          )}
+          {error && <p className="text-red-500">Error: {error}</p>}
+        </div>
+      </div>
     </>
   );
 };

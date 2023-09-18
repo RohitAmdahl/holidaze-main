@@ -61,9 +61,9 @@ const CreateListing = () => {
         }, 3000);
         action.resetForm();
         console.log(venueFormData);
-        console.log('Booking successful');
+        console.log('posting successful');
       } catch (error) {
-        console.error('Error during booking:', error);
+        console.error('Error during posting:', error);
       }
     },
   });
