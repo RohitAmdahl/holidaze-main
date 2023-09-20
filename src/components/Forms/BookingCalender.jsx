@@ -1,6 +1,7 @@
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-date-range/dist/styles.css'; // additional styles
 import format from 'date-fns/format';
 import { addDays } from 'date-fns';
 import { useState } from 'react';
@@ -13,6 +14,7 @@ const BookingCalender = ({ onDatesSelected }) => {
       startDate: today,
       endDate: addDays(today, 0),
       key: 'selection',
+      color: '#bb6701',
     },
   ]);
 
