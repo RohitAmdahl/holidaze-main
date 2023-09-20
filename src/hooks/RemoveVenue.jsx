@@ -1,4 +1,4 @@
-import { BASE_URL } from '../../constants/api';
+import { BASE_URL } from '../constants/api';
 
 export const deleteVenue = async (venueId) => {
   const accessToken = localStorage.getItem('accessToken');
