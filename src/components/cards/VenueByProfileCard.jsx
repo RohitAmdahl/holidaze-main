@@ -3,32 +3,20 @@ import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import placeHolder from '../../assets/300.png';
 import { RiDeleteBinLine } from 'react-icons/ri';
-
 import EditForm from '../Forms/EditForm';
-// import RemoveMyVenue from '../../hooks/RemoveVenue';
-// import { useState } from 'react';
 import { BASE_URL } from '../../constants/api';
-
-// import { useEffect } from 'react';
-
+import { deleteVenue } from '../../hooks/RemoveVenue';
 const VenueByProfileCard = ({ venue, onDelete }) => {
   const { id, name, media, location } = venue;
   const deleteUrl = `${BASE_URL}/venues/${id}`;
 
   const deleteClickVenue = async () => {
-    const accessToken = localStorage.getItem('accessToken');
     const confirmed = window.confirm(
       'Are you sure you want to delete this item?'
     );
     if (confirmed) {
       try {
-        const response = await fetch(`${deleteUrl}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await deleteVenue(id); // Use the API function
         console.log(response.status);
         if (response.status === 204) {
           // Venue successfully deleted, trigger the onDelete callback
