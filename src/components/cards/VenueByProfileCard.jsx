@@ -4,12 +4,9 @@ import { Carousel } from 'react-responsive-carousel';
 import placeHolder from '../../assets/300.png';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import EditForm from '../Forms/EditForm';
-import { BASE_URL } from '../../constants/api';
 import { deleteVenue } from '../../hooks/RemoveVenue';
 const VenueByProfileCard = ({ venue, onDelete }) => {
   const { id, name, media, location } = venue;
-  const deleteUrl = `${BASE_URL}/venues/${id}`;
-
   const deleteClickVenue = async () => {
     const confirmed = window.confirm(
       'Are you sure you want to delete this item?'
@@ -19,7 +16,6 @@ const VenueByProfileCard = ({ venue, onDelete }) => {
         const response = await deleteVenue(id); // Use the API function
         console.log(response.status);
         if (response.status === 204) {
-          // Venue successfully deleted, trigger the onDelete callback
           onDelete(id);
         }
       } catch (error) {
@@ -41,7 +37,7 @@ const VenueByProfileCard = ({ venue, onDelete }) => {
         ))}
       </Carousel>
       <div className="px-2 mt-3 flex justify-end items-end ">
-        <div className="bg-gray-100 p-2  mx-1 rounded-xl shadow-xl   ">
+        <div className="bg-gray-100 p-2  mx-1 rounded-xl    ">
           <EditForm venue={venue} />
         </div>
 
