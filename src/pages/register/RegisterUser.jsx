@@ -10,12 +10,3 @@ const RegisterUser = () => {
 };
 
 export default RegisterUser;
-// const index = () => {
-//   return (
-//     <div>
-//       <SignUpForm />
-//     </div>
-//   );
-// };
-
-// export default index;
