@@ -6,7 +6,12 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import EditForm from '../Forms/EditForm';
 import { deleteVenue } from '../../hooks/RemoveVenue';
 const VenueByProfileCard = ({ venue, onDelete }) => {
-  const { id, name, media, location } = venue;
+  const {
+    id,
+    name,
+    media,
+    location: { city, country },
+  } = venue;
   const deleteClickVenue = async () => {
     const confirmed = window.confirm(
       'Are you sure you want to delete this item?'
@@ -52,7 +57,7 @@ const VenueByProfileCard = ({ venue, onDelete }) => {
         <div className="mt-1 p-2 hover:text-blue hover:underline">
           <h2 className="text-slate-700 font-semibold capitalize"> {name} </h2>
           <p className="text-slate-700 mt-1 text-sm flex gap-1 items-center ">
-            {location.country}, {location.city}
+            {country}, {city}
           </p>
         </div>
       </Link>
