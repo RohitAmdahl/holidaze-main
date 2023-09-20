@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/api';
-import { ClimbingBoxLoader } from 'react-spinners';
+import { ClimbingBoxLoader } from 'react-spinners/';
 import VenueByProfileCard from '../../components/cards/VenueByProfileCard';
-console.log(BASE_URL);
+
 const VenueCreatedByProfile = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -54,7 +54,6 @@ const VenueCreatedByProfile = () => {
   return (
     <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
       {data.map((venue) => {
-        console.log(venue);
         return <VenueByProfileCard key={venue.id} venue={venue} />;
       })}
     </div>

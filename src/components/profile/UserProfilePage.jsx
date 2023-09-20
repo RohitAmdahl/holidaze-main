@@ -6,10 +6,9 @@ import { AiOutlineMail } from 'react-icons/ai';
 import { FcManager } from 'react-icons/fc';
 import { Tabs } from '../button/Tabs';
 
-// import { AuthContext } from '../../auth/Context';
 const UserProfilePage = () => {
   const userData = UserInformationLocalStorage();
-  console.log(userData);
+
   return (
     <>
       <div className="container mx-auto py-2 max-w-4xl">
@@ -39,7 +38,6 @@ const UserProfilePage = () => {
                 <span>: {userData.manager ? 'YES' : 'NO'}</span>
               </p>
             </div>
-
             {/* avatar change model button  */}
           </div>
           <div className="py-4 flex items-center justify-center">

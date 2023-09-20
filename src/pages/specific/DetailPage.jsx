@@ -1,5 +1,6 @@
 import React from 'react';
-import VenueDetails from '../../api/VenueDetails';
+
+import VenueDetails from '../../hooks/api/VenueDetails';
 
 const DetailPage = () => {
   return (

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BASE_URL } from '../constants/api';
+import { BASE_URL } from '../../constants/api';
 import { useParams } from 'react-router-dom';
-import Details from '../components/details/DetailsPage';
 import { ClockLoader } from 'react-spinners/';
-
+import Details from '../../components/details/DetailsPage';
 const VenueDetails = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +28,7 @@ const VenueDetails = () => {
   if (isLoading || !data) {
     return (
       <div className=" flex justify-center items-center mt-3 mb-3 ">
-        <ClockLoader size={15} color="#6E7A55" />
+        <ClockLoader size={50} color="#6E7A55" />
       </div>
     );
   }
@@ -39,7 +38,7 @@ const VenueDetails = () => {
 
   return (
     <div>
-      <Details key={data.id} data={data} />;
+      <Details key={data.id} data={data} />
     </div>
   );
 };

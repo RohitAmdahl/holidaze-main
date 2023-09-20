@@ -7,6 +7,7 @@ const useEditRequest = (url, deps = []) => {
 
   const editData = async (newData) => {
     const accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken);
     try {
       const response = await fetch(url, {
         method: 'PUT',
@@ -16,13 +17,11 @@ const useEditRequest = (url, deps = []) => {
         },
         body: JSON.stringify(newData),
       });
-      console.log(response);
+
       if (!response.ok) {
         throw new Error('Error sending data', response.status);
       }
-
       const responseData = await response.json();
-      console.log(responseData);
       setData(responseData);
     } catch (error) {
       setError(error.message);

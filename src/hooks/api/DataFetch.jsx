@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { BASE_URL } from '../constants/api';
-console.log(BASE_URL);
-import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
-import Card from '../components/cards/Card';
-import VenueSearch from '../components/search/Search';
-
+import { BASE_URL } from '../../constants/api';
+import Card from '../../components/cards/Card';
+import VenueSearch from '../../components/search/Search';
+import { ClockLoader } from 'react-spinners/';
 const DataFetch = () => {
   const [venues, setVenues] = useState([]);
   const [isLoading, setLoading] = useState(true);
@@ -20,7 +18,7 @@ const DataFetch = () => {
         const response = await fetch(
           ` ${BASE_URL}/venues?sort=created&sortOrder=desc&&_owner=true&_bookings=true`
         );
-        console.log(response);
+
         const data = await response.json();
 
         setVenues(data);
@@ -37,7 +35,7 @@ const DataFetch = () => {
   if (isLoading && !venues.length) {
     return (
       <div className=" flex justify-center items-center mt-3 mb-3 ">
-        <ClimbingBoxLoader size={15} color="#6E7A55" />
+        <ClockLoader size={15} color="#6E7A55" />
       </div>
     );
   }

@@ -71,7 +71,7 @@ const DataEditForm = ({ venue }) => {
       console.log(editFormData);
       try {
         editData(editFormData);
-        toast.success('successful edit  ', 'success', {
+        toast.success('successful edit check in My venue tab ', 'success', {
           position: 'bottom-center',
           autoClose: 1000,
           hideProgressBar: false,
@@ -111,7 +111,7 @@ const DataEditForm = ({ venue }) => {
       setTimeout(() => {
         setShowModal(false);
         window.location.reload();
-      }, 5000);
+      }, 3000);
     }
   }, [DataEditFormResponse]);
 
@@ -243,7 +243,7 @@ const DataEditForm = ({ venue }) => {
       <div>
         <ToastContainer
           position="bottom-center"
-          autoClose={5000}
+          autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
