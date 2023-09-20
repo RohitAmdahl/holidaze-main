@@ -4,13 +4,13 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { AuthContext } from './auth/context/Context';
 import { ClockLoader } from 'react-spinners';
 
-const Homepage = lazy(() => import('./pages/home/HomePage'));
-const DetailPage = lazy(() => import('./pages/specific/DetailPage'));
-const SignIn = lazy(() => import('./pages/signIn/SignIn'));
-const SignUp = lazy(() => import('./pages/signUp/SignUp'));
-const Venues = lazy(() => import('./pages/venues/Venues'));
-const UserProfile = lazy(() => import('./pages/userProfile/Profile'));
-const PageNotFound = lazy(() => import('./pages/pageNotfound/ErrorPage'));
+const Homepage = lazy(() => import('/pages/home/HomePage'));
+const DetailPage = lazy(() => import('/pages/specific/DetailPage'));
+const SignIn = lazy(() => import('/pages/signIn/SignIn'));
+const SignUp = lazy(() => import('/pages/signUp/SignUp'));
+const Venues = lazy(() => import('/pages/venues/Venues'));
+const UserProfile = lazy(() => import('/pages/userProfile/Profile'));
+const PageNotFound = lazy(() => import('/pages/pageNotfound/ErrorPage'));
 
 function App() {
   const { state } = useContext(AuthContext);
