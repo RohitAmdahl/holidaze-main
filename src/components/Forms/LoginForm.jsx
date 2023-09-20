@@ -27,7 +27,6 @@ const LoginForm = () => {
 
       logInUser(logINdata);
       action.resetForm();
-      console.log(logInUser(logINdata));
     },
   });
 

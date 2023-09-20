@@ -7,7 +7,12 @@ const VenueCreatedByProfile = () => {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-
+  const handleDelete = (deletedVenueId) => {
+    // Filter out the deleted venue from the data state
+    setData((prevData) =>
+      prevData.filter((venue) => venue.id !== deletedVenueId)
+    );
+  };
   useEffect(() => {
     async function getDataProfile() {
       const accessToken = localStorage.getItem('accessToken');
@@ -37,6 +42,7 @@ const VenueCreatedByProfile = () => {
         setLoading(false);
       }
     }
+
     getDataProfile();
   }, []);
 
@@ -54,7 +60,13 @@ const VenueCreatedByProfile = () => {
   return (
     <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
       {data.map((venue) => {
-        return <VenueByProfileCard key={venue.id} venue={venue} />;
+        return (
+          <VenueByProfileCard
+            key={venue.id}
+            venue={venue}
+            onDelete={handleDelete}
+          />
+        );
       })}
     </div>
   );

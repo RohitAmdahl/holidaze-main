@@ -2,6 +2,7 @@ import React from 'react';
 import CreateListing from '../Forms/CreateListing';
 import SingleProfileBooking from '../../pages/userProfile/SingleProfileBooking';
 import VenueCreatedByProfile from '../../hooks/api/VenueCreatedByProfile';
+
 export const Tabs = () => {
   const [openTab, setOpenTab] = React.useState(1);
   return (
@@ -81,7 +82,6 @@ export const Tabs = () => {
               <div className={openTab === 2 ? 'block' : 'hidden'} id="link2">
                 {/* my venue component */}
                 <VenueCreatedByProfile />
-                {/* <VenueByProfileCard /> */}
               </div>
               <div className={openTab === 3 ? 'block' : 'hidden'} id="link3">
                 <SingleProfileBooking />

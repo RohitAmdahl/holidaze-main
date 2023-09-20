@@ -8,13 +8,37 @@ import EditForm from '../Forms/EditForm';
 // import RemoveMyVenue from '../../hooks/RemoveVenue';
 // import { useState } from 'react';
 import { BASE_URL } from '../../constants/api';
-import RemoveMyVenue from '../../hooks/RemoveVenue';
+
 // import { useEffect } from 'react';
 
-const VenueByProfileCard = ({ venue }) => {
+const VenueByProfileCard = ({ venue, onDelete }) => {
   const { id, name, media, location } = venue;
-  // const deleteUrl = `${BASE_URL}/venues/${id}`;
+  const deleteUrl = `${BASE_URL}/venues/${id}`;
 
+  const deleteClickVenue = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this item?'
+    );
+    if (confirmed) {
+      try {
+        const response = await fetch(`${deleteUrl}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        console.log(response.status);
+        if (response.status === 204) {
+          // Venue successfully deleted, trigger the onDelete callback
+          onDelete(id);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
   return (
     <div className=" lg:border-r-2 lg:px-3 border-b-2 ">
       <Carousel showStatus={false} showThumbs={false}>
@@ -33,10 +57,12 @@ const VenueByProfileCard = ({ venue }) => {
           <EditForm venue={venue} />
         </div>
 
-        <div className=" cursor-pointer  bg-gray-100 text-red-600 p-2 mx-2 rounded-full">
-          {/* <RiDeleteBinLine size={25} /> */}
-          <RemoveMyVenue venue={venue} />
-        </div>
+        <button
+          onClick={deleteClickVenue}
+          className="cursor-pointer bg-gray-100 text-red-600 p-2 mx-2 rounded-full"
+        >
+          <RiDeleteBinLine size={25} />
+        </button>
       </div>
       <Link to={`/venues/${id}`}>
         <div className="mt-1 p-2 hover:text-blue hover:underline">
