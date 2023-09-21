@@ -5,7 +5,6 @@ import { IoIosPeople } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import placeHolder from '../../assets/300.png';
 console.log(placeHolder);
-import { motion } from 'framer-motion';
 
 const Card = ({ place }) => {
   const { id, name, media, location, price, maxGuests } = place;
