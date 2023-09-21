@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
         throw new Error('Registration failed', response.status);
       }
 
-      // console.log('response fail', error.message);
+      console.log('response fail', error.message);
       const data = await response.json();
       dispatch({ type: actionTypes.USER_REGISTER, payload: data });
 
