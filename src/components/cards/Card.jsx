@@ -12,12 +12,7 @@ const Card = ({ place }) => {
 
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ ease: 'easeOut', duration: 2 }}
-        className=" flex items-end overflow-hidden "
-      >
+      <div className=" flex items-end overflow-hidden ">
         <Carousel showStatus={false} showThumbs={false}>
           {media.map((imageUrl, index) => (
             <div key={`media-${index}`}>
@@ -29,7 +24,7 @@ const Card = ({ place }) => {
             </div>
           ))}
         </Carousel>
-      </motion.div>
+      </div>
       <Link to={`/Venues/${id}`}>
         <div className="mt-1 p-2 hover:text-blue hover:underline cursor-pointer ">
           <h2 className="text-slate-700 font-semibold capitalize"> {name} </h2>

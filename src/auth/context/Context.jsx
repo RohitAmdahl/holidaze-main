@@ -3,7 +3,6 @@ import { createContext, useReducer } from 'react';
 // import { SingleProfile } from '../../pages/userProfile/SingleProfile';
 import { reducer } from './reducerProfile';
 import { REGISTER_USER } from '../../constants/api';
-
 import { LOGIN_USER } from '../../constants/api';
 import { BASE_URL } from '../../constants/api';
 import { initialState } from './initialState';
