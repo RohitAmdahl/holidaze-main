@@ -16,7 +16,7 @@ const DataFetch = () => {
         setLoading(true);
 
         const response = await fetch(
-          ` ${BASE_URL}/venues?sort=created&sortOrder=desc&&_owner=true&_bookings=true`
+          `${BASE_URL}/venues?sort=created&sortOrder=desc&&_owner=true&_bookings=true`
         );
 
         const data = await response.json();

@@ -7,9 +7,7 @@ import { ClockLoader } from 'react-spinners';
 const Homepage = lazy(() => import('./pages/home/HomePage'));
 const DetailPage = lazy(() => import('./pages/specific/DetailPage'));
 const SignIn = lazy(() => import('./pages/signIn/SignIn'));
-// const SignUp = lazy(() => import('./pages/signUp'));
 const SignUp = lazy(() => import('./pages/register/RegisterUser'));
-
 const Venues = lazy(() => import('./pages/venues/Venues'));
 const UserProfile = lazy(() => import('./pages/userProfile/Profile'));
 const PageNotFound = lazy(() => import('./pages/pageNotfound/ErrorPage'));
