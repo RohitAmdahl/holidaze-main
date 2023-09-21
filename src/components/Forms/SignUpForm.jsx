@@ -99,7 +99,10 @@ const SignUpForm = () => {
                 onBlur={handleBlur}
                 className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
-              <p className="text-red-500">{errors.email}</p>
+              <p className=" text-slate-300 ">
+                Note:-Please use the format user@stud.noroff.no
+              </p>
+              {errors.email && <p className="text-red-500">{errors.email}</p>}
             </div>
             <div className="w-full">
               <span className="pb-4">
@@ -125,7 +128,7 @@ const SignUpForm = () => {
                 name="avatar"
                 type="avatar"
                 id="avatar"
-                placeholder="Avatar /  Image url Link"
+                placeholder="Avatar / Image url Link Address"
                 value={values.avatar}
                 onChange={handleChange}
                 onBlur={handleBlur}

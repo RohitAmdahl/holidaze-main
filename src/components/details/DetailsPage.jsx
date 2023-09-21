@@ -25,8 +25,6 @@ const DetailsPage = ({ data }) => {
     owner: { name: owner, email, avatar },
   } = data;
 
-  console.log(data);
-
   const isAvailable = breakfast === true || breakfast === 'true';
   const petsAvailable = pets === true || pets === 'true';
   const lineWifi = wifi === true || wifi === 'true';

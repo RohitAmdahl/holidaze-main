@@ -2,6 +2,7 @@ import React from 'react';
 import CreateListing from '../Forms/CreateListing';
 import SingleProfileBooking from '../../pages/userProfile/SingleProfileBooking';
 import VenueCreatedByProfile from '../../hooks/api/VenueCreatedByProfile';
+import AllBookings from '../../hooks/api/Allbookings';
 
 export const Tabs = () => {
   const [openTab, setOpenTab] = React.useState(1);
@@ -63,10 +64,29 @@ export const Tabs = () => {
                 setOpenTab(3);
               }}
               data-toggle="tab"
-              href="#link3"
+              href="#link4"
               role="tablist"
             >
               My bookings
+            </a>
+          </li>
+          <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+            <a
+              className={
+                'text-md font-bold uppercase px-5 py-3 block leading-normal ' +
+                (openTab === 4
+                  ? 'text-blue border-4 border-orange '
+                  : 'text-black')
+              }
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenTab(4);
+              }}
+              data-toggle="tab"
+              href="#link3"
+              role="tablist"
+            >
+              Up-Coming Bookings
             </a>
           </li>
         </ul>
@@ -85,6 +105,9 @@ export const Tabs = () => {
               </div>
               <div className={openTab === 3 ? 'block' : 'hidden'} id="link3">
                 <SingleProfileBooking />
+              </div>
+              <div className={openTab === 4 ? 'block' : 'hidden'} id="link4">
+                <AllBookings />
               </div>
             </div>
           </div>

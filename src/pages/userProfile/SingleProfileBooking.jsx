@@ -31,7 +31,7 @@ const SingleProfileByNameBookings = () => {
 
         const profileData = await response.json();
         const profileArray = profileData.bookings;
-        // setData(profileData);
+        console.log(profileArray);
         setData(profileArray);
       } catch (error) {
         setError(error.message);

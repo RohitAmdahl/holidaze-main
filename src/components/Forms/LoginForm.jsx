@@ -55,7 +55,7 @@ const LoginForm = () => {
                 type="email"
                 name="email"
                 id="email"
-                placeholder="enter Your email"
+                placeholder="Youremail.@stud.noroff.no"
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}

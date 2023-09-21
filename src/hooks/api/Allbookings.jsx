@@ -1,50 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/api';
-import BookingCalender from '../../components/Forms/BookingCalender';
+import { ClimbingBoxLoader } from 'react-spinners';
+import MyBookings from '../../components/cards/MyBookingTable';
+
 const AllBookings = () => {
-  const [bookedDates, setBookedDates] = useState([]);
-  const accessToken = localStorage.getItem('accessToken');
+  const [data, setData] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const getData = async () => {
+    async function getDataProfile() {
+      const accessToken = localStorage.getItem('accessToken');
+      const username = localStorage.getItem('userName');
       try {
-        const response = await fetch(`${BASE_URL}/bookings`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-
+        setError(false);
+        setLoading(true);
+        const response = await fetch(
+          `${BASE_URL}/profiles/${username}/venues?_bookings=true&_owner=true`,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
         if (!response.ok) {
-          throw new Error('Error fetching booking data:', response.status);
+          const errorMessage = await response.json();
+          throw new Error(errorMessage.message);
         }
 
-        const bookingData = await response.json();
-        console.log(bookingData);
+        const profileData = await response.json();
+        const profileArray = profileData[0].bookings;
+        console.log(profileData);
+        // Log the received data
+        console.log('All Bookings:', profileArray);
 
-        setBookedDates(bookingData);
+        // Filter and sort upcoming bookings
+        // const upcomingBookings = profileData
+        //   .filter((booking) => new Date(booking.dateTo) > new Date())
+        //   .sort((a, b) => new Date(a.dateTo) - new Date(b.dateTo));
+
+        // // Log upcoming bookings
+        // console.log('Upcoming Bookings:', upcomingBookings);
+
+        setData(upcomingBookings);
       } catch (error) {
-        console.log(error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
-    };
+    }
+    getDataProfile();
+  }, []);
 
-    getData();
-  }, [accessToken]);
-
+  if (isLoading && !data.length) {
+    return (
+      <div className="flex justify-center items-center mt-3 mb-3">
+        <ClimbingBoxLoader size={15} color="#6E7A55" />
+      </div>
+    );
+  }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
   return (
-    <div>
-      <BookingCalender
-        bookedDates={bookedDates}
-        onDatesSelected={handleDateSelection}
-      />
-
-      {bookings.map((booking) => (
-        <div key={booking.id}>
-          <p>Booking ID: {booking.id}</p>
-        </div>
-      ))}
-    </div>
+    <>
+      <div className="Text-lg text-blue font-semibold">
+        Please Contact Us For any Query: +47 452 256
+      </div>
+      <div>
+        {data.map((booking) => {
+          return <MyBookings key={booking.id} booking={booking} />;
+        })}
+      </div>
+    </>
   );
 };
 

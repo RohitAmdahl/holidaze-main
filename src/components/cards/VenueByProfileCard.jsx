@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
-import placeHolder from '../../assets/300.png';
+import placeHolder from '../../assets/error_pic.jpg';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import EditForm from '../Forms/EditForm';
 import { deleteVenue } from '../../hooks/RemoveVenue';
