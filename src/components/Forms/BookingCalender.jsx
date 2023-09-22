@@ -1,38 +1,33 @@
-import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import 'react-date-range/dist/styles.css'; // additional styles
-import format from 'date-fns/format';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { addDays } from 'date-fns';
 import { useState } from 'react';
 
 const BookingCalender = ({ onDatesSelected }) => {
-  const today = new Date();
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
 
-  const [range, setRange] = useState([
-    {
-      startDate: today,
-      endDate: addDays(today, 0),
-      key: 'selection',
-      color: '#bb6701',
-    },
-  ]);
+  const handleDateChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
 
-  const handleDateChange = (item) => {
-    setRange([item.selection]);
-    onDatesSelected(item.selection);
+    onDatesSelected({ startDate: start, endDate: end });
   };
 
   return (
-    <DateRange
-      minDate={today} // Set the minimum selectable date to today
-      date={today}
-      months={1}
-      direction="vertical"
-      editableDateInputs={true}
-      moveRangeOnFirstSelection={false}
-      ranges={range}
+    <DatePicker
+      selected={startDate}
       onChange={handleDateChange}
+      startDate={startDate}
+      endDate={endDate}
+      excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
+      selectsRange
+      selectsStart
+      inline
     />
   );
 };

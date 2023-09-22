@@ -52,8 +52,8 @@ const BookingForm = ({ price, maxGuests }) => {
 
     onSubmit: async (values, action) => {
       const bookData = {
-        dateFrom: values.dateFrom,
-        dateTo: values.dateTo,
+        dateFrom: format(values.dateFrom, 'yyyy-MM-dd'),
+        dateTo: format(values.dateTo, 'yyyy-MM-dd'),
         guests: values.guests,
         venueId: values.venueId,
       };
