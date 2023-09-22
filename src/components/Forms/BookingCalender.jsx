@@ -18,12 +18,15 @@ const BookingCalender = ({ onDatesSelected }) => {
     onDatesSelected({ startDate: start, endDate: end });
   };
 
+  const minSelectableDate = new Date();
+
   return (
     <DatePicker
       selected={startDate}
       onChange={handleDateChange}
       startDate={startDate}
       endDate={endDate}
+      minDate={minSelectableDate}
       excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
       selectsRange
       selectsStart

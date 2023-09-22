@@ -6,8 +6,7 @@
   @apply fixed top-0 z-50 block  h-full w-64 rounded-r-2xl bg-gray-200 pt-14 font-serif text-xl font-bold text-black shadow-2xl duration-500;
 }
 .toast-error {
-  background-color: red; /* Change the background color to red or your desired color */
-  color: white; /* Change the text color to white or your desired color */
+  @apply bg-red-500 text-white;
 }
 
 .rdrCalendarWrapper {
