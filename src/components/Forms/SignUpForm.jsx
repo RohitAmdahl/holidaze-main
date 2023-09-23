@@ -126,7 +126,7 @@ const SignUpForm = () => {
               </span>
               <input
                 name="avatar"
-                type="avatar"
+                type="media"
                 id="avatar"
                 placeholder="Avatar / Image url Link Address"
                 value={values.avatar}

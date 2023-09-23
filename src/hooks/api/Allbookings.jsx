@@ -35,14 +35,6 @@ const AllBookings = () => {
         // Log the received data
         console.log('All Bookings:', profileArray);
 
-        // Filter and sort upcoming bookings
-        // const upcomingBookings = profileData
-        //   .filter((booking) => new Date(booking.dateTo) > new Date())
-        //   .sort((a, b) => new Date(a.dateTo) - new Date(b.dateTo));
-
-        // // Log upcoming bookings
-        // console.log('Upcoming Bookings:', upcomingBookings);
-
         setData(upcomingBookings);
       } catch (error) {
         setError(error.message);

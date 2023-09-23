@@ -22,6 +22,6 @@ export const signUpSchema = yup.object().shape({
     .min(8, 'Must be at least 8 characters')
     .required('Password is required'),
 
-  avatar: yup.string().url('Invalid URL'),
+  media: yup.string().url('Invalid URL'),
   host: yup.boolean(),
 });
