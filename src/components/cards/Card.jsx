@@ -22,7 +22,7 @@ const Card = ({ place }) => {
             </div>
           ))} */}
           {media.map((imageUrl, index) => (
-            <div className="" key={`media-${index}`}>
+            <div key={`media-${index}`}>
               {imageUrl ? (
                 <img
                   className="object-cover mx-auto rounded-2xl h-52"
