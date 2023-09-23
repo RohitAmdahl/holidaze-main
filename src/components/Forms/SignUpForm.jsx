@@ -42,7 +42,7 @@ const SignUpForm = () => {
       };
 
       registerUser(signUpData);
-      action.resetForm();
+      // action.resetForm();
       setTimeout(() => {
         navigate('/signIn');
       }, 3000);
@@ -125,9 +125,9 @@ const SignUpForm = () => {
                 <AiOutlinePicture size={30} className="p-1" />
               </span>
               <input
-                name="avatar"
-                type="media"
                 id="avatar"
+                name="avatar"
+                type="avatar"
                 placeholder="Avatar / Image url Link Address"
                 value={values.avatar}
                 onChange={handleChange}

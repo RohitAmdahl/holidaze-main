@@ -28,16 +28,19 @@ const AuthProvider = ({ children }) => {
         throw new Error('Registration failed', response.status);
       }
 
-      console.log('response fail', error.message);
+      console.log('Registration ', response.status);
       const data = await response.json();
       dispatch({ type: actionTypes.USER_REGISTER, payload: data });
+      console.log(dispatch({ type: actionTypes.USER_REGISTER, payload: data }));
+
+      console.log(state);
 
       toast.success('Registration successful'); // Show success toast
     } catch (error) {
-      console.error('User Registration Error:', error.message);
+      console.error(error);
       dispatch({ type: 'error', payload: error.message });
       toast.error('Registration failed. Please try again.', {
-        className: 'toast-error', // You can add a custom class for the red toast
+        className: 'toast-error',
       });
     }
   };
@@ -68,6 +71,13 @@ const AuthProvider = ({ children }) => {
         payload: userLogin,
         isAuthenticated: true,
       });
+      console.log(
+        dispatch({
+          type: actionTypes.LOGIN,
+          payload: userLogin,
+          isAuthenticated: true,
+        })
+      );
     } catch (error) {
       console.error('login Error:', error.message);
       dispatch({ type: 'error', payload: error.message });

@@ -8,9 +8,11 @@ export const signUpSchema = yup.object().shape({
 
   email: yup
     .string()
-    .required('Email is required')
+    .required(
+      'Please enter your noroff email address (e,g- name@stud.noroff.no)'
+    )
     .test(
-      'email-format',
+      'Invalid email-format',
       'Invalid email format. Please use the format user@stud.noroff.no',
       'Invalid email address. Must use a @stud.noroff.no domain',
       (value) => {
@@ -22,6 +24,6 @@ export const signUpSchema = yup.object().shape({
     .min(8, 'Must be at least 8 characters')
     .required('Password is required'),
 
-  media: yup.string().url('Invalid URL'),
-  host: yup.boolean(),
+  avatar: yup.string().url('Invalid url'),
+  venueManager: yup.boolean(),
 });
