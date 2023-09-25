@@ -8,8 +8,12 @@ import { LuParkingCircle } from 'react-icons/lu';
 import { BsStarFill, BsArrowRight } from 'react-icons/bs';
 import { AuthContext } from '../../auth/context/Context';
 import { Link } from 'react-router-dom';
-import BookingCalender from '../Forms/BookingCalender';
+import { BASE_URL } from '../../constants/api';
+// import BookingCalender from '../Forms/BookingCalender';
 import BookingForm from '../Forms/BookingForm';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 const DetailsPage = ({ data }) => {
   const { state } = useContext(AuthContext);
   const {
@@ -29,6 +33,34 @@ const DetailsPage = ({ data }) => {
   const petsAvailable = pets === true || pets === 'true';
   const lineWifi = wifi === true || wifi === 'true';
   const parkingCircle = parking === true || parking === 'true';
+
+  // State to hold booking data
+  const [bookings, setBookings] = useState([]);
+
+  // Fetch booking data for the venue when the component mounts
+  useEffect(() => {
+    async function getBookingData() {
+      const accessToken = localStorage.getItem('accessToken');
+
+      try {
+        const response = await fetch(`${BASE_URL}/bookings`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        const profileData = await response.json();
+        setBookings(profileData);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getBookingData();
+  }, [id]);
 
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat overflow-hidden ">
@@ -112,7 +144,12 @@ const DetailsPage = ({ data }) => {
         </>
       ) : (
         <div className="my-5">
-          <BookingForm price={price} maxGuests={maxGuests} venueId={id} />
+          <BookingForm
+            price={price}
+            maxGuests={maxGuests}
+            venueId={id}
+            bookedDates={bookings}
+          />
         </div>
       )}
     </div>

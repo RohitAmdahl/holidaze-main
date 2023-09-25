@@ -23,7 +23,7 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   return totalPrice; // totalPrice*maxGuests we can also multiply  by maxGuests
 };
 
-const BookingForm = ({ price, maxGuests, data }) => {
+const BookingForm = ({ price, maxGuests, data, bookedDates }) => {
   const [amount, setAmount] = useState(0);
   const {
     data: PostDataResponse,
@@ -97,10 +97,17 @@ const BookingForm = ({ price, maxGuests, data }) => {
       formik.values.dateFrom,
       formik.values.dateTo,
       price,
-      maxGuests
+      maxGuests,
+      bookedDates
     );
     setAmount(newAmount);
-  }, [formik.values.dateFrom, formik.values.dateTo, price, maxGuests]);
+  }, [
+    formik.values.dateFrom,
+    formik.values.dateTo,
+    price,
+    maxGuests,
+    bookedDates,
+  ]);
 
   return (
     <>
@@ -108,8 +115,8 @@ const BookingForm = ({ price, maxGuests, data }) => {
         <BookingCalender
           data={data}
           price={price}
-          bookings={bookings}
           maxGuests={maxGuests}
+          bookedDates={bookedDates}
           onDatesSelected={handleDatesSelected}
         />
       </div>

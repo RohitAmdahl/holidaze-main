@@ -12,11 +12,8 @@
 .rdrCalendarWrapper {
   @apply border-2 border-orange p-2 flex;
 }
-.custom-disabled-day {
-  @apply bg-red-400 text-white rounded-xl;
-}
-.disabled-date {
-  @apply bg-red-950;
+.react-datepicker__day--unavailable {
+  @apply bg-red-500;
 }
 /* * {
   outline: 2px solid red;

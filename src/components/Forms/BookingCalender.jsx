@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { addDays, isSameDay, isBefore } from 'date-fns';
 import { useEffect } from 'react';
 
-const BookingCalender = ({ onDatesSelected, bookings }) => {
+const BookingCalender = ({ onDatesSelected, bookedDates }) => {
   const [excludedDates, setExcludedDates] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
@@ -16,7 +16,7 @@ const BookingCalender = ({ onDatesSelected, bookings }) => {
   useEffect(() => {
     const excludedDatesArray = [];
     console.log(excludedDatesArray);
-    bookings.forEach((booking) => {
+    bookedDates.forEach((booking) => {
       const start = new Date(booking.dateFrom);
       const end = new Date(booking.dateTo);
       end.setDate(end.getDate() + 1);
@@ -29,7 +29,7 @@ const BookingCalender = ({ onDatesSelected, bookings }) => {
       }
     });
     setExcludedDates(excludedDatesArray);
-  }, [bookings]);
+  }, [bookedDates]);
 
   const handleDateChange = (dates) => {
     const [start, end] = dates;
@@ -51,6 +51,11 @@ const BookingCalender = ({ onDatesSelected, bookings }) => {
       selectsStart
       inline
       excludeDates={excludedDates}
+      dayClassName={(date) =>
+        excludedDates.some((d) => isSameDay(date, d))
+          ? 'react-datepicker__day--unavailable'
+          : undefined
+      }
     />
   );
 };
