@@ -104,7 +104,11 @@ const BookingForm = ({ price, maxGuests }) => {
   return (
     <>
       <div className="p-4 flex justify-center items-center">
-        <BookingCalender onDatesSelected={handleDatesSelected} />
+        <BookingCalender
+          price={price}
+          maxGuests={maxGuests}
+          onDatesSelected={handleDatesSelected}
+        />
       </div>
       <div className="max-w-xl container  items-center p-4 font-Montserrat">
         <form onSubmit={formik.handleSubmit}>

@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 const MyBookings = ({ booking }) => {
   const { id, dateFrom, dateTo, guests, venue } = booking;
   const { name, media } = venue;
-  console.log(media);
+
   const startDate = new Date(dateFrom);
   const endDate = new Date(dateTo);
   const startDateString = startDate.toLocaleDateString();

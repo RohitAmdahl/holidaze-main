@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/api';
 import { ClimbingBoxLoader } from 'react-spinners';
 
-import MyBookings from '../../components/cards/MyBookingTable';
+// import MyBookings from '../../components/cards/MyBookingTable';
 import { format } from 'date-fns';
 
 const AllBookings = () => {
@@ -32,11 +32,10 @@ const AllBookings = () => {
         }
 
         const profileData = await response.json();
+
         const profileArray = profileData[0].bookings;
-
-        // Log the received data
-        console.log('upcoming Bookings:', profileArray);
-
+        // console.log('upcoming Bookings:', profileArray);
+        //setData(profileData);
         setData(profileArray);
       } catch (error) {
         setError(error.message);

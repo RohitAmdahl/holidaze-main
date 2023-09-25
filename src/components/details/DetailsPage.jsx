@@ -8,7 +8,7 @@ import { LuParkingCircle } from 'react-icons/lu';
 import { BsStarFill, BsArrowRight } from 'react-icons/bs';
 import { AuthContext } from '../../auth/context/Context';
 import { Link } from 'react-router-dom';
-// import BookingCalender from '../Forms/BookingCalender';
+import BookingCalender from '../Forms/BookingCalender';
 import BookingForm from '../Forms/BookingForm';
 const DetailsPage = ({ data }) => {
   const { state } = useContext(AuthContext);

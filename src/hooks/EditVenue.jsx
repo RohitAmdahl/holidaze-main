@@ -7,7 +7,7 @@ const useEditRequest = (url, deps = []) => {
 
   const editData = async (newData) => {
     const accessToken = localStorage.getItem('accessToken');
-    console.log(accessToken);
+
     try {
       const response = await fetch(url, {
         method: 'PUT',
