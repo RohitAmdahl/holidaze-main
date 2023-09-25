@@ -18,7 +18,7 @@ const VenueByProfileCard = ({ venue, onDelete }) => {
     );
     if (confirmed) {
       try {
-        const response = await deleteVenue(id); // Use the API function
+        const response = await deleteVenue(id);
         console.log(response.status);
         if (response.status === 204) {
           onDelete(id);
@@ -28,6 +28,7 @@ const VenueByProfileCard = ({ venue, onDelete }) => {
       }
     }
   };
+
   return (
     <div className=" lg:border-r-2 lg:px-3 border-b-2 ">
       <Carousel showStatus={false} showThumbs={false}>

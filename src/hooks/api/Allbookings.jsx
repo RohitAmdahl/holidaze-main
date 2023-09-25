@@ -58,7 +58,7 @@ const AllBookings = () => {
     return (
       <div>
         <p className="Text-lg text-red-500 font-semibold">
-          There are up coming bookings.
+          There is no up coming bookings.
         </p>
         <div className="Text-lg text-blue font-semibold">
           Please Contact Us For any Query: +47 452 256

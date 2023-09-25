@@ -52,6 +52,7 @@ const SingleProfileByNameBookings = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
+
   return (
     <>
       <div className="Text-lg text-blue font-semibold">
