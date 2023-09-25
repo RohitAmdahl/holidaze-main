@@ -3,18 +3,38 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import 'react-date-range/dist/styles.css'; // additional styles
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { addDays } from 'date-fns';
-import { useState } from 'react';
 
-const BookingCalender = ({ onDatesSelected }) => {
+import { useState } from 'react';
+import { addDays, isSameDay, isBefore } from 'date-fns';
+import { useEffect } from 'react';
+
+const BookingCalender = ({ onDatesSelected, bookings }) => {
+  const [excludedDates, setExcludedDates] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
+
+  useEffect(() => {
+    const excludedDatesArray = [];
+    console.log(excludedDatesArray);
+    bookings.forEach((booking) => {
+      const start = new Date(booking.dateFrom);
+      const end = new Date(booking.dateTo);
+      end.setDate(end.getDate() + 1);
+      for (
+        let day = new Date(start.getTime());
+        day < end;
+        day.setDate(day.getDate() + 1)
+      ) {
+        excludedDatesArray.push(new Date(day));
+      }
+    });
+    setExcludedDates(excludedDatesArray);
+  }, [bookings]);
 
   const handleDateChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
     setEndDate(end);
-
     onDatesSelected({ startDate: start, endDate: end });
   };
 
@@ -27,10 +47,10 @@ const BookingCalender = ({ onDatesSelected }) => {
       startDate={startDate}
       endDate={endDate}
       minDate={minSelectableDate}
-      excludeDates={[addDays(new Date(), 1), addDays(new Date(), 5)]}
       selectsRange
       selectsStart
       inline
+      excludeDates={excludedDates}
     />
   );
 };

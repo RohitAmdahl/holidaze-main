@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { format } from 'date-fns';
-import BookingCalender from './BookingCalender';
 import { useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import { BASE_URL } from '../../constants/api';
 import BookingRequest from '../../hooks/PostVenue';
 import { ToastContainer, toast } from 'react-toastify';
+import BookingCalender from './BookingCalender';
+
 const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   const start = new Date(dateFrom);
   const end = new Date(dateTo);
@@ -22,7 +23,7 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   return totalPrice; // totalPrice*maxGuests we can also multiply  by maxGuests
 };
 
-const BookingForm = ({ price, maxGuests, bookings }) => {
+const BookingForm = ({ price, maxGuests, data }) => {
   const [amount, setAmount] = useState(0);
   const {
     data: PostDataResponse,
@@ -105,10 +106,11 @@ const BookingForm = ({ price, maxGuests, bookings }) => {
     <>
       <div className="p-4 flex justify-center items-center">
         <BookingCalender
+          data={data}
           price={price}
+          bookings={bookings}
           maxGuests={maxGuests}
           onDatesSelected={handleDatesSelected}
-          bookings={bookings}
         />
       </div>
       <div className="max-w-xl container  items-center p-4 font-Montserrat">
