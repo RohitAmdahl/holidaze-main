@@ -34,10 +34,8 @@ const DetailsPage = ({ data }) => {
   const lineWifi = wifi === true || wifi === 'true';
   const parkingCircle = parking === true || parking === 'true';
 
-  // State to hold booking data
   const [bookings, setBookings] = useState([]);
 
-  // Fetch booking data for the venue when the component mounts
   useEffect(() => {
     async function getBookingData() {
       const accessToken = localStorage.getItem('accessToken');
