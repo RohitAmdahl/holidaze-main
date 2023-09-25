@@ -22,7 +22,7 @@ const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
   return totalPrice; // totalPrice*maxGuests we can also multiply  by maxGuests
 };
 
-const BookingForm = ({ price, maxGuests }) => {
+const BookingForm = ({ price, maxGuests, bookings }) => {
   const [amount, setAmount] = useState(0);
   const {
     data: PostDataResponse,
@@ -108,6 +108,7 @@ const BookingForm = ({ price, maxGuests }) => {
           price={price}
           maxGuests={maxGuests}
           onDatesSelected={handleDatesSelected}
+          bookings={bookings}
         />
       </div>
       <div className="max-w-xl container  items-center p-4 font-Montserrat">

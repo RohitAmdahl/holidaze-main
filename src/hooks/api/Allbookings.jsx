@@ -34,8 +34,7 @@ const AllBookings = () => {
         const profileData = await response.json();
 
         const profileArray = profileData[0].bookings;
-        // console.log('upcoming Bookings:', profileArray);
-        //setData(profileData);
+
         setData(profileArray);
       } catch (error) {
         setError(error.message);

@@ -28,7 +28,9 @@ const BookingCalender = ({ onDatesSelected, booking }) => {
     console.log('Generated disabledDates:', dates);
     return dates;
   };
+
   const disabledDates = generateDisabledDates();
+
   console.log('generateDisabledDates:', generateDisabledDates);
 
   const handleDateChange = (dates) => {
