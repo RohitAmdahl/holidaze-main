@@ -39,35 +39,44 @@ const BookingCalender = ({ onDatesSelected, booking }) => {
     onDatesSelected({ startDate: start, endDate: end });
   };
 
-  const isDateBlocked = (date) => {
-    return disabledDates.some((blockedDate) => isDay(date, blockedDate));
-  };
-  console.log(' isDateBlocked', isDateBlocked);
-  const isDay = (date) => {
-    return (
-      isDateBlocked.getFullYear() === date.getFullYear() &&
-      isDateBlocked.getMonth() === date.getMonth() &&
-      isDateBlocked.getDate() === date.getDate()
+  const isDateBlocked = (date, startDate, endDate) => {
+    return disabledDates.some((blockedDate) =>
+      isDay(date, blockedDate, startDate, endDate)
     );
   };
+
+  console.log(' isDateBlocked', isDateBlocked);
+
+  const isDay = (date, blockedDate, startDate, endDate) => {
+    return (
+      blockedDate.getFullYear() === date.getFullYear() &&
+      blockedDate.getMonth() === date.getMonth() &&
+      blockedDate.getDate() === date.getDate() &&
+      date >= startDate &&
+      date <= endDate
+    );
+  };
+
   console.log('isDay', isDay);
   //  statements
   console.log('disabledDates:', disabledDates);
   console.log('startDate:', startDate);
 
-  const renderCustomDayContents = (day, dates) => {
-    const isDisabled = isDateBlocked(dates);
+  const renderCustomDayContents = (date) => {
+    const isDisabled = isDateBlocked(date, startDate, endDate);
     const customClassName = isDisabled ? 'custom-disabled-day' : '';
 
     return (
       <div className={`custom-day ${customClassName}`}>
-        <span className={isDisabled ? 'disabled-date' : ''}>{day}</span>{' '}
+        <span className={isDisabled ? 'disabled-date' : ''}>
+          {date.getDate()}
+        </span>
       </div>
     );
   };
 
-  const getDayClassName = (dates) => {
-    return renderCustomDayContents(dates) ? 'excluded' : '';
+  const getDayClassName = (date) => {
+    return renderCustomDayContents(date, startDate, endDate) ? 'excluded' : '';
   };
 
   return (
