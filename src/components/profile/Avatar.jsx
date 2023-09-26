@@ -23,7 +23,6 @@ export default function Modal() {
         avatar: values.avatar,
       };
       changeAvatar(avatarPic);
-      console.log(changeAvatar(avatarPic));
       action.resetForm();
       setShowModal(false);
     },
