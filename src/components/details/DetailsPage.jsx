@@ -36,29 +36,30 @@ const DetailsPage = ({ data }) => {
 
   const [bookings, setBookings] = useState([]);
 
-  useEffect(() => {
-    async function getBookingData() {
-      const accessToken = localStorage.getItem('accessToken');
-
-      try {
-        const response = await fetch(`${BASE_URL}/bookings`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        const profileData = await response.json();
-        setBookings(profileData);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getBookingData();
-  }, [id]);
+  // useEffect(() => {
+  //   async function getBookingData() {
+  //     try {
+  //       const accessToken = localStorage.getItem('accessToken');
+  //       console.log(accessToken);
+  //       const response = await fetch(`${BASE_URL}/bookings`, {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //           Authorization: `Bearer ${accessToken}`,
+  //         },
+  //       });
+  //       if (!response.ok) {
+  //         throw new Error(response.status);
+  //       }
+  //       console.log(response);
+  //       const profileData = await response.json();
+  //       setBookings(profileData);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  //   getBookingData();
+  // }, [id]);
 
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat overflow-hidden ">

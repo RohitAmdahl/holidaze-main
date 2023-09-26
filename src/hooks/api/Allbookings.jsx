@@ -32,9 +32,9 @@ const AllBookings = () => {
         }
 
         const profileData = await response.json();
-
+        console.log(profileData);
         const profileArray = profileData[0].bookings;
-
+        console.log(profileArray);
         setData(profileArray);
       } catch (error) {
         setError(error.message);
