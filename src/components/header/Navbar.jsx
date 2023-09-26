@@ -12,6 +12,8 @@ const Navbar = () => {
 
   const [toggle, setToggle] = useState(false);
 
+  const avatarImageUrl = localStorage.getItem('avatar');
+
   const handleToggle = () => setToggle(!toggle);
   return (
     <>
@@ -66,13 +68,17 @@ const Navbar = () => {
                       to="/profile"
                       className="flex justify-center items-center"
                     >
-                      <CgProfile />
+                      <img
+                        src={avatarImageUrl}
+                        alt="Avatar"
+                        className="w-10 h-10 rounded-2xl border-4 border-orange"
+                      />
                       Profile
                     </NavLink>
                   </li>
                   <button
                     onClick={logoutUser}
-                    className=" font-bold text-blue border-b-8  border-orange text-md flex justify-center items-center px-4  ring-orange focus:ring-1 shadow-lg"
+                    className=" font-bold text-blue border-b-8  border-orange text-md flex justify-center items-center px-4  ring-orange focus:ring-1 "
                   >
                     LogOut
                   </button>
@@ -133,16 +139,21 @@ const Navbar = () => {
                 {' '}
                 <li className="flex items-center justify-center py-4 duration-100 ease-out hover:text-blue hover:underline ">
                   <NavLink
+                    onClick={handleToggle}
                     to="/profile"
                     className="flex justify-center items-center"
                   >
-                    <CgProfile />
+                    <img
+                      src={avatarImageUrl}
+                      alt="Avatar"
+                      className="w-10 h-10 rounded border-4 border-orange"
+                    />
                     Profile
                   </NavLink>
                 </li>
                 <li className="flex items-center justify-center py-4 duration-100 ease-out hover:text-blue hover:underline ">
                   <button
-                    className="  mt-4 font-bold text-blue border-b-8  border-orange text-md flex justify-center items-center px-4  ring-orange focus:ring-1 shadow-lg"
+                    className="  mt-4 font-bold text-blue border-b-8  border-orange text-md flex justify-center items-center px-4  ring-orange focus:ring-1 "
                     onClick={logoutUser}
                   >
                     LogOut
