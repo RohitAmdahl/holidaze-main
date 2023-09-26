@@ -9,56 +9,26 @@ import { isSameDay } from 'date-fns';
 import { useEffect } from 'react';
 
 const BookingCalender = ({ onDatesSelected, bookedDates }) => {
-  console.log(onDatesSelected);
-  console.log(bookedDates);
   const [excludedDates, setExcludedDates] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
 
-  // useEffect(() => {
-  //   const excludedDatesArray = [];
-  //   console.log(excludedDatesArray);
-  //   bookedDates.forEach((booking) => {
-  //     const start = new Date(booking.dateFrom);
-  //     const end = new Date(booking.dateTo);
-  //     console.log('start:', start);
-  //     console.log('end:', end);
-  //     end.setDate(end.getDate() + 1);
-  //     for (
-  //       let day = new Date(start.getTime());
-  //       day < end;
-  //       day.setDate(day.getDate() + 1)
-  //     ) {
-  //       excludedDatesArray.push(new Date(day));
-  //     }
-  //   });
-  //   console.log('excludedDatesArray:', excludedDatesArray);
-  //   setExcludedDates(excludedDatesArray);
-  // }, [bookedDates]);
-
   useEffect(() => {
-    // Calculate excluded dates using filtering
-    const excludedDatesArray = bookedDates.flatMap((booking) => {
-      console.log('excludedDatesArray', excludedDatesArray);
-      console.log('booking:', booking);
+    const excludedDatesArray = [];
+    console.log(excludedDatesArray);
+    bookedDates.forEach((booking) => {
       const start = new Date(booking.dateFrom);
       const end = new Date(booking.dateTo);
-      end.setDate(end.getDate() + 1); // Include the end date
-
-      // Create an array of dates within the booking range
-      const bookingDates = [];
-      console.log(object);
+      start.setDate(end.getDate() + 1);
       for (
         let day = new Date(start.getTime());
         day < end;
         day.setDate(day.getDate() + 1)
       ) {
-        bookingDates.push(new Date(day));
+        excludedDatesArray.push(new Date(day));
       }
-
-      return bookingDates;
     });
-
+    console.log('excludedDatesArray:', excludedDatesArray);
     setExcludedDates(excludedDatesArray);
   }, [bookedDates]);
 
@@ -69,12 +39,19 @@ const BookingCalender = ({ onDatesSelected, bookedDates }) => {
     onDatesSelected({ startDate: start, endDate: end });
   };
 
-  // const minSelectableDate = new Date('2023-10-09');
   useEffect(() => {
-    // Dynamically set the minimum selectable date to today
     const minSelectableDate = new Date();
     setStartDate(minSelectableDate);
   }, []);
+
+  const isDateBooked = (date) => {
+    return bookedDates.some((bookedDate) => {
+      return (
+        date >= new Date(bookedDate.dateFrom) &&
+        date <= new Date(bookedDate.dateTo)
+      );
+    });
+  };
 
   return (
     <DatePicker
@@ -82,16 +59,19 @@ const BookingCalender = ({ onDatesSelected, bookedDates }) => {
       onChange={handleDateChange}
       startDate={startDate}
       endDate={endDate}
+      // excludeDates={excludedDates}
       minDate={startDate}
       selectsRange
       selectsStart
       inline
-      excludeDates={excludedDates}
       dayClassName={(date) =>
-        excludedDates.some((d) => isSameDay(date, d))
-          ? 'react-datepicker__day--unavailable'
-          : undefined
+        isDateBooked(date) ? 'react-datepicker__day--booked' : undefined
       }
+      dayPickerProps={{
+        modifiers: {
+          disabled: (date) => isDayDisabled(date),
+        },
+      }}
     />
   );
 };
