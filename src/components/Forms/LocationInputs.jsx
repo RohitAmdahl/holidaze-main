@@ -2,7 +2,7 @@ import React from 'react';
 
 const LocationInputs = ({ formik }) => {
   return (
-    <div className="grid grid-cols-4 gap-3 mt-2">
+    <div className="grid grid-cols-2 gap-2 lg:grid lg:grid-cols-3 lg:gap-3 lg:mt-2">
       <div className="py-3">
         <label
           htmlFor="address"

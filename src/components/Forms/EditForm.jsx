@@ -215,20 +215,24 @@ const DataEditForm = ({ venue }) => {
                     <LocationInputs formik={formik} />
                     {/* service */}
                     <VenueService formik={formik} />
-                    <div className="flex justify-center items-center py-6">
-                      <button
-                        type="submit"
-                        className="text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                      >
-                        Submit
-                      </button>
-                      <button
-                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
-                        onClick={() => setShowModal(false)}
-                      >
-                        Close
-                      </button>
+                    <div className="flex justify-center items-center  py-6">
+                      <div>
+                        <button
+                          type="submit"
+                          className="text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-3"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          className=" text-white bg-black font-Montserrat font-bold   focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mx-3"
+                          type="button"
+                          onClick={() => setShowModal(false)}
+                        >
+                          Close
+                        </button>
+                      </div>
                     </div>
                   </form>
                   {/* form */}

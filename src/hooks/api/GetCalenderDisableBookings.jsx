@@ -3,13 +3,12 @@ import { BASE_URL } from '../../constants/api';
 import { useParams } from 'react-router-dom';
 const GetCalenderDisableBookings = () => {
   const [bookings, setBookings] = useState([]);
-  const { id } = useParams();
-
+  // const { id } = useParams();
+  // console.log(id);
   async function getBookingData() {
     try {
       const accessToken = localStorage.getItem('accessToken');
-      console.log(accessToken);
-      const response = await fetch(`${BASE_URL}/bookings/${id}`, {
+      const response = await fetch(`${BASE_URL}/bookings`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -19,7 +18,7 @@ const GetCalenderDisableBookings = () => {
       if (!response.ok) {
         throw new Error(response.status);
       }
-      console.log(response);
+
       const profileData = await response.json();
       setBookings(profileData);
     } catch (error) {
@@ -29,7 +28,7 @@ const GetCalenderDisableBookings = () => {
 
   useEffect(() => {
     getBookingData();
-  }, [id]);
+  }, []);
 
   return bookings;
 };

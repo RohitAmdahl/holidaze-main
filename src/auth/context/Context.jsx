@@ -46,7 +46,6 @@ const AuthProvider = ({ children }) => {
   };
 
   const logInUser = async (data) => {
-    const accessToken = localStorage.getItem('accessToken');
     try {
       const response = await fetch(`${LOGIN_USER}`, {
         method: 'POST',

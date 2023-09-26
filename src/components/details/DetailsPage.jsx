@@ -8,11 +8,11 @@ import { LuParkingCircle } from 'react-icons/lu';
 import { BsStarFill, BsArrowRight } from 'react-icons/bs';
 import { AuthContext } from '../../auth/context/Context';
 import { Link } from 'react-router-dom';
-import { BASE_URL } from '../../constants/api';
+
 // import BookingCalender from '../Forms/BookingCalender';
 import BookingForm from '../Forms/BookingForm';
-import { useState } from 'react';
-import { useEffect } from 'react';
+
+import GetCalenderDisableBookings from '../../hooks/api/GetCalenderDisableBookings';
 
 const DetailsPage = ({ data }) => {
   const { state } = useContext(AuthContext);
@@ -33,33 +33,7 @@ const DetailsPage = ({ data }) => {
   const petsAvailable = pets === true || pets === 'true';
   const lineWifi = wifi === true || wifi === 'true';
   const parkingCircle = parking === true || parking === 'true';
-
-  const [bookings, setBookings] = useState([]);
-
-  // useEffect(() => {
-  //   async function getBookingData() {
-  //     try {
-  //       const accessToken = localStorage.getItem('accessToken');
-  //       console.log(accessToken);
-  //       const response = await fetch(`${BASE_URL}/bookings`, {
-  //         method: 'GET',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //           Authorization: `Bearer ${accessToken}`,
-  //         },
-  //       });
-  //       if (!response.ok) {
-  //         throw new Error(response.status);
-  //       }
-  //       console.log(response);
-  //       const profileData = await response.json();
-  //       setBookings(profileData);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   getBookingData();
-  // }, [id]);
+  const bookings = GetCalenderDisableBookings();
 
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat overflow-hidden ">

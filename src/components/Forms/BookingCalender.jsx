@@ -28,7 +28,7 @@ const BookingCalender = ({ onDatesSelected, bookedDates }) => {
         excludedDatesArray.push(new Date(day));
       }
     });
-    console.log('excludedDatesArray:', excludedDatesArray);
+
     setExcludedDates(excludedDatesArray);
   }, [bookedDates]);
 
