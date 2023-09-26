@@ -3,7 +3,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { CiLocationOn } from 'react-icons/ci';
 import { IoIosPeople } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-import noImg from '../../assets/photo_2.jpg';
+import noImg from '../../assets/Noimg.jpg';
 console.log(noImg);
 const Card = ({ place }) => {
   const { id, name, media, location, price, maxGuests } = place;
@@ -11,34 +11,25 @@ const Card = ({ place }) => {
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat">
       <div className=" overflow-hidden ">
-        <Carousel showStatus={false} showThumbs={false}>
-          {/* {media.map((imageUrl, index) => (
-            <div className="" key={`media-${index}`}>
-              <img
-                className=" object-cover mx-auto rounded-2xl  h-52"
-                src={imageUrl || noImg}
-                alt={name}
-              />
-            </div>
-          ))} */}
-          {media.map((imageUrl, index) => (
-            <div key={`media-${index}`}>
-              {imageUrl ? (
+        {media.length > 0 ? (
+          <Carousel showStatus={false} showThumbs={false}>
+            {media.map((imageUrl, index) => (
+              <div key={`media-${index}`}>
                 <img
                   className="object-cover mx-auto rounded-2xl h-52"
                   src={imageUrl}
                   alt={name}
                 />
-              ) : (
-                <img
-                  className="object-cover mx-auto rounded-2xl h-52"
-                  src={noImg}
-                  alt={name}
-                />
-              )}
-            </div>
-          ))}
-        </Carousel>
+              </div>
+            ))}
+          </Carousel>
+        ) : (
+          <img
+            className="object-cover mx-auto rounded-2xl h-52 lg:p-10 sm:p-14 md:p-8 xs:p-8"
+            src={noImg}
+            alt={name}
+          />
+        )}
       </div>
       <Link to={`/Venues/${id}`}>
         <div className="mt-1 p-2 hover:text-blue hover:underline cursor-pointer ">
