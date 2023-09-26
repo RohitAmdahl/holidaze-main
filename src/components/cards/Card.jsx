@@ -4,7 +4,7 @@ import { CiLocationOn } from 'react-icons/ci';
 import { IoIosPeople } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import noImg from '../../assets/Noimg.jpg';
-console.log(noImg);
+
 const Card = ({ place }) => {
   const { id, name, media, location, price, maxGuests } = place;
 
