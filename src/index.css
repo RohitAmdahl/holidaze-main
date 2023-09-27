@@ -12,7 +12,7 @@
 .rdrCalendarWrapper {
   @apply border-2 border-orange p-2 flex;
 }
-.react-datepicker__day--unavailable {
+.redTextClass {
   @apply bg-red-500;
 }
 /* * {
