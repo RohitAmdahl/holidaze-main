@@ -3,8 +3,8 @@ import { BASE_URL } from '../../constants/api';
 import { useParams } from 'react-router-dom';
 const GetCalenderDisableBookings = () => {
   const [bookings, setBookings] = useState([]);
-  // const { id } = useParams();
-  // console.log(id);
+  const { id } = useParams();
+  console.log(id);
   async function getBookingData() {
     try {
       const accessToken = localStorage.getItem('accessToken');
@@ -18,8 +18,9 @@ const GetCalenderDisableBookings = () => {
       if (!response.ok) {
         throw new Error(response.status);
       }
-
+      console.log(response);
       const profileData = await response.json();
+      console.log(profileData);
       setBookings(profileData);
     } catch (error) {
       console.error(error);

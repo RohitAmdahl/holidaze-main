@@ -33,6 +33,7 @@ const DetailsPage = ({ data }) => {
   const petsAvailable = pets === true || pets === 'true';
   const lineWifi = wifi === true || wifi === 'true';
   const parkingCircle = parking === true || parking === 'true';
+
   const bookings = GetCalenderDisableBookings();
 
   return (
