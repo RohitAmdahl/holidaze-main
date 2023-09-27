@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/api';
 import { ClimbingBoxLoader } from 'react-spinners';
-
-// import MyBookings from '../../components/cards/MyBookingTable';
-import { format } from 'date-fns';
+import CustomerCard from '../../components/cards/CustomerCard';
 
 const AllBookings = () => {
   const [data, setData] = useState([]);
@@ -71,33 +69,7 @@ const AllBookings = () => {
   }
   return (
     <>
-      <div className="Text-lg text-blue font-semibold">
-        Please Contact Us For any Query: +47 452 256
-      </div>
-      <div className=" overflow-x-auto ">
-        <table className=" container mx-auto border-collapse border border-gray-300 mt-4">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 bg-gray-300">Date From</th>
-              <th className="px-4 py-2 bg-gray-300">Date To</th>
-              <th className="px-4 py-2 bg-gray-300">Guests</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((booking) => (
-              <tr key={booking.id}>
-                <td className="px-4 py-2 text-center  ">
-                  {format(new Date(booking.dateFrom), 'MM/dd/yyyy')}
-                </td>
-                <td className="px-4 py-2  text-center">
-                  {format(new Date(booking.dateTo), 'MM/dd/yyyy')}
-                </td>
-                <td className="px-4 py-2 text-center ">{booking.guests}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <CustomerCard key={data.id} bookings={data} />
     </>
   );
 };
