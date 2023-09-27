@@ -1,8 +1,6 @@
 import React from 'react';
 import { format } from 'date-fns';
 const CustomerCard = ({ bookings }) => {
-  console.log(bookings);
-
   return (
     <div>
       <div className="Text-lg text-blue font-semibold">
@@ -15,6 +13,7 @@ const CustomerCard = ({ bookings }) => {
               <th className="px-4 py-2 bg-gray-300">Date From</th>
               <th className="px-4 py-2 bg-gray-300">Date To</th>
               <th className="px-4 py-2 bg-gray-300">Guests</th>
+              <th className="px-4 py-2 bg-gray-300">ID</th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +26,7 @@ const CustomerCard = ({ bookings }) => {
                   {format(new Date(customer.dateTo), 'MM/dd/yyyy')}
                 </td>
                 <td className="px-4 py-2 text-center">{customer.guests}</td>
+                <td className="px-4 py-2 text-center">{customer.id}</td>
               </tr>
             ))}
           </tbody>
