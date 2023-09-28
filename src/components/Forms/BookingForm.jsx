@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import { format } from 'date-fns';
 import { useParams } from 'react-router-dom';
@@ -8,9 +8,7 @@ import BookingRequest from '../../hooks/PostVenue';
 import { ToastContainer, toast } from 'react-toastify';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { addDays } from 'date-fns';
-// import BookingCalender from './BookingCalender';
-// code
+import { parseISO, isBefore, addDays } from 'date-fns';
 
 const BookingForm = ({ price, maxGuests, data }) => {
   const [totalAmount, setTotalAmount] = useState(0);
@@ -66,21 +64,23 @@ const BookingForm = ({ price, maxGuests, data }) => {
     }
   };
 
-  const generateDisabledDates = () => {
-    const today = new Date();
-    const thirtyDaysFromNow = addDays(today, 30);
+  const disabledDates = data?.bookings?.flatMap((booking) => {
+    const dateFrom = parseISO(booking.dateFrom);
+    let currentDate = new Date(dateFrom);
+    const dateTo = parseISO(booking.dateTo);
 
-    const disabledDates = [];
-    let currentDate = today;
+    const dates = [];
 
-    while (currentDate < thirtyDaysFromNow) {
-      disabledDates.push(currentDate);
+    while (
+      isBefore(currentDate, dateTo) ||
+      currentDate.getTime() === dateTo.getTime()
+    ) {
+      dates.push(new Date(currentDate));
       currentDate = addDays(currentDate, 1);
     }
 
-    return disabledDates;
-  };
-  const disabledDates = generateDisabledDates();
+    return dates;
+  });
 
   const formik = useFormik({
     initialValues,
@@ -126,7 +126,7 @@ const BookingForm = ({ price, maxGuests, data }) => {
                 minDate={new Date()}
                 isClearable={true}
                 excludeDates={disabledDates}
-                className="border border-red-800 px-4 py-2 rounded w-full"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
               {formik.touched.dateFrom && formik.errors.dateFrom && (
                 <p className="text-red-500">{formik.errors.dateFrom}</p>
@@ -148,7 +148,7 @@ const BookingForm = ({ price, maxGuests, data }) => {
                 minDate={new Date()}
                 excludeDates={disabledDates}
                 isClearable={true}
-                className="border border-red-800 px-4 py-2 rounded w-full"
+                className="px-3 py-2 bg-white border-b-2  border-slate-300  focus:outline-none focus:border-blue focus:ring-orange block w-full rounded-md sm:text-sm focus:ring-1"
               />
             </div>
           </div>

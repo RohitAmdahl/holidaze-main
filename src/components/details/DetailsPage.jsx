@@ -101,7 +101,9 @@ const DetailsPage = ({ data }) => {
       {!state.isAuthenticated ? (
         <>
           <div className=" container mx-auto text-2xl border-t-2 py-4 my-4 flex justify-center flex-col items-center">
-            <h3 className="text-blue ">Please Login for Booking</h3>
+            <h3 className="text-blue font-semibold ">
+              Please Login for Booking
+            </h3>
             <Link
               type="button"
               className="my-8 mx-2 text-blue bg-orange font-Montserrat font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-8 py-2.5 text-center inline-flex items-center dark:bg-blue-600"
@@ -113,6 +115,9 @@ const DetailsPage = ({ data }) => {
         </>
       ) : (
         <div className="my-5">
+          <p className="text-black font-semibold text-xl p-2 font-Montserrat">
+            Booking Form{' '}
+          </p>
           <BookingForm
             price={price}
             maxGuests={maxGuests}
