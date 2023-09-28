@@ -10,21 +10,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { addDays } from 'date-fns';
 // import BookingCalender from './BookingCalender';
-
-// const calculatePrice = (dateFrom, dateTo, pricePerNight) => {
-//   const start = new Date(dateFrom);
-//   const end = new Date(dateTo);
-//   if (!dateFrom || !dateTo) {
-//     return 0;
-//   }
-//   if (isNaN(start) || isNaN(end)) {
-//     return 0;
-//   }
-//   const timeDiff = Math.abs(end - start);
-//   const numberOfNights = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-//   const totalPrice = pricePerNight * numberOfNights;
-//   return totalPrice; // totalPrice*maxGuests we can also multiply  by maxGuests
-// };
+// code
 
 const BookingForm = ({ price, maxGuests, data }) => {
   const [totalAmount, setTotalAmount] = useState(0);
