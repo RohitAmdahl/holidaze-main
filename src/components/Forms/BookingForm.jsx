@@ -25,19 +25,24 @@ const BookingForm = ({ price, maxGuests, data }) => {
   const { id } = useParams();
 
   const initialValues = {
-    dateFrom: null,
-    dateTo: null,
+    dateFrom: '',
+    dateTo: '',
     guests: '',
     venueId: id,
   };
+  const validationSchema = Yup.object().shape({
+    dateFrom: Yup.date().required('Required'),
+    dateTo: Yup.date().required('Required'),
+    guests: Yup.number()
+      .min(1, 'Must be at least 1 guest')
+      .max(maxGuests, `Max number of guests is ${maxGuests}`)
+      .required('Required')
+      .test('max-guests', 'Exceeds maximum number of guests', (value) => {
+        return value <= maxGuests;
+      }),
+  });
 
   const handleSubmit = async (values) => {
-    if (values.guests > maxGuests) {
-      setErrorMaxGuests(true);
-      return;
-    }
-
-    setErrorMaxGuests(false);
     const bookData = {
       dateFrom: format(values.dateFrom, 'yyyy-MM-dd'),
       dateTo: format(values.dateTo, 'yyyy-MM-dd'),
@@ -60,15 +65,6 @@ const BookingForm = ({ price, maxGuests, data }) => {
       console.error('Error during booking:', error);
     }
   };
-
-  const validationSchema = Yup.object().shape({
-    dateFrom: Yup.date().required('Required'),
-    dateTo: Yup.date().required('Required'),
-    guests: Yup.number()
-      .min(1, 'Must be at least 1 guest')
-      .max(maxGuests, `Max number of guests is ${maxGuests}`)
-      .required('Required'),
-  });
 
   const generateDisabledDates = () => {
     const today = new Date();
