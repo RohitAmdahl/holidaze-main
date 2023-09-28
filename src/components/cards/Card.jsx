@@ -31,7 +31,7 @@ const Card = ({ place }) => {
           />
         )}
       </div>
-      <Link to={`/Venues/${id}`}>
+      <Link to={`/venues/${id}`}>
         <div className="mt-1 p-2 hover:text-blue hover:underline cursor-pointer ">
           <h2 className="text-slate-700 font-semibold capitalize"> {name} </h2>
           <p className="text-slate-700 mt-1 text-sm flex gap-1 items-center ">

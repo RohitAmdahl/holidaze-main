@@ -29,7 +29,7 @@ export const Tabs = () => {
               href="#link1"
               role="tablist"
             >
-              Create Venue
+              Post Venue
             </a>
           </li>
           <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -48,7 +48,7 @@ export const Tabs = () => {
               href="#link2"
               role="tablist"
             >
-              My venues
+              Renting Out
             </a>
           </li>
           <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -67,7 +67,7 @@ export const Tabs = () => {
               href="#link4"
               role="tablist"
             >
-              My bookings
+              Booking Made By You
             </a>
           </li>
           <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
@@ -86,7 +86,7 @@ export const Tabs = () => {
               href="#link3"
               role="tablist"
             >
-              Up-Coming Bookings
+              Renting Out booked
             </a>
           </li>
         </ul>

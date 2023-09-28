@@ -34,8 +34,6 @@ const DetailsPage = ({ data }) => {
   const lineWifi = wifi === true || wifi === 'true';
   const parkingCircle = parking === true || parking === 'true';
 
-  const bookings = GetCalenderDisableBookings();
-
   return (
     <div className=" container max-w-4xl mx-auto font-Montserrat overflow-hidden ">
       <div className="flex justify-between flex-wrap items-center max-w-2xl p-2 mx-auto border-b-2  pt-4">
@@ -122,7 +120,7 @@ const DetailsPage = ({ data }) => {
             price={price}
             maxGuests={maxGuests}
             venueId={id}
-            bookedDates={bookings}
+            data={data}
           />
         </div>
       )}
