@@ -109,8 +109,8 @@ const BookingForm = ({ price, maxGuests, data }) => {
     <>
       <div className="max-w-xl container  items-center p-4 font-Montserrat">
         <form onSubmit={formik.handleSubmit}>
-          <div className="flex flex-wrap gap-3 lg:grid lg:grid-cols-2 lg:gap-2">
-            <div>
+          <div className="flex flex-col gap-3 lg:grid lg:grid-cols-2 lg:gap-2">
+            <div className="flex flex-col">
               <label htmlFor="dateFrom">Date From</label>
               <DatePicker
                 selected={formik.values.dateFrom}
@@ -132,7 +132,7 @@ const BookingForm = ({ price, maxGuests, data }) => {
                 <p className="text-red-500">{formik.errors.dateFrom}</p>
               )}
             </div>
-            <div>
+            <div className="flex flex-col">
               <label htmlFor="dateTo">Date To</label>
               <DatePicker
                 selected={formik.values.dateTo}
