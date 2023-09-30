@@ -28,6 +28,39 @@ The application was built to satisfy the following user stories:
 14. A registered user may update their avatar
 15. A registered user may logout
 
+<table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <td>URL</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Gantt Chart</th>
+      <td><a href="https://trello.com/b/ZFugMoWM/project-exam-2">Gantt Chart link</a></td>
+    </tr>
+    <tr>
+      <th>Design Prototype</th>
+      <td><a href="https://www.figma.com/proto/JKVFhwzP4gK7IO5b5G1LrI/holidaze-design?page-id=0%3A1&node-id=105-344&scaling=scale-down&starting-point-node-id=105%3A344&show-proto-sidebar=1&mode=design&t=N8iQHVnVQMUdMyDM-1">Desktop Prototype</a> </br>
+      </td>
+    </tr>
+    <tr>
+      <th>Style Guide</th>
+      <td><a href="https://www.figma.com/file/00hs5h1IOMYyKe5i8gEFAN/holidaze-style-guide?type=design&node-id=0%3A1&mode=design&t=FpuLpWMEioqHRog4-1">Style Guide</a></td>
+    </tr>
+    <tr>
+      <th>Kanban Board</th>
+      <td><a href="https://trello.com/b/ZFugMoWM/project-exam-2">Project Board Link</a></td>
+    </tr>
+    <tr>
+      <th>Hosted Demo</th>
+      <td><a href="https://resilient-sawine-3b694a.netlify.app">Live DEMO Site</a></td>
+</tr>
+
+  </tbody>
+</table>
+
 ## Tech Stack ⚙️
 
 React + Vite +tailwindCss+ figma
