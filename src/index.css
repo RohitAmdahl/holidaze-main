@@ -15,6 +15,9 @@
 .redTextClass {
   @apply bg-red-500;
 }
+.active {
+  @apply border-green text-lg text-green underline underline-offset-8  duration-200 ease-out;
+}
 /* * {
   outline: 2px solid red;
 } */
