@@ -18,7 +18,7 @@ Visit the live demo of the project [here](https://resilient-sawine-3b694a.netlif
   <tbody>
     <tr>
       <th>Gantt Chart</th>
-      <td>[Gantt Chart PDF](/src/assets/semster_exam_2_teeamgantt.pdf)</td>
+      <!-- <td>[Gantt Chart PDF](/src/assets/semster_exam_2_teeamgantt.pdf)</td> -->
     </tr>
     <tr>
       <th>Design Prototype</th>
