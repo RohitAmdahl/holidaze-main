@@ -25,7 +25,14 @@ const Navbar = () => {
           <nav className="hidden md:block  ">
             <ul className=" flex justify-center ">
               <li className=" flex justify-center items-center px-4">
-                <NavLink to="/" className="flex justify-center items-center">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'flex justify-center items-center active'
+                      : 'notActive flex justify-center items-center'
+                  }
+                >
                   <HiHome />
                   Home
                 </NavLink>
@@ -33,7 +40,11 @@ const Navbar = () => {
               <li className=" flex justify-center items-center px-4">
                 <NavLink
                   to="/venues"
-                  className="flex justify-center items-center"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'flex justify-center items-center active'
+                      : 'notActive flex justify-center items-center'
+                  }
                 >
                   <TbBeach />
                   Venues
@@ -44,7 +55,11 @@ const Navbar = () => {
                   <li className="flex justify-center items-center px-4">
                     <NavLink
                       to="/signIn"
-                      className="flex justify-center items-center"
+                      className={({ isActive }) =>
+                        isActive
+                          ? 'flex justify-center items-center active'
+                          : 'notActive flex justify-center items-center'
+                      }
                     >
                       <PiSignIn />
                       Sign In
@@ -53,7 +68,11 @@ const Navbar = () => {
                   <li className="flex justify-center items-center px-4">
                     <NavLink
                       to="/signUP"
-                      className="flex justify-center items-center"
+                      className={({ isActive }) =>
+                        isActive
+                          ? 'flex justify-center items-center active'
+                          : 'notActive flex justify-center items-center'
+                      }
                     >
                       <BiUserPlus />
                       Sign Up
@@ -98,7 +117,14 @@ const Navbar = () => {
               onClick={handleToggle}
               className="flex items-center justify-center py-4 duration-100 ease-out hover:text-blue hover:underline "
             >
-              <NavLink to="/" className="mx-2 flex items-center">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive
+                    ? 'flex justify-center items-center active'
+                    : 'notActive flex justify-center items-center'
+                }
+              >
                 <HiHome />
                 Home
               </NavLink>
