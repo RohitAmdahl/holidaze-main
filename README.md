@@ -18,7 +18,12 @@ Visit the live demo of the project [here](https://resilient-sawine-3b694a.netlif
   <tbody>
     <tr>
       <th>Gantt Chart</th>
+<<<<<<< HEAD
       <!-- <td>[Gantt Chart PDF](/src/assets/semster_exam_2_teeamgantt.pdf)</td> -->
+=======
+      <td>(https://github.com/RohitAmdahl/holidaze-main/files/12776964/semster_exam_2_teeamgantt.pdf)
+amgantt.pdf)</td>
+>>>>>>> 31442b3d40c8e6b7c173521e0f41423ca7d17b0a
     </tr>
     <tr>
       <th>Design Prototype</th>
